@@ -13,6 +13,8 @@ MALFORMED_URL - (misleading) has happened due to expecting a UUID in the request
 
 '''
 Essential Information
+client_id = 'chalmers_test'
+client_secret = 'oWN3hmv9K6kYSGF96IP3pfWzrnk12Vo7'
 CompanyID: 170401
 Living Lab EV charger siteID: 6d411116-91cc-4a61-9b83-b83380a04e69
 chargeboxid/chargeboxidentity: 000005354-1

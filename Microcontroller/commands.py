@@ -18,7 +18,6 @@ def createToken():
     print(response.text) #debugging
     return response.json.access_token
 
-createToken()
 #Start Charger
 def startCharger():
 
