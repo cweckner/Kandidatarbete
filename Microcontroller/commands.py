@@ -3,7 +3,7 @@ import datetime
 import requests
 
 APIServer = 'https://test4.oamportal.com' 
-
+ 
 #Retrieve access token (authentication)
 def createToken():
     client_id = 'chalmers_test'
@@ -16,13 +16,16 @@ def createToken():
 
     response = requests.post(url, data=data, auth=(client_id,client_secret))
     print(response.text) #debugging
-    return response.json.access_token
+    print(response) #debugging
+    acc_response_json = response.json()
+    acc_token = acc_response_json["access_token"]
+    return(acc_token)
 
 #Start Charger
 def startCharger():
-
+    access_token = createToken()
     headers = {
-        'Authorization': 'Bearer [access_token]',
+        'Authorization': 'Bearer ' + access_token,
         'Content-Type': 'application/json',
     }
 
@@ -30,7 +33,9 @@ def startCharger():
 
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
     headers=headers, data=data)
-    return response
+    print(response) #debugging
+
+startCharger()
 
 #Notify Start (request sent by charger)
 
