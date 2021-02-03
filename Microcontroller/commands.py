@@ -6,8 +6,8 @@ APIServer = 'https://test4.oamportal.com'
 
 #Retrieve access token (authentication)
 def createToken():
-    client_id = input("Username: ")
-    client_secret = input("Password: ")
+    client_id = 'chalmers_test'
+    client_secret = 'oWN3hmv9K6kYSGF96IP3pfWzrnk12Vo7'
     url = APIServer + "/oauth2/token"
     data = {
         'grant_type': 'client_credentials',
@@ -15,8 +15,10 @@ def createToken():
     }
 
     response = requests.post(url, data=data, auth=(client_id,client_secret))
-    return response
+    print(response.text) #debugging
+    return response.json.access_token
 
+createToken()
 #Start Charger
 def startCharger():
 
