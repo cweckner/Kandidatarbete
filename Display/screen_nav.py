@@ -28,10 +28,20 @@ ScreenManager:
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         size_hint_x: None
         width: 300
+    MDRectangleFlatButton:
+        text: 'Go directly to input screen'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+        on_press: root.manager.current = 'inputs'
         
 
 <InputScreen>:
     name: 'inputs'
+    MDTextField:
+        hint_text: "Current battery level"
+        mode: "rectangle"
+        size_hint_x: 0.5
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
     
 """
 

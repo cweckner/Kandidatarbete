@@ -34,3 +34,5 @@ class DemoApp(MDApp):
 #           root.manager.current = 'inputs'
 
 DemoApp().run()
+
+
