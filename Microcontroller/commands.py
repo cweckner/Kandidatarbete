@@ -15,10 +15,10 @@ def createToken():
     }
 
     response = requests.post(url, data=data, auth=(client_id,client_secret))
-    #print(response.text) #debugging
-    print(response) #debugging
-    acc_response_json = response.json()
-    acc_token = acc_response_json["access_token"]
+    #print(response.text)                           #debugging
+    print(response)                                 #debugging
+    acc_response_json = response.json()             #Convert response to json object
+    acc_token = acc_response_json["access_token"]   #Get the access token from the json object
     return(acc_token)
 
 #Start Charger

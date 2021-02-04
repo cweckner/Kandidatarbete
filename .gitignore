@@ -2,6 +2,9 @@
 config.json
 .vscode
 __pycache__
+/kivy
+KKivyMD
+KivyMD
 
 # Distribution / packaging
 .Python
