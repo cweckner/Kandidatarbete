@@ -7,6 +7,7 @@ access_token = None
  
 #Retrieve access token (authentication)
 def createToken():
+    print("createToken")
     client_id = 'chalmers_test'
     client_secret = 'oWN3hmv9K6kYSGF96IP3pfWzrnk12Vo7'
     url = APIServer + "/oauth2/token"
@@ -17,28 +18,28 @@ def createToken():
 
     response = requests.post(url, data=data, auth=(client_id,client_secret))
     #print(response.text)                           #debugging
-    print(response)                                 #debugging
+    print(response)                                #debugging
     acc_response_json = response.json()             #Convert response to json object
     acc_token = acc_response_json["access_token"]   #Get the access token from the json object
     return(acc_token)
 
 #Start Charger
 def startCharger(token):
-
+    print("startCharger")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
 
     data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":"[tag_id]", "transactionId":"00000000-0000-0000-0000-000000000000", "stoptime":"YYYY-MM-DDTHH:MM:SSZ"}'
-
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
     headers=headers, data=data)
-    #print(response) #debugging
+    print(response) #debugging
+    
 
 #Notify Start (request sent by charger)
 def notifyStart(token): #funkar inte
-
+    print("notifyStart")
     serverNotify = requests.get(APIServer + '/ServicesApi/rest/charger/uuid/start')
     if (serverNotify.status_code == 200):
         headers = {
@@ -51,9 +52,11 @@ def notifyStart(token): #funkar inte
         response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
         headers=headers, data=data)
     else: 
-        #print(serverNotify)
+        print(serverNotify)
         print(serverNotify.text)
-
+access_token = createToken()
+startCharger(access_token)
+notifyStart(access_token)
 #Stop Charger
 
 #Notify Stop (request sent by charger)
