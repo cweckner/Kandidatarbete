@@ -3,6 +3,7 @@ import datetime
 import requests
 
 APIServer = 'https://test4.oamportal.com' 
+access_token = None
  
 #Retrieve access token (authentication)
 def createToken():
@@ -22,10 +23,10 @@ def createToken():
     return(acc_token)
 
 #Start Charger
-def startCharger():
-    access_token = createToken()
+def startCharger(token):
+
     headers = {
-        'Authorization': 'Bearer ' + access_token,
+        'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
 
@@ -33,9 +34,25 @@ def startCharger():
 
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
     headers=headers, data=data)
-    print(response.text) #debugging
+    #print(response) #debugging
 
 #Notify Start (request sent by charger)
+def notifyStart(token): #funkar inte
+
+    serverNotify = requests.get(APIServer + '/ServicesApi/rest/charger/uuid/start')
+    if (serverNotify.status_code == 200):
+        headers = {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        }
+
+        data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
+
+        response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
+        headers=headers, data=data)
+    else: 
+        #print(serverNotify)
+        print(serverNotify.text)
 
 #Stop Charger
 
