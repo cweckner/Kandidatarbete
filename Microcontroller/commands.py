@@ -154,3 +154,12 @@ def setRFIDtagID(token):
     print(response.text)
 
 #Request RFID tagID info
+def requestRFIDtagID(token):
+    print("requestRFIDtagID")
+    headers = {
+        'Authorization': 'Bearer [access_token]',
+    }
+
+    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/tag/[tag_id]', headers=headers)
+    print(response)
+    print(response.text)

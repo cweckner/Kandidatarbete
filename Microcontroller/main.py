@@ -11,4 +11,4 @@ changeActiveCurrent(token)
 stopCharger(token)
 notifyStop(token)
 setRFIDtagID(token)
-
+requestRFIDtagID(token)
