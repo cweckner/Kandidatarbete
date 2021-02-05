@@ -17,12 +17,15 @@ def createToken():
 
     response = requests.post(url, data=data, auth=(client_id,client_secret))
     #print(response.text)                           #debugging
-    print(response)                                #debugging
+    print(response)                                 #debugging
     acc_response_json = response.json()             #Convert response to json object
     acc_token = acc_response_json["access_token"]   #Get the access token from the json object
-    return(acc_token)
+    return(acc_token)                               #Return the access token so that it can be used later
 
 #Start Charger
+#Send the request to activate the connector on the charge station
+#TODO:
+#Add stoptime
 def startCharger(token):
     print("startCharger")
     headers = {
@@ -33,14 +36,12 @@ def startCharger(token):
     data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":"[tag_id]", "transactionId":"00000000-0000-0000-0000-000000000000", "stoptime":"YYYY-MM-DDTHH:MM:SSZ"}'
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
     headers=headers, data=data)
-    print(response) #debugging
+    print(response)
     
 
 #Notify Start (request sent by charger)
 def notifyStart(token):
     print("notifyStart")
-    #serverNotify = requests.get(APIServer + '/ServicesApi/rest/charger/uuid/start')
-    #if (serverNotify.status_code == 200):
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
@@ -50,9 +51,6 @@ def notifyStart(token):
 
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
     headers=headers, data=data)
-#else: 
-    #print(serverNotify)
-    #print(serverNotify.text)
     print(response)
     print(response.text)
 
@@ -86,6 +84,8 @@ def notifyStop(token):
     print(response.text)
 
 #Change Active Current (amps)
+#TODO:
+#Add input from optimisation model
 def changeActiveCurrent(token):
     print("changeActiveCurrent")
     headers = {
@@ -99,6 +99,7 @@ def changeActiveCurrent(token):
     headers=headers, data=data)
     print(response)
     print(response.text)
+    
 #Consumed Energy (KWh) / duration
 def consumedEnergy(token):
     print("consumedEnergy")
@@ -135,7 +136,8 @@ def connectorStatus(token):
         'Authorization': 'Bearer ' + token,
     }
 
-    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/charger/status/d4ceb292-12ef-46b2-9724-0aeca7b62827', headers=headers)
+    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/charger/status/d4ceb292-12ef-46b2-9724-0aeca7b62827', 
+    headers=headers)
     print(response)
     print(response.text)
 
