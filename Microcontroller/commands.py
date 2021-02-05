@@ -3,7 +3,6 @@ import datetime
 import requests
 
 APIServer = 'https://test4.oamportal.com' 
-access_token = None
  
 #Retrieve access token (authentication)
 def createToken():
@@ -127,9 +126,31 @@ def requestSiteInfo(token):
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/siteinfo', 
     headers=headers, data=data)
     print(response)
+    print(response.text)
 
 #Get Connector Status
+def connectorStatus(token):
+    print("connectorStatus")
+    headers = {
+        'Authorization': 'Bearer ' + token,
+    }
+
+    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/charger/status/d4ceb292-12ef-46b2-9724-0aeca7b62827', headers=headers)
+    print(response)
+    print(response.text)
 
 #Set RFID tagID
+def setRFIDtagID(token):
+    print("setRFIDtagID")
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
+
+    data = '{"tagId":"918273645","companyId":170401,"validTo" : "YYYY-MM-DDTHH:MM:SSZ"}'
+
+    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/tag/', headers=headers, data=data)
+    print(response)
+    print(response.text)
 
 #Request RFID tagID info
