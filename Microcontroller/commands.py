@@ -89,6 +89,19 @@ def notifyStop(token):
 #Change Active Current (amps)
 
 #Consumed Energy (KWh) / duration
+def consumedEnergy(token):
+    print("consumedEnergy")
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
+
+    data = '{"tagId" : "[tag_id]", "intervalStart" : "YYYY-MM-DD"," intervalEnd" : "YYYY-MM-DD"}'
+
+    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/tag/getSessionsByTag', 
+    headers=headers, data=data)
+    print(response)
+    print(response.text)
 
 #Request Site Info
 def requestSiteInfo(token):
