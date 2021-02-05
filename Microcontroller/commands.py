@@ -38,49 +38,73 @@ def startCharger(token):
     
 
 #Notify Start (request sent by charger)
-def notifyStart(token): #funkar inte
+def notifyStart(token):
     print("notifyStart")
-    serverNotify = requests.get(APIServer + '/ServicesApi/rest/charger/uuid/start')
-    if (serverNotify.status_code == 200):
-        headers = {
-            'Authorization': 'Bearer ' + token,
-            'Content-Type': 'application/json',
-        }
+    #serverNotify = requests.get(APIServer + '/ServicesApi/rest/charger/uuid/start')
+    #if (serverNotify.status_code == 200):
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
 
-        data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
+    data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
 
-        response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
-        headers=headers, data=data)
-    else: 
-        print(serverNotify)
-        print(serverNotify.text)
-access_token = createToken()
-startCharger(access_token)
-notifyStart(access_token)
+    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
+    headers=headers, data=data)
+#else: 
+    #print(serverNotify)
+    #print(serverNotify.text)
+    print(response)
+    print(response.text)
+
 #Stop Charger
+def stopCharger(token):
+    print("stopCharger")
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
+
+    data = '{"evseId" : "d4ceb292-12ef-46b2-9724-0aeca7b62827", "transactionId" : "00000000-0000-0000-0000-000000000000"}'
+
+    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/stop', 
+    headers=headers, data=data)
+    print(response)
 
 #Notify Stop (request sent by charger)
+def notifyStop(token):
+    print("notifyStop")
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
+
+    data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
+
+    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/stop', 
+    headers=headers, data=data)
+    print(response)
+    print(response.text)
 
 #Change Active Current (amps)
 
 #Consumed Energy (KWh) / duration
 
 #Request Site Info
-def requestSiteInfo():
-    access_token = createToken()
+def requestSiteInfo(token):
+    print("requestSiteInfo")
     headers = {
-    'Authorization': 'Bearer ' + access_token,
+    'Authorization': 'Bearer ' + token,
     'Content-Type': 'application/json',
     }
 
     data = '{"siteid" : "6d411116-91cc-4a61-9b83-b83380a04e69"}'
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/siteinfo', 
     headers=headers, data=data)
-    print(response.text)
+    print(response)
 
 #Get Connector Status
 
 #Set RFID tagID
 
 #Request RFID tagID info
-
