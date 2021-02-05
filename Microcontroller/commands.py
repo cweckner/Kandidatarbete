@@ -87,7 +87,19 @@ def notifyStop(token):
     print(response.text)
 
 #Change Active Current (amps)
+def changeActiveCurrent(token):
+    print("changeActiveCurrent")
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
 
+    data = '{"current": "[current]", "chargeboxidentity": "000005354-1","connectorid": "1"}'
+
+    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/changeactivecurrent', 
+    headers=headers, data=data)
+    print(response)
+    print(response.text)
 #Consumed Energy (KWh) / duration
 def consumedEnergy(token):
     print("consumedEnergy")
