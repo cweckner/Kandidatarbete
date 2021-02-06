@@ -4,9 +4,11 @@ from commands import *
 token = createToken()
 requestSiteInfo(token)
 connectorStatus(token)
-notifyStart(token,startCharger(token))
+startCharger(token)
+notifyStart(token)
 consumedEnergy(token)
 changeActiveCurrent(token)
-notifyStop(token,stopCharger(token) )
+stopCharger(token)
+notifyStop(token)
 setRFIDtagID(token)
 #requestRFIDtagID(token) status code 500
