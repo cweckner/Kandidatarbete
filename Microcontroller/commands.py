@@ -37,22 +37,28 @@ def startCharger(token):
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
     headers=headers, data=data)
     print(response)
-    
+    responseJSON = response.json()
+    responseSuccess = responseJSON["success"]
+    print(responseSuccess)
+    return(responseSuccess)
 
 #Notify Start (request sent by charger)
-def notifyStart(token):
+def notifyStart(token, success):
     print("notifyStart")
-    headers = {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json',
-    }
+    if(success == True):
+        headers = {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        }
 
-    data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
+        data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
 
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
-    headers=headers, data=data)
-    print(response)
-    print(response.text)
+        response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
+        headers=headers, data=data)
+        print(response)
+        print(response.text)
+    else:
+        print("Failed to start")
 
 #Stop Charger
 def stopCharger(token):
@@ -67,21 +73,29 @@ def stopCharger(token):
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/stop', 
     headers=headers, data=data)
     print(response)
+    responseJSON = response.json()
+    responseSuccess = responseJSON["success"]
+    print(responseSuccess)
+    return(responseSuccess)
+
 
 #Notify Stop (request sent by charger)
-def notifyStop(token):
+def notifyStop(token, success):
     print("notifyStop")
-    headers = {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json',
-    }
+    if(success == True):
+        headers = {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json',
+        }
 
-    data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
+        data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
 
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/stop', 
-    headers=headers, data=data)
-    print(response)
-    print(response.text)
+        response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/stop', 
+        headers=headers, data=data)
+        print(response)
+        print(response.text)
+    else:
+        print("Failed to stop")
 
 #Change Active Current (amps)
 #TODO:
@@ -151,7 +165,8 @@ def setRFIDtagID(token):
 
     data = '{"tagId":"918273645","companyId":170401,"validTo" : "YYYY-MM-DDTHH:MM:SSZ"}'
 
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/tag/', headers=headers, data=data)
+    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/tag/', 
+    headers=headers, data=data)
     print(response)
     print(response.text)
 
@@ -162,6 +177,7 @@ def requestRFIDtagID(token):
         'Authorization': 'Bearer ' + token,
     }
 
-    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/tag/[tag_id]', headers=headers)
+    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/tag/[tag_id]', 
+    headers=headers)
     print(response)
     print(response.text)
