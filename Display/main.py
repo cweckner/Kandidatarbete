@@ -50,9 +50,11 @@ screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 class DemoApp(MDApp):
 
     def build(self):
+        print("main")
         self.theme_cls.primary_palette = "Green"
-        screen = Builder.load_string(sc_helper)  
-        return screen
+        self.screen = Builder.load_string(sc_helper) 
+        
+        return self.screen
 
     def show_time_picker(self):
         '''Open time picker dialog.'''
@@ -69,9 +71,13 @@ class DemoApp(MDApp):
         date_dialog = MDDatePicker(callback=self.get_date)
         date_dialog.open()
 
-#if self.username.text == "admin":
-#           root.manager.current = 'inputs'
+    def save_tfvalue(self):
+        usertext = self.root.ids.currentchargetf.text
+        print(usertext)
+    
+        
 
-DemoApp().run()
+if __name__ == '__main__':
+    DemoApp().run()
 
 
