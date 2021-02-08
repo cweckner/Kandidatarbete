@@ -1,18 +1,6 @@
 
 
-sc_helper = """
-
-ScreenManager:
-    WelcomeScreen:
-    InputScreen:
-    CurrentChargeScreen:
-    WantedChargeScreen:
-    TimeDateScreen:
-    BatteryCapacityScreen:
-    MaxCurrentScreen:
-    OutletScreen:
-    GoodbyeScreen:
-
+ws_helper = """
 
 <WelcomeScreen>:
     name: 'welcome'
@@ -28,10 +16,12 @@ ScreenManager:
     MDRectangleFlatButton:
         text: 'Go directly to inputs (For test purposes only)'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-        on_press:
-            root.manager.transition.direction = 'left'
-            root.manager.current = 'currentcharge'
+        on_press: root.manager.current = 'currentcharge'
+"""
 
+ccs_helper = """
+
+        
 <CurrentChargeScreen>:
     name: 'currentcharge'
     MDTextField:
@@ -48,16 +38,14 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'left'
-            root.manager.current = 'wantedcharge'
+        on_press: root.manager.current = 'wantedcharge'
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press:
-            #print(app.<något här>.text)   -----------hitta elementet i andra filen
-            root.manager.transition.direction = 'right'            
-            root.manager.current = 'welcome'
+        on_press: root.manager.current = 'welcome'
+"""
+
+wcs_helper = """
 
 <WantedChargeScreen>:
     name: 'wantedcharge'
@@ -75,15 +63,15 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'left'
-            root.manager.current = 'timedate'
+        on_press: root.manager.current = 'timedate'
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'right'
-            root.manager.current = 'currentcharge'
+        on_press: root.manager.current = 'currentcharge'
+
+"""
+
+tds_helper = """
 
 <TimeDateScreen>:
     name: 'timedate'
@@ -105,15 +93,14 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press:
-            root.manager.transition.direction = 'left'         
-            root.manager.current = 'batterycapacity'
+        on_press: root.manager.current = 'batterycapacity'
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'right'
-            root.manager.current = 'wantedcharge'
+        on_press: root.manager.current = 'wantedcharge'
+"""
+
+bcs_helper = """
 
 <BatteryCapacityScreen>:
     name: 'batterycapacity'
@@ -131,16 +118,14 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'left'
-            root.manager.current = 'maxcurrent'
+        on_press: root.manager.current = 'maxcurrent'
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'right'
-            root.manager.current = 'timedate'
+        on_press: root.manager.current = 'timedate'
+"""
     
+mcs_helper = """
 
 <MaxCurrentScreen>:
     name: 'maxcurrent'
@@ -158,15 +143,15 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'left'
-            root.manager.current = 'outlet'
+        on_press: root.manager.current = 'outlet'
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'right'
-            root.manager.current = 'batterycapacity'
+        on_press: root.manager.current = 'batterycapacity'
+"""
+
+
+os_helper = """
 
 <OutletScreen>:
     name: 'outlet'
@@ -181,10 +166,10 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'right'
-            root.manager.current = 'maxcurrent'
+        on_press: root.manager.current = 'maxcurrent'
+"""
 
+gbs_helper = """
 
 <GoodbyeScreen>:
     name: 'goodbye'
