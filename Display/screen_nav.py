@@ -215,7 +215,9 @@ ScreenManager:
     MDRectangleFlatButton:
         text: 'Go back'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-        on_press: root.manager.current = 'outlet'
+        on_press: 
+            root.manager.transition.direction = 'right'
+            root.manager.current = 'outlet'
     
 """
 
