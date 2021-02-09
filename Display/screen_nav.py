@@ -191,17 +191,28 @@ ScreenManager:
 
 <OutletScreen>:
     name: 'outlet'
+    MDLabel:
+        text: 'Charging outlet'
+        halign: 'center'
+    MDFlatButton:
+        text: '1'
+        theme_text_color: "Hint"
+        pos_hint: {'center_x': 0.4, 'center_y': 0.4}
+    MDFlatButton:
+        text: '2'
+        theme_text_color: "Hint"
+        pos_hint: {'center_x': 0.55, 'center_y': 0.4}
     MDCheckbox:
         group: 'group'
         size_hint: None, None
         size: dp(48), dp(48)
         active: True
-        pos_hint: {'center_x': .4, 'center_y': .5}
+        pos_hint: {'center_x': 0.45, 'center_y': 0.4}
     MDCheckbox:
         group: 'group'
         size_hint: None, None
         size: dp(48), dp(48)
-        pos_hint: {'center_x': .6, 'center_y': .5}
+        pos_hint: {'center_x': 0.6, 'center_y': 0.4}
     MDRectangleFlatButton:
         text: 'Charge'
         pos_hint: {'center_x': 0.9, 'center_y': 0.1}
