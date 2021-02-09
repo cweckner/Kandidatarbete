@@ -191,6 +191,17 @@ ScreenManager:
 
 <OutletScreen>:
     name: 'outlet'
+    MDCheckbox:
+        group: 'group'
+        size_hint: None, None
+        size: dp(48), dp(48)
+        active: True
+        pos_hint: {'center_x': .4, 'center_y': .5}
+    MDCheckbox:
+        group: 'group'
+        size_hint: None, None
+        size: dp(48), dp(48)
+        pos_hint: {'center_x': .6, 'center_y': .5}
     MDRectangleFlatButton:
         text: 'Charge'
         pos_hint: {'center_x': 0.9, 'center_y': 0.1}
