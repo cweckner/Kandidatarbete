@@ -16,11 +16,53 @@ ScreenManager:
             size_hint_x: None
             width: 300
     WantedChargeScreen:
+        id: wantedchargescreen
+        MDTextField:
+            id: wantedchargetf
+            hint_text: "Enter wanted charge level at departure"
+            helper_text: "Input should be in %"
+            helper_text_mode: "on_focus"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 300    
     TimeDateScreen:
+        id: timedatescreen
+        MDRaisedButton:
+            id: timebutton
+            text: "Open time picker"
+            pos_hint: {'center_x': 0.6, 'center_y': 0.35}
+            on_release: app.show_time_picker()  
+        MDRaisedButton:
+            id: datebutton
+            text: "Open date picker"
+            pos_hint: {'center_x': 0.4, 'center_y': 0.35}
+            on_release: app.show_date_picker()            
+
     BatteryCapacityScreen:
+        id: batterycapacityscreen
+        MDTextField:
+            id:  batterycapacitytf  
+            hint_text: "Enter the battery capacity"
+            helper_text: ""
+            helper_text_mode: "on_focus"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 300
+
     MaxCurrentScreen:
+        id: maxcurrentscreen
+        MDTextField:
+            id: maxcurrenttf
+            hint_text: "Enter max current of EV"
+            helper_text: ""
+            helper_text_mode: "on_focus"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 300
     OutletScreen:
+        id: outletscreen
     GoodbyeScreen:
+        id: goodbyescreen
 
 
 <WelcomeScreen>:
@@ -43,7 +85,6 @@ ScreenManager:
 
 <CurrentChargeScreen>:
     name: 'currentcharge'
-    
             
     MDFlatButton:
         text: '1/6'
@@ -58,25 +99,17 @@ ScreenManager:
             root.manager.current = 'wantedcharge'
         #on_release: 
             
-        
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
         on_press:
-            #print(app.<något här>.text)   -----------hitta elementet i andra filen
             root.manager.transition.direction = 'right'            
             root.manager.current = 'welcome'
         
 
 <WantedChargeScreen>:
     name: 'wantedcharge'
-    MDTextField:
-        hint_text: "Enter wanted charge level at departure"
-        helper_text: "Input should be in %"
-        helper_text_mode: "on_focus"
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        size_hint_x: None
-        width: 300
+
     MDFlatButton:
         text: '2/6'
         theme_text_color: "Hint"
@@ -85,6 +118,7 @@ ScreenManager:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
         on_press: 
+            app.save_tfvalue() 
             root.manager.transition.direction = 'left'
             root.manager.current = 'timedate'
     MDIconButton:
@@ -99,14 +133,6 @@ ScreenManager:
     MDLabel:
         text: "Departure Date & Time"
         halign: 'center'
-    MDRaisedButton:
-        text: "Open time picker"
-        pos_hint: {'center_x': 0.6, 'center_y': 0.35}
-        on_release: app.show_time_picker()
-    MDRaisedButton:
-        text: "Open date picker"
-        pos_hint: {'center_x': 0.4, 'center_y': 0.35}
-        on_release: app.show_date_picker()
     MDFlatButton:
         text: '3/6'
         theme_text_color: "Hint"
@@ -126,13 +152,6 @@ ScreenManager:
 
 <BatteryCapacityScreen>:
     name: 'batterycapacity'
-    MDTextField:
-        hint_text: "Enter the battery capacity"
-        helper_text: ""
-        helper_text_mode: "on_focus"
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        size_hint_x: None
-        width: 300
     MDFlatButton:
         text: '4/6'
         theme_text_color: "Hint"
@@ -153,13 +172,6 @@ ScreenManager:
 
 <MaxCurrentScreen>:
     name: 'maxcurrent'
-    MDTextField:
-        hint_text: "Enter max current of EV"
-        helper_text: ""
-        helper_text_mode: "on_focus"
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        size_hint_x: None
-        width: 300
     MDFlatButton:
         text: '5/6'
         theme_text_color: "Hint"
@@ -179,6 +191,28 @@ ScreenManager:
 
 <OutletScreen>:
     name: 'outlet'
+    MDLabel:
+        text: 'Charging outlet'
+        halign: 'center'
+    MDFlatButton:
+        text: '1'
+        theme_text_color: "Hint"
+        pos_hint: {'center_x': 0.4, 'center_y': 0.4}
+    MDFlatButton:
+        text: '2'
+        theme_text_color: "Hint"
+        pos_hint: {'center_x': 0.55, 'center_y': 0.4}
+    MDCheckbox:
+        group: 'group'
+        size_hint: None, None
+        size: dp(48), dp(48)
+        active: True
+        pos_hint: {'center_x': 0.45, 'center_y': 0.4}
+    MDCheckbox:
+        group: 'group'
+        size_hint: None, None
+        size: dp(48), dp(48)
+        pos_hint: {'center_x': 0.6, 'center_y': 0.4}
     MDRectangleFlatButton:
         text: 'Charge'
         pos_hint: {'center_x': 0.9, 'center_y': 0.1}
@@ -187,7 +221,7 @@ ScreenManager:
         text: '6/6'
         theme_text_color: "Hint"
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-    MDIconButton:
+    MDIconButton: 
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
         on_press: 
@@ -203,7 +237,9 @@ ScreenManager:
     MDRectangleFlatButton:
         text: 'Go back'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-        on_press: root.manager.current = 'outlet'
+        on_press: 
+            root.manager.transition.direction = 'right'
+            root.manager.current = 'outlet'
     
 """
 
