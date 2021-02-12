@@ -6,10 +6,12 @@ TO-DO:
 - Ändra färg och formatera date picker och time picker (EV HA TEXT FÄLT BARA, TESTA BÅDA? bra med picker är att man kan välja en prelim tid ex tomorrow) 
 - Sätt prelim tid på time och date picker (tomorrow , 7:30)
 - Få värden att sparas från time och date picker
-- Formatera charge button på 6/6
+- Formatera sida 6/6 (charge button pos, labels till checkboxes och checkboxes pos)
 - Klicka på charge skicka värden till soul
 - Reagera när RFID-tag scannas
 - Fin animation på welcome icon
 - Fin animation goodbye
+
+-om man känner sig manad, fixa koden så att spara inputs (save_currenttf, save_wantedtf...) är i en funktion ist för varsin
 
 --------------------------------------------------------------------------------------------------

@@ -5,7 +5,7 @@ from kivy.uix.label import Label
 from kivy.lang import Builder
 from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.picker import MDTimePicker, MDDatePicker
-
+from kivy.utils import get_color_from_hex
 
 
 
@@ -58,20 +58,20 @@ class DemoApp(MDApp):
         return self.screen
 
     def show_time_picker(self):
-        '''Open time picker dialog.'''
-
         time_dialog = MDTimePicker()
+        time_dialog.bind(time=self.get_time)
         time_dialog.open()
 
+    def get_time(self, instance, time):
+        print(time)
+
     def get_date(self, date):
-        '''
-        :type date: <class 'datetime.date'>
-        '''
+        print(date)
 
     def show_date_picker(self):
         date_dialog = MDDatePicker(callback=self.get_date)
         date_dialog.open()
-    
+
     def save_currenttf(self):
         global currenttf
         currenttf = self.root.ids.currentchargetf.text
@@ -117,5 +117,3 @@ class DemoApp(MDApp):
 
 if __name__ == '__main__':
     DemoApp().run()
-
-

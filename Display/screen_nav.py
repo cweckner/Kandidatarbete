@@ -30,6 +30,8 @@ ScreenManager:
         MDRaisedButton:
             id: timebutton
             text: "Open time picker"
+            text_button_color: (1, 1, 1, .5)
+            primary_color: (114, 34, 91)
             pos_hint: {'center_x': 0.6, 'center_y': 0.35}
             on_release: app.show_time_picker()  
         MDRaisedButton:
