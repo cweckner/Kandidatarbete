@@ -79,4 +79,4 @@ print(len(bnd), len(bnd[0]))
 opt = linprog(c=obj,
               A_eq=lhs_eq, b_eq=rhs_eq, bounds=bnd,
             method="revised simplex")
-print(opt.x[200])
+print(opt.x)
