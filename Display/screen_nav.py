@@ -94,10 +94,10 @@ ScreenManager:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
         on_press:
-            app.save_tfvalue() 
+            app.save_currenttf() 
             root.manager.transition.direction = 'left'
             root.manager.current = 'wantedcharge'
-        #on_release: 
+
             
     MDIconButton:
         icon: "arrow-left"
@@ -118,7 +118,7 @@ ScreenManager:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
         on_press: 
-            app.save_tfvalue() 
+            app.save_wantedtf() 
             root.manager.transition.direction = 'left'
             root.manager.current = 'timedate'
     MDIconButton:
@@ -160,6 +160,7 @@ ScreenManager:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
         on_press: 
+            app.save_batterytf()
             root.manager.transition.direction = 'left'
             root.manager.current = 'maxcurrent'
     MDIconButton:
@@ -180,6 +181,7 @@ ScreenManager:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
         on_press: 
+            app.save_maxcurrenttf()
             root.manager.transition.direction = 'left'
             root.manager.current = 'outlet'
     MDIconButton:
@@ -216,7 +218,9 @@ ScreenManager:
     MDRectangleFlatButton:
         text: 'Charge'
         pos_hint: {'center_x': 0.9, 'center_y': 0.1}
-        on_press: root.manager.current = 'goodbye'
+        on_press: 
+            app.print_tfvalues()
+            root.manager.current = 'goodbye'
     MDFlatButton:
         text: '6/6'
         theme_text_color: "Hint"

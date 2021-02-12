@@ -71,12 +71,40 @@ class DemoApp(MDApp):
     def show_date_picker(self):
         date_dialog = MDDatePicker(callback=self.get_date)
         date_dialog.open()
-
-    def save_tfvalue(self):
-        usertext = self.root.ids.currentchargetf.text
-        print(usertext)
     
-        
+    def save_currenttf(self):
+        global currenttf
+        currenttf = self.root.ids.currentchargetf.text
+        print(currenttf)
+
+    def save_wantedtf(self):
+        global wantedtf 
+        wantedtf = self.root.ids.wantedchargetf.text
+        print(wantedtf)
+
+    def save_batterytf(self):
+        global batterytf
+        batterytf = self.root.ids.batterycapacitytf.text
+        print(batterytf)
+
+    def save_maxcurrenttf(self):
+        global maxcurrenttf 
+        maxcurrenttf = self.root.ids.maxcurrenttf.text
+        print(maxcurrenttf)
+
+    def print_tfvalues(self):
+        global tfvalues
+        tfvalues = {
+            'currenttf': currenttf,
+            'wantedtf': wantedtf,
+            'batterytf': batterytf,
+            'maxcurrenttf': maxcurrenttf
+        }
+        print(currenttf)
+        print(wantedtf)
+        print(batterytf)
+        print(maxcurrenttf)
+        print(tfvalues)
 
 if __name__ == '__main__':
     DemoApp().run()
