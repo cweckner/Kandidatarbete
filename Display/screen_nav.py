@@ -61,6 +61,19 @@ ScreenManager:
             width: 300
     OutletScreen:
         id: outletscreen
+        MDCheckbox:
+            id: checkbox1
+            group: 'group'
+            size_hint: None, None
+            size: dp(48), dp(48)
+            active: True
+            pos_hint: {'center_x': 0.45, 'center_y': 0.4}
+        MDCheckbox:
+            id: checkbox2
+            group: 'group'
+            size_hint: None, None
+            size: dp(48), dp(48)
+            pos_hint: {'center_x': 0.6, 'center_y': 0.4}
     GoodbyeScreen:
         id: goodbyescreen
 
@@ -204,21 +217,12 @@ ScreenManager:
         text: '2'
         theme_text_color: "Hint"
         pos_hint: {'center_x': 0.55, 'center_y': 0.4}
-    MDCheckbox:
-        group: 'group'
-        size_hint: None, None
-        size: dp(48), dp(48)
-        active: True
-        pos_hint: {'center_x': 0.45, 'center_y': 0.4}
-    MDCheckbox:
-        group: 'group'
-        size_hint: None, None
-        size: dp(48), dp(48)
-        pos_hint: {'center_x': 0.6, 'center_y': 0.4}
+    
     MDRectangleFlatButton:
         text: 'Charge'
         pos_hint: {'center_x': 0.9, 'center_y': 0.1}
-        on_press: 
+        on_press:
+            app.save_outletcbx()
             app.print_tfvalues()
             root.manager.current = 'goodbye'
     MDFlatButton:

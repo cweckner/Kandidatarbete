@@ -92,13 +92,22 @@ class DemoApp(MDApp):
         maxcurrenttf = self.root.ids.maxcurrenttf.text
         print(maxcurrenttf)
 
+    def save_outletcbx(self):
+        global outletcbx 
+        if self.root.ids.checkbox1.active:
+            outletcbx = '1'
+        else:
+            outletcbx = '2'
+        print(outletcbx)
+
     def print_tfvalues(self):
         global tfvalues
         tfvalues = {
             'currenttf': currenttf,
             'wantedtf': wantedtf,
             'batterytf': batterytf,
-            'maxcurrenttf': maxcurrenttf
+            'maxcurrenttf': maxcurrenttf,
+            'outletcbx': outletcbx
         }
         print(currenttf)
         print(wantedtf)
