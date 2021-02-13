@@ -63,9 +63,13 @@ class DemoApp(MDApp):
         time_dialog.open()
 
     def get_time(self, instance, time):
+        global timepicker
+        timepicker = time
         print(time)
 
     def get_date(self, date):
+        global datepicker
+        datepicker = date
         print(date)
 
     def show_date_picker(self):
@@ -107,12 +111,10 @@ class DemoApp(MDApp):
             'wantedtf': wantedtf,
             'batterytf': batterytf,
             'maxcurrenttf': maxcurrenttf,
-            'outletcbx': outletcbx
+            'outletcbx': outletcbx,
+            'timepicker': timepicker,
+            'datepicker': datepicker
         }
-        print(currenttf)
-        print(wantedtf)
-        print(batterytf)
-        print(maxcurrenttf)
         print(tfvalues)
 
 if __name__ == '__main__':

@@ -1,17 +1,21 @@
 
 ----------------------------------------------------------------------------------------------
 
-TO-DO:
+TO-DO GUI:
 
 - Ändra färg och formatera date picker och time picker (EV HA TEXT FÄLT BARA, TESTA BÅDA? bra med picker är att man kan välja en prelim tid ex tomorrow) 
 - Sätt prelim tid på time och date picker (tomorrow , 7:30)
-- Få värden att sparas från time och date picker
 - Formatera sida 6/6 (charge button pos, labels till checkboxes och checkboxes pos)
 - Klicka på charge skicka värden till soul
+- Gör alla fält required 
+- Sätt endast godtagbar inputs på fält
 - Reagera när RFID-tag scannas
 - Fin animation på welcome icon
 - Fin animation goodbye
+- Testa på raspberry med touchskärm
+- Konstruera ett användartest, observation och/eller intervju
 
+-göra alla inputs på en skärm
 -om man känner sig manad, fixa koden så att spara inputs (save_currenttf, save_wantedtf...) är i en funktion ist för varsin
 
 --------------------------------------------------------------------------------------------------
