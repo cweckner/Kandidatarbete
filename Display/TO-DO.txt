@@ -9,6 +9,8 @@ TO-DO GUI:
 - Klicka på charge skicka värden till soul
 - Gör alla fält required 
 - Sätt endast godtagbar inputs på fält
+	+Använda sliders för charge?
+		https://old.reddit.com/r/kivy/comments/7rk1nz/limit_values_on_inputtext/dt1zxzu/
 - Reagera när RFID-tag scannas
 - Fin animation på welcome icon
 - Fin animation goodbye
