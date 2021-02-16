@@ -40,19 +40,7 @@ def startCharger(token):
     
 
 #Notify Start (request sent by charger)
-def notifyStart(token):
-    print("notifyStart")
-    headers = {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json',
-    }
-
-    data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
-
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
-    headers=headers, data=data)
-    print(response)
-    print(response.text)
+#Server response
 
 #Stop Charger
 def stopCharger(token):
@@ -69,19 +57,7 @@ def stopCharger(token):
     print(response)
 
 #Notify Stop (request sent by charger)
-def notifyStop(token):
-    print("notifyStop")
-    headers = {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json',
-    }
-
-    data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
-
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/stop', 
-    headers=headers, data=data)
-    print(response)
-    print(response.text)
+#Server Response
 
 #Change Active Current (amps)
 #TODO:
