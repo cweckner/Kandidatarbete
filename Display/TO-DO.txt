@@ -12,6 +12,7 @@ TO-DO GUI:
 	+Använda sliders för charge?
 		https://old.reddit.com/r/kivy/comments/7rk1nz/limit_values_on_inputtext/dt1zxzu/
 - Reagera när RFID-tag scannas
+	-Gå vidare till nästa screen automatiskt
 - Fin animation på welcome icon
 - Fin animation goodbye
 - Testa på raspberry med touchskärm
@@ -19,5 +20,11 @@ TO-DO GUI:
 
 -göra alla inputs på en skärm
 -om man känner sig manad, fixa koden så att spara inputs (save_currenttf, save_wantedtf...) är i en funktion ist för varsin
+
+TO-DO TouchScreen
+-få vänsterklick att fungera
+-skriva userguide för oss
+
+
 
 --------------------------------------------------------------------------------------------------
