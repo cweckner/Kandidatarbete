@@ -6,11 +6,8 @@ from kivy.lang import Builder
 from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.picker import MDTimePicker, MDDatePicker
 from kivy.utils import get_color_from_hex
-from kivy.config import Config
-Config.set('graphics', 'width', '400')
-Config.set('graphics', 'height', '300')
-
-
+from kivy.core.window import Window
+Window.size = (800, 480) #WxH
 
 
 class WelcomeScreen(Screen):
@@ -120,5 +117,9 @@ class DemoApp(MDApp):
             'datepicker': datepicker
         }
         print(tfvalues)
+
+    def datetimeparser(date):
+        print (date)
+
 if __name__ == '__main__':
     DemoApp().run()
