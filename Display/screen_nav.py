@@ -93,7 +93,7 @@ ScreenManager:
 
     MDRectangleFlatButton:
         text: 'Go directly to inputs (For test purposes only)'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+        pos_hint: {'center_x': 0.5, 'center_y': 0.1}
         on_press:
             root.manager.transition.direction = 'left'
             root.manager.current = 'currentcharge'

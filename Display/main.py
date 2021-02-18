@@ -7,8 +7,11 @@ from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.picker import MDTimePicker, MDDatePicker
 from kivy.utils import get_color_from_hex
 from kivy.core.window import Window
+from kivy.uix.vkeyboard import VKeyboard 
+from kivy.config import Config
 Window.size = (800, 480) #WxH
-
+Config.set('kivy', 'keyboard_layout', 'numeric.json')
+Config.set("kivy", "keyboard_mode", 'dock')
 
 class WelcomeScreen(Screen):
     pass
@@ -37,6 +40,8 @@ class OutletScreen(Screen):
 class GoodbyeScreen(Screen):
     pass
 
+
+
 screen_manager = ScreenManager()
 screen_manager.add_widget(WelcomeScreen(name = 'welcome'))
 screen_manager.add_widget(InputScreen(name = 'inputs'))
@@ -49,14 +54,17 @@ screen_manager.add_widget(OutletScreen(name = 'outlet'))
 screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 
 
+
+
 class DemoApp(MDApp):
 
     def build(self):
         print("main")
         self.theme_cls.primary_palette = "Green"
         self.screen = Builder.load_string(sc_helper) 
-        
         return self.screen
+
+  
 
     def show_time_picker(self):
         time_dialog = MDTimePicker()
