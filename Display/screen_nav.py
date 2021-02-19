@@ -208,6 +208,11 @@ ScreenManager:
                 text: 'Tesla'
                 ImageLeftWidget:
                     source: "Images/tesla_logo.png"
+            OneLineAvatarListItem:
+                text: 'Other'
+                ImageLeftWidget:
+                    source: "Images/other.png"
+            
             
                 
 <CarModelScreen>:
