@@ -11,6 +11,7 @@ from kivy.uix.vkeyboard import VKeyboard
 from kivy.config import Config
 Window.size = (800, 480) #WxH
 Config.set('kivy', 'keyboard_layout', 'numeric.json')
+print(Config.get('kivy', 'keyboard_layout'))
 Config.set("kivy", "keyboard_mode", 'dock')
 
 class WelcomeScreen(Screen):
@@ -26,6 +27,12 @@ class WantedChargeScreen(Screen):
     pass
 
 class TimeDateScreen(Screen):
+    pass
+
+class CarBrandScreen(Screen):
+    pass
+
+class CarModelScreen(Screen):
     pass
 
 class BatteryCapacityScreen(Screen):
@@ -48,6 +55,8 @@ screen_manager.add_widget(InputScreen(name = 'inputs'))
 screen_manager.add_widget(CurrentChargeScreen(name = 'currentcharge'))
 screen_manager.add_widget(WantedChargeScreen(name = 'wantedcharge'))
 screen_manager.add_widget(TimeDateScreen(name = 'timedate'))
+screen_manager.add_widget(CarBrandScreen(name = 'carbrand'))
+screen_manager.add_widget(CarModelScreen(name = 'carmodel'))
 screen_manager.add_widget(BatteryCapacityScreen(name = 'batterycapacity'))
 screen_manager.add_widget(MaxCurrentScreen(name = 'maxcurrent'))
 screen_manager.add_widget(OutletScreen(name = 'outlet'))

@@ -39,6 +39,9 @@ ScreenManager:
             text: "Open date picker"
             pos_hint: {'center_x': 0.4, 'center_y': 0.35}
             on_release: app.show_date_picker()            
+    CarBrandScreen:
+    CarModelScreen:
+
 
     BatteryCapacityScreen:
         id: batterycapacityscreen
@@ -157,13 +160,21 @@ ScreenManager:
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
         on_press:
             root.manager.transition.direction = 'left'         
-            root.manager.current = 'batterycapacity'
+            root.manager.current = 'carbrand'
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
         on_press: 
             root.manager.transition.direction = 'right'
             root.manager.current = 'wantedcharge'
+
+<CarBrandScreen>:
+    name: 'carbrand'
+    MDLabel:
+        text: "CarBrand"
+        halign: 'center'
+<CarModelScreen>:
+    name: 'carmodel'
 
 <BatteryCapacityScreen>:
     name: 'batterycapacity'
