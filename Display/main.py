@@ -5,6 +5,8 @@ from kivy.uix.label import Label
 from kivy.lang import Builder
 from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.picker import MDTimePicker, MDDatePicker
+from kivymd.uix.list import OneLineAvatarListItem, OneLineListItem, MDList, ImageLeftWidget
+from kivy.uix.scrollview import ScrollView
 from kivy.utils import get_color_from_hex
 from kivy.core.window import Window
 from kivy.uix.vkeyboard import VKeyboard 

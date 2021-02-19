@@ -170,9 +170,46 @@ ScreenManager:
 
 <CarBrandScreen>:
     name: 'carbrand'
-    MDLabel:
-        text: "CarBrand"
-        halign: 'center'
+    ScrollView:
+        MDList:
+            OneLineAvatarListItem:
+                text: 'Audi'
+                ImageLeftWidget:
+                    source: "Images/audi_logo.png"
+            OneLineAvatarListItem:
+                text: 'BMW'
+                ImageLeftWidget:
+                    source: "Images/bmw_logo.png"
+            OneLineAvatarListItem:
+                text: 'Kia'
+                ImageLeftWidget:
+                    source: "Images/kia_logo.png"
+            OneLineAvatarListItem:
+                text: 'Mitsubishi'
+                ImageLeftWidget:
+                    source: "Images/mitsubishi_logo.png"
+            OneLineAvatarListItem:
+                text: 'Nissan'
+                ImageLeftWidget:
+                    source: "Images/nissan_logo.png"
+            OneLineAvatarListItem:
+                text: 'Renault'
+                ImageLeftWidget:
+                    source: "Images/renault_logo.png"
+            OneLineAvatarListItem:
+                text: 'Volkswagen'
+                ImageLeftWidget:
+                    source: "Images/volkswagen_logo.png"
+            OneLineAvatarListItem:
+                text: 'Volvo'
+                ImageLeftWidget:
+                    source: "Images/volvo_logo.png"
+            OneLineAvatarListItem:
+                text: 'Tesla'
+                ImageLeftWidget:
+                    source: "Images/tesla_logo.png"
+            
+                
 <CarModelScreen>:
     name: 'carmodel'
 
