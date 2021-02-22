@@ -34,7 +34,31 @@ class TimeDateScreen(Screen):
 class CarBrandScreen(Screen):
     pass
 
-class CarModelScreen(Screen):
+class AudiModelsScreen(Screen):
+    pass
+
+class BmwModelsScreen(Screen):
+    pass
+
+class KiaModelsScreen(Screen):
+    pass
+
+class MitsubishiModelsScreen(Screen):
+    pass
+
+class NissanModelsScreen(Screen):
+    pass
+
+class RenaultModelsScreen(Screen):
+    pass
+
+class VolkswagenModelsScreen(Screen):
+    pass
+
+class VolvoModelsScreen(Screen):
+    pass
+
+class TeslaModelsScreen(Screen):
     pass
 
 class BatteryCapacityScreen(Screen):
@@ -58,7 +82,15 @@ screen_manager.add_widget(CurrentChargeScreen(name = 'currentcharge'))
 screen_manager.add_widget(WantedChargeScreen(name = 'wantedcharge'))
 screen_manager.add_widget(TimeDateScreen(name = 'timedate'))
 screen_manager.add_widget(CarBrandScreen(name = 'carbrand'))
-screen_manager.add_widget(CarModelScreen(name = 'carmodel'))
+screen_manager.add_widget(AudiModelsScreen(name = 'audimodels'))
+screen_manager.add_widget(BmwModelsScreen(name = 'bmwmodels'))
+screen_manager.add_widget(KiaModelsScreen(name = 'kiamodels'))
+screen_manager.add_widget(MitsubishiModelsScreen(name = 'mitsubishimodels'))
+screen_manager.add_widget(NissanModelsScreen(name = 'nissanmodels'))
+screen_manager.add_widget(RenaultModelsScreen(name = 'renaultmodels'))
+screen_manager.add_widget(VolkswagenModelsScreen(name = 'volkswagenmodels'))
+screen_manager.add_widget(VolvoModelsScreen(name = 'volvomodels'))
+screen_manager.add_widget(TeslaModelsScreen(name = 'teslamodels'))
 screen_manager.add_widget(BatteryCapacityScreen(name = 'batterycapacity'))
 screen_manager.add_widget(MaxCurrentScreen(name = 'maxcurrent'))
 screen_manager.add_widget(OutletScreen(name = 'outlet'))

@@ -40,8 +40,15 @@ ScreenManager:
             pos_hint: {'center_x': 0.4, 'center_y': 0.35}
             on_release: app.show_date_picker()            
     CarBrandScreen:
-    CarModelScreen:
-
+    AudiModelsScreen:
+    BmwModelsScreen:
+    KiaModelsScreen:
+    MitsubishiModelsScreen:
+    NissanModelsScreen:
+    RenaultModelsScreen:
+    VolkswagenModelsScreen:
+    VolvoModelsScreen:
+    TeslaModelsScreen:
 
     BatteryCapacityScreen:
         id: batterycapacityscreen
@@ -172,6 +179,7 @@ ScreenManager:
     name: 'carbrand'
     ScrollView:
         MDList:
+            id: carbrandlist
             OneLineAvatarListItem:
                 text: 'Audi'
                 ImageLeftWidget:
@@ -215,8 +223,24 @@ ScreenManager:
             
             
                 
-<CarModelScreen>:
-    name: 'carmodel'
+<AudiModelsScreen>:
+    name: 'audimodels'
+<BmwModelsScreen>:
+    name: 'bmwmodels'
+<KiaModelsScreen>:
+    name: 'kiamodels'
+<MitsubishiModelsScreen>:
+    name: 'mitsubishimodels'
+<NissanModelsScreen>:
+    name: 'nissanmodels'
+<RenaultModelsScreen>:
+    name: 'renaultmodels'
+<VolkswagenModelsScreen>:
+    name: 'volkswagenmodels'
+<VolvoModelsScreen>:
+    name: 'volvomodels'
+<TeslaModelsScreen>:
+    name: 'teslamodels'
 
 <BatteryCapacityScreen>:
     name: 'batterycapacity'
