@@ -92,11 +92,15 @@ ScreenManager:
 
 <WelcomeScreen>:
     name: 'welcome'
+    on_enter:
+        app.animate_the_label(welcomelabel)
     MDLabel:
+        id: welcomelabel
         text: 'Welcome, please scan your RFID-tag'
         halign: 'center'
 
     MDIcon:
+        id: wifiicon
         icon: "wifi"
         pos_hint: {'center_x': 0.98, 'center_y': 0.4}
         color: app.theme_cls.primary_color
@@ -107,7 +111,6 @@ ScreenManager:
         on_press:
             root.manager.transition.direction = 'left'
             root.manager.current = 'currentcharge'
-            print (root)
 
 <CurrentChargeScreen>:
     name: 'currentcharge'
@@ -131,7 +134,6 @@ ScreenManager:
         on_press:
             root.manager.transition.direction = 'right'            
             root.manager.current = 'welcome'
-            print(root)
         
 
 <WantedChargeScreen>:
@@ -377,7 +379,10 @@ ScreenManager:
 
 <GoodbyeScreen>:
     name: 'goodbye'
+    on_enter:
+        app.animate_the_label(goodbyelabel)
     MDLabel:
+        id: goodbyelabel
         text: 'Thank you, your car will now charge optimally'
         halign: 'center'
     MDRectangleFlatButton:

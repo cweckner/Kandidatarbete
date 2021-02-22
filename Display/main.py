@@ -7,6 +7,7 @@ from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.picker import MDTimePicker, MDDatePicker
 from kivymd.uix.list import OneLineAvatarListItem, OneLineListItem, MDList, ImageLeftWidget, ContainerSupport
 from kivy.uix.scrollview import ScrollView
+from kivy.animation import Animation
 from kivy.utils import get_color_from_hex
 from kivy.core.window import Window
 from kivy.uix.vkeyboard import VKeyboard 
@@ -106,6 +107,15 @@ class DemoApp(MDApp):
         self.theme_cls.primary_palette = "Green"
         self.screen = Builder.load_string(sc_helper) 
         return self.screen
+    
+    def animate_the_label(self, widget, *args):
+        anim = Animation(opacity=0, duration=3)
+        anim += Animation(opacity=1, duration=3)
+        anim.bind(on_complete=self.callback_animation)
+        anim.start(widget)
+    
+    def callback_animation(self, *args):
+        print("I'm done!")
   
 
     def show_time_picker(self):
