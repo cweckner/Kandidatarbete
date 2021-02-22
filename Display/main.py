@@ -5,7 +5,7 @@ from kivy.uix.label import Label
 from kivy.lang import Builder
 from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.picker import MDTimePicker, MDDatePicker
-from kivymd.uix.list import OneLineAvatarListItem, OneLineListItem, MDList, ImageLeftWidget
+from kivymd.uix.list import OneLineAvatarListItem, OneLineListItem, MDList, ImageLeftWidget, ContainerSupport
 from kivy.uix.scrollview import ScrollView
 from kivy.utils import get_color_from_hex
 from kivy.core.window import Window
@@ -106,7 +106,6 @@ class DemoApp(MDApp):
         self.theme_cls.primary_palette = "Green"
         self.screen = Builder.load_string(sc_helper) 
         return self.screen
-
   
 
     def show_time_picker(self):

@@ -107,6 +107,7 @@ ScreenManager:
         on_press:
             root.manager.transition.direction = 'left'
             root.manager.current = 'currentcharge'
+            print (root)
 
 <CurrentChargeScreen>:
     name: 'currentcharge'
@@ -130,6 +131,7 @@ ScreenManager:
         on_press:
             root.manager.transition.direction = 'right'            
             root.manager.current = 'welcome'
+            print(root)
         
 
 <WantedChargeScreen>:
@@ -176,48 +178,78 @@ ScreenManager:
             root.manager.current = 'wantedcharge'
 
 <CarBrandScreen>:
-    name: 'carbrand'
+    name: 'carbrand'            
     ScrollView:
         MDList:
             id: carbrandlist
             OneLineAvatarListItem:
                 text: 'Audi'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'audimodels'
                 ImageLeftWidget:
-                    source: "Images/audi_logo.png"
+                    source: "Images/audi_logo.png" 
             OneLineAvatarListItem:
                 text: 'BMW'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'bmwmodels'
                 ImageLeftWidget:
                     source: "Images/bmw_logo.png"
             OneLineAvatarListItem:
                 text: 'Kia'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'kiamodels'
                 ImageLeftWidget:
                     source: "Images/kia_logo.png"
             OneLineAvatarListItem:
                 text: 'Mitsubishi'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'mitsubishimodels'
                 ImageLeftWidget:
                     source: "Images/mitsubishi_logo.png"
             OneLineAvatarListItem:
                 text: 'Nissan'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'nissanmodels'
                 ImageLeftWidget:
                     source: "Images/nissan_logo.png"
             OneLineAvatarListItem:
                 text: 'Renault'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'renaultmodels'
                 ImageLeftWidget:
                     source: "Images/renault_logo.png"
             OneLineAvatarListItem:
                 text: 'Volkswagen'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'volkswagenmodels'
                 ImageLeftWidget:
                     source: "Images/volkswagen_logo.png"
             OneLineAvatarListItem:
                 text: 'Volvo'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'volvomodels'
                 ImageLeftWidget:
                     source: "Images/volvo_logo.png"
             OneLineAvatarListItem:
                 text: 'Tesla'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'teslamodels'
                 ImageLeftWidget:
                     source: "Images/tesla_logo.png"
             OneLineAvatarListItem:
                 text: 'Other'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'batterycapacity'
                 ImageLeftWidget:
                     source: "Images/other.png"
             
@@ -225,22 +257,49 @@ ScreenManager:
                 
 <AudiModelsScreen>:
     name: 'audimodels'
+    MDLabel:
+        text: 'Audi Models'
+        halign: 'center'
 <BmwModelsScreen>:
     name: 'bmwmodels'
+    MDLabel:
+        text: 'Bmw Models'
+        halign: 'center'
 <KiaModelsScreen>:
     name: 'kiamodels'
+    MDLabel:
+        text: 'Kia Models'
+        halign: 'center'
 <MitsubishiModelsScreen>:
     name: 'mitsubishimodels'
+    MDLabel:
+        text: 'Mitsubishi Models'
+        halign: 'center'
 <NissanModelsScreen>:
     name: 'nissanmodels'
+    MDLabel:
+        text: 'Nissan Models'
+        halign: 'center'
 <RenaultModelsScreen>:
     name: 'renaultmodels'
+    MDLabel:
+        text: 'Renault Models'
+        halign: 'center'
 <VolkswagenModelsScreen>:
     name: 'volkswagenmodels'
+    MDLabel:
+        text: 'Volkswagen Models'
+        halign: 'center'
 <VolvoModelsScreen>:
     name: 'volvomodels'
+    MDLabel:
+        text: 'Volvo Models'
+        halign: 'center'
 <TeslaModelsScreen>:
     name: 'teslamodels'
+    MDLabel:
+        text: 'Tesla Models'
+        halign: 'center'
 
 <BatteryCapacityScreen>:
     name: 'batterycapacity'
