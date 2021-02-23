@@ -280,12 +280,14 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Audi', 'E-TRON 55 Quattro')
                 
                 OneLineListItem:
                     text: 'E-TRON Q4'
                     on_release: 
                         root.manager.transition.direction = 'left'
-                        root.manager.current = 'outlet'                     
+                        root.manager.current = 'outlet'
+                        app.CARSPEC('Audi', 'E-TRON Q4')                     
     
 <BmwModelsScreen>:
     name: 'bmwmodels'
@@ -303,30 +305,35 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left' 
                         root.manager.current = 'outlet'
+                        app.CARSPEC('BMW', '330E Auto')
                     
                 OneLineListItem:
                     text: '330E Xdrive'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('BMW', '330E Xdrive')
                 
                 OneLineListItem:
                     text: 'I3 60 Ah'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet' 
+                        app.CARSPEC('BMW', 'I3 60 Ah')
                 
                 OneLineListItem:
                     text: 'I3 120 Ah'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('BMW', 'I3 120 Ah')
                             
                 OneLineListItem:
                     text: 'I3s 120 Ah'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('BMW', 'I3s 120 Ah')
    
         
 <KiaModelsScreen>:
@@ -345,24 +352,29 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('KIA', 'OPTIMA')
                 
                 OneLineListItem:
                     text: 'NIRO'
                     on_release: 
                         root.manager.transition.direction = 'left'
-                        root.manager.current = 'outlet' 
+                        root.manager.current = 'outlet'
+                        app.CARSPEC('KIA', 'NIRO') 
+                        
                 
                 OneLineListItem:
                     text: 'E-NIRO 42kWh'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('KIA', 'E-NIRO 42kWh')
                             
                 OneLineListItem:
                     text: 'E-NIRO 67kWh'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('KIA', 'E-NIRO 67kWh')
   
         
 <MitsubishiModelsScreen>:
@@ -377,10 +389,11 @@ ScreenManager:
             MDList:
                 id: carmodellist
                 OneLineListItem:
-                    text: 'Outlander'
+                    text: 'OUTLANDER'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('MITUBISHI', 'OUTLANDER')
  
         
 <NissanModelsScreen>:
@@ -399,12 +412,14 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('NISSAN', 'LEAF')
                             
                 OneLineListItem:
                     text: 'LEAF e+'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('NISSAN', 'LEAF e+')
    
         
 <RenaultModelsScreen>:
@@ -423,18 +438,21 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('RENAULT', 'KANGOO EXPRESS Z.E')
                             
                 OneLineListItem:
                     text: 'ZOE GEN 2'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('RENAULT', 'ZOE GEN 2')
                             
                 OneLineListItem:
                     text: 'ZOE '
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('RENAULT', 'ZOE')
    
         
 <VolkswagenModelsScreen>:
@@ -453,36 +471,43 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Volkswagen', 'E-Golf')
                             
                 OneLineListItem:
                     text: 'ID.3 - Pure'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Volkswagen', 'ID.3 - Pure')
                         
                 OneLineListItem:
                     text: 'ID.3 - Pro '
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Volkswagen', 'ID.3 - PRO S')
+                        
                         
                 OneLineListItem:
                     text: 'ID.3 - PRO S'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Volkswagen', 'ID.3 - PRO S')
                             
                 OneLineListItem:
                     text: 'GOLF GTE'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Volkswagen', 'GOLF GTE')
                         
                 OneLineListItem:
-                    text: 'Passat GTe '
+                    text: 'Passat GTe'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Volkswagen', 'Passat GTe')
    
         
 <VolvoModelsScreen>:
@@ -501,12 +526,14 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Volvo', 'V90')
                             
                 OneLineListItem:
                     text: 'V60 D6'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Volvo', 'V60 D6')
    
         
 <TeslaModelsScreen>:
@@ -532,6 +559,7 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Tesla', '3')
    
 
 <BatteryCapacityScreen>:
