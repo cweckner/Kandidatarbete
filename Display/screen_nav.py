@@ -273,6 +273,7 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left' 
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Audi', 'E-TRON 50 Quattro')
                     
                 OneLineListItem:
                     text: 'E-TRON 55 Quattro'
@@ -524,6 +525,7 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
+                        app.CARSPEC('Tesla', 'S')
                             
                 OneLineListItem:
                     text: '3'

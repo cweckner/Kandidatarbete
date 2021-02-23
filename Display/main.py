@@ -1,3 +1,4 @@
+import csv
 from kivymd.app import MDApp
 from screen_nav import sc_helper
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -107,6 +108,21 @@ class DemoApp(MDApp):
         self.theme_cls.primary_palette = "Green"
         self.screen = Builder.load_string(sc_helper) 
         return self.screen
+
+
+
+    def CARSPEC(self,b,m):
+        with open(r'C:\Users\norao\Documents\Skola\Kandidatarbete\Display\Bilkap.csv','r') as infile:
+            reader = csv.reader(infile, delimiter=",")
+            for row in reader:
+                if b == row[0]:
+                    if m == row[1]:
+                        global batterytf
+                        batterytf = row[2]
+                        global maxcurrenttf 
+                        maxcurrenttf = row[3]
+                        print(batterytf)
+                        print(maxcurrenttf)
     
     def animate_the_label(self, widget, *args):
         anim = Animation(opacity=0.1, duration=3)
