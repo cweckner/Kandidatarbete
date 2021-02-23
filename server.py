@@ -43,4 +43,4 @@ def post_notify():
     return 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False,host = "localhost", port = 80)
