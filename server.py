@@ -1,5 +1,8 @@
 import flask
 
+# This flask REST-api serves the purpose of answering the notify start and notify stop
+# requests sent by Chargestorm to confirm starting and stopping the charging
+
 app = flask.Flask(__name__)
 
 notifications = [

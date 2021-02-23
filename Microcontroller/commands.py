@@ -26,7 +26,7 @@ def createToken():
 #Send the request to activate the connector on the charge station
 #TODO:
 #Add stoptime
-def startCharger(token):
+def startCharger(token,transactionId):
     print("startCharger")
     headers = {
         'Authorization': 'Bearer ' + token,
@@ -43,7 +43,7 @@ def startCharger(token):
 #Server response
 
 #Stop Charger
-def stopCharger(token):
+def stopCharger(token,transactionId):
     print("stopCharger")
     headers = {
         'Authorization': 'Bearer ' + token,
