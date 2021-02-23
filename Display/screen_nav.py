@@ -259,49 +259,244 @@ ScreenManager:
                 
 <AudiModelsScreen>:
     name: 'audimodels'
+    ScrollView:
+        MDList:
+            id: carmodellist
+            OneLineListItem:
+                text: 'E-TRON 50 Quattro'
+                on_release: 
+                    root.manager.transition.direction = 'left' 
+                    root.manager.current = 'outlet'
+                
+            OneLineListItem:
+                text: 'E-TRON 55 Quattro'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+               
+            OneLineListItem:
+                text: 'E-TRON Q4'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'                     
     MDLabel:
         text: 'Audi Models'
         halign: 'center'
 <BmwModelsScreen>:
     name: 'bmwmodels'
+    ScrollView:
+        MDList:
+            id: carmodellist
+            OneLineListItem:
+                text: '330E Auto'
+                on_release: 
+                    root.manager.transition.direction = 'left' 
+                    root.manager.current = 'outlet'
+                
+            OneLineListItem:
+                text: '330E Xdrive'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+               
+            OneLineListItem:
+                text: 'I3 60 Ah'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet' 
+            
+            OneLineListItem:
+                text: 'I3 120 Ah'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                        
+            OneLineListItem:
+                text: 'I3s 120 Ah'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
     MDLabel:
         text: 'Bmw Models'
         halign: 'center'
+        
 <KiaModelsScreen>:
     name: 'kiamodels'
+    ScrollView:
+        MDList:
+            id: carmodellist
+            OneLineListItem:
+                text: 'OPTIMA'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+               
+            OneLineListItem:
+                text: 'NIRO'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet' 
+            
+            OneLineListItem:
+                text: 'E-NIRO 42kWh'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                        
+            OneLineListItem:
+                text: 'E-NIRO 67kWh'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
     MDLabel:
         text: 'Kia Models'
         halign: 'center'
+        
 <MitsubishiModelsScreen>:
     name: 'mitsubishimodels'
+    ScrollView:
+        MDList:
+            id: carmodellist
+            
+            OneLineListItem:
+                text: 'Outlander'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
     MDLabel:
         text: 'Mitsubishi Models'
         halign: 'center'
+        
 <NissanModelsScreen>:
     name: 'nissanmodels'
+    ScrollView:
+        MDList:
+            id: carmodellist
+            OneLineListItem:
+                text: 'LEAF'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                        
+            OneLineListItem:
+                text: 'LEAF e+'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
     MDLabel:
         text: 'Nissan Models'
         halign: 'center'
+        
 <RenaultModelsScreen>:
     name: 'renaultmodels'
+    ScrollView:
+        MDList:
+            id: carmodellist
+            OneLineListItem:
+                text: 'KANGOO EXPRESS Z.E'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                        
+            OneLineListItem:
+                text: 'ZOE GEN 2'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                        
+            OneLineListItem:
+                text: 'ZOE '
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
     MDLabel:
         text: 'Renault Models'
         halign: 'center'
+        
 <VolkswagenModelsScreen>:
     name: 'volkswagenmodels'
+    ScrollView:
+        MDList:
+            id: carmodellist
+            OneLineListItem:
+                text: 'E-Golf'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                        
+            OneLineListItem:
+                text: 'ID.3 - Pure'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                    
+            OneLineListItem:
+                text: 'ID.3 - Pro '
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                    
+            OneLineListItem:
+                text: 'ID.3 - PRO S'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                        
+            OneLineListItem:
+                text: 'GOLF GTE'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                    
+            OneLineListItem:
+                text: 'Passat GTe '
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
     MDLabel:
         text: 'Volkswagen Models'
         halign: 'center'
+        
 <VolvoModelsScreen>:
     name: 'volvomodels'
+    ScrollView:
+        MDList:
+            id: carmodellist
+            OneLineListItem:
+                text: 'V90'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                        
+            OneLineListItem:
+                text: 'V60 D6'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
     MDLabel:
         text: 'Volvo Models'
         halign: 'center'
+        
 <TeslaModelsScreen>:
     name: 'teslamodels'
+    ScrollView:
+        MDList:
+            id: carmodellist
+            OneLineListItem:
+                text: 'S'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
+                        
+            OneLineListItem:
+                text: '3'
+                on_release: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'outlet'
     MDLabel:
         text: 'Tesla Models'
         halign: 'center'
+
 
 <BatteryCapacityScreen>:
     name: 'batterycapacity'
