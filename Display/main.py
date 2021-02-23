@@ -109,8 +109,10 @@ class DemoApp(MDApp):
         return self.screen
     
     def animate_the_label(self, widget, *args):
-        anim = Animation(opacity=0, duration=3)
-        anim += Animation(opacity=1, duration=3)
+        anim = Animation(opacity=0.1, duration=3)
+        for x in range(5):
+            anim += Animation(opacity=1, duration=3)
+            anim += Animation(opacity=0.1, duration=3)
         anim.bind(on_complete=self.callback_animation)
         anim.start(widget)
     
