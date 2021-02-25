@@ -112,7 +112,7 @@ class DemoApp(MDApp):
 
 
     def CARSPEC(self,b,m):
-        with open('Bilkap.csv','r') as infile:
+        with open(r'C:\Users\norao\Documents\Skola\Kandidatarbete\Display\Bilkap.csv','r') as infile:
             reader = csv.reader(infile, delimiter=",")
             for row in reader:
                 if b == row[0]:
@@ -146,13 +146,14 @@ class DemoApp(MDApp):
         timepicker = time
         print(time)
 
-    def get_date(self, date):
+    def on_save(self, instance, value, date_range):
         global datepicker
-        datepicker = date
-        print(date)
+        datepicker = value
+        print(value)
 
     def show_date_picker(self):
-        date_dialog = MDDatePicker(callback=self.get_date)
+        date_dialog = MDDatePicker(primary_color=get_color_from_hex("#72225b"))
+        date_dialog.bind(on_save=self.on_save)
         date_dialog.open()
 
     def save_currenttf(self):

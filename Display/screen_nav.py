@@ -1,6 +1,7 @@
 
 
 sc_helper = """
+#:import rgba kivy.utils.get_color_from_hex
 
 ScreenManager:
     WelcomeScreen:
@@ -30,15 +31,15 @@ ScreenManager:
         MDRaisedButton:
             id: timebutton
             text: "Open time picker"
-            text_button_color: (1, 1, 1, .5)
-            primary_color: (114, 34, 91)
+            md_bg_color: app.theme_cls.accent_color
             pos_hint: {'center_x': 0.6, 'center_y': 0.35}
             on_release: app.show_time_picker()  
         MDRaisedButton:
             id: datebutton
             text: "Open date picker"
             pos_hint: {'center_x': 0.4, 'center_y': 0.35}
-            on_release: app.show_date_picker()            
+            on_release: app.show_date_picker()  
+
     CarBrandScreen:
     AudiModelsScreen:
     BmwModelsScreen:
