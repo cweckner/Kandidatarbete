@@ -102,6 +102,8 @@ screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 
 
 class DemoApp(MDApp):
+    datepicker="Choose date"
+    timepicker= "Choose time"
 
     def build(self):
         print("main")
@@ -142,17 +144,18 @@ class DemoApp(MDApp):
         time_dialog.open()
 
     def get_time(self, instance, time):
-        global timepicker
-        timepicker = time
-        print(time)
+        self.timepicker = str(time)
+        print(self.timepicker)
+        self.root.ids.timebutton.text = self.timepicker
 
     def on_save(self, instance, value, date_range):
-        global datepicker
-        datepicker = value
+        self.datepicker = str(value)
         print(value)
-
+        print(self.datepicker)
+        self.root.ids.datebutton.text = self.datepicker
+        
     def show_date_picker(self):
-        date_dialog = MDDatePicker(primary_color=get_color_from_hex("#72225b"))
+        date_dialog = MDDatePicker(primary_color=get_color_from_hex("#70C170"), text_toolbar_color=get_color_from_hex("#244511"), selector_color=get_color_from_hex("#70C170"))
         date_dialog.bind(on_save=self.on_save)
         date_dialog.open()
 
@@ -192,13 +195,11 @@ class DemoApp(MDApp):
             'batterytf': batterytf,
             'maxcurrenttf': maxcurrenttf,
             'outletcbx': outletcbx,
-            'timepicker': timepicker,
-            'datepicker': datepicker
+            'timepicker': self.timepicker,
+            'datepicker': self.datepicker
         }
         print(tfvalues)
 
-    def datetimeparser(date):
-        print (date)
 
 if __name__ == '__main__':
     DemoApp().run()

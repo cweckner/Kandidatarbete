@@ -30,13 +30,15 @@ ScreenManager:
         id: timedatescreen
         MDRaisedButton:
             id: timebutton
-            text: "Open time picker"
-            md_bg_color: app.theme_cls.accent_color
+            text: app.timepicker
+            md_bg_color: 1,1,1,1
+            text_color: 1,1,1,1
             pos_hint: {'center_x': 0.6, 'center_y': 0.35}
             on_release: app.show_time_picker()  
         MDRaisedButton:
             id: datebutton
-            text: "Open date picker"
+            text: app.datepicker
+            md_bg_color: app.theme_cls.primary_light
             pos_hint: {'center_x': 0.4, 'center_y': 0.35}
             on_release: app.show_date_picker()  
 
