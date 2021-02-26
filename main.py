@@ -1,4 +1,4 @@
-from Microcontroller import commands
+from Microcontroller import commands, optireal
 transactionID= "00000000-0000-0000-0000-000000000000"
 transactionID = commands.incrementTransactionID(transactionID)
 token = commands.createToken()
@@ -7,6 +7,9 @@ commands.connectorStatus(token)
 commands.startCharger(token,transactionID)
 commands.consumedEnergy(token)
 commands.changeActiveCurrent(token)
+commands.stopCharger(token)
+commands.setRFIDtagID(token)
+optireal.current()
 commands.stopCharger(token,transactionID)
 commands.setRFIDtagID(token)
 
