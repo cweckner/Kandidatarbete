@@ -165,3 +165,22 @@ def incrementTransactionID(currentID):
     print(newTransactionID)
     #return the new transactionID which has been incremented by 1 and retains the same format
     return(newTransactionID)
+
+#Convert date to correct format depending on the command being sent
+#The input timeToEdit should be a string
+def timeConverter(timeToEdit,whichCommand):
+    print("timeConverter")
+    #Input has format '%Y-%m-%d %H:%M:%S')
+    oldFormat = datetime.datetime.strptime(timeToEdit,'%Y-%m-%d %H:%M:%S')
+    if(whichCommand == "startCharger" or whichCommand == "setRFIDtagID"):
+        #Format is "YYYY-MM-DDTHH:MM:SSZ"
+        newFormat = oldFormat.strftime('%Y-%m-%dT%H:%M:%SZ')
+        print(newFormat)
+        return(newFormat)
+    elif(whichCommand == "consumedEnergy"):
+        #Format is ""YYYY-MM-DD""
+        newFormat = oldFormat.strftime('%Y-%m-%d')
+        print(newFormat)
+        return(newFormat)
+    else:
+        return(oldFormat)
