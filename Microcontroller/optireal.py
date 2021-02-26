@@ -1,8 +1,6 @@
 from scipy.optimize import linprog
 import datetime
 def current(end_time,current_limit,capacity,battery_goal,battery_current):
-    #TODO: Göra om allt till en funktion, omvandla vissa värden till argument, returnera array X från opt
-    #TODO: Städa upp lite i koden // Kommentera vissa saker
     V=400
     kwh = (battery_goal-battery_current)*capacity/100
     priser = {                #Detta ska senare komma från argument men får vara tills vidare
@@ -31,28 +29,20 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         8: 44,
         9:67
     }
-    kvot = V*5/60000
-    time_now = datetime.datetime.now()
-    print(time_now)
-   # end_time = datetime.datetime(2021,2,17,8,0,0)   #Ska vara argument
-    chargetime = end_time-time_now                  #Beräkna hur lång laddtid vi har
+                #Beräkna hur lång laddtid vi har
 
 #TODO: Lösa hur man bestämmer EP(pris) till varje variabel Xi, Xi är varje 5 minuters current nivå, detta blir
 #TODO: En array med alla current värden fram till den bestämda tiden
     kvot = V*5/60000          #Fast värde
     time_now = datetime.datetime.now()
     print(time_now)
-    end_time = datetime.datetime(2021,2,13,8,0,0)##yyyy-mm.DD.HH.MM
+    #end_time = datetime.datetime(2021,2,13,8,0,0)##yyyy-mm.DD.HH.MM
+    chargetime = end_time - time_now
     time_minutes = chargetime.total_seconds()/60
     time_minutes -=  time_minutes % 5           #Omvandla till intervall av 5 minuter, och sedan till int
     intervall = time_minutes/5                  #Drar även bort resten från mod division
-
     print(end_time-time_now)
-    chargetime = end_time-time_now
     print(intervall)
-    inter = int(intervall)
-    z = time_now + datetime.timedelta(minutes = 5)
-    print(z)
     inter = int(intervall)
 
 
