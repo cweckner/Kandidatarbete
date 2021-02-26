@@ -1,5 +1,6 @@
 import json
 import datetime
+import pytz
 import requests
 
 APIServer = 'https://test4.oamportal.com' 
@@ -171,10 +172,16 @@ def incrementTransactionID(currentID):
 def timeConverter(timeToEdit,whichCommand):
     print("timeConverter")
     #Input has format '%Y-%m-%d %H:%M:%S')
+    timeZone = pytz.timezone('Europe/Stockholm')
+    utc = pytz.timezone('UTC')
     oldFormat = datetime.datetime.strptime(timeToEdit,'%Y-%m-%d %H:%M:%S')
+    print(oldFormat)
+    oldFormatTimeZoneAware = timeZone.localize(oldFormat)
+    print(oldFormatTimeZoneAware)
     if(whichCommand == "startCharger" or whichCommand == "setRFIDtagID"):
         #Format is "YYYY-MM-DDTHH:MM:SSZ"
-        newFormat = oldFormat.strftime('%Y-%m-%dT%H:%M:%SZ')
+        oldFormatUTC = oldFormatTimeZoneAware.astimezone(utc)
+        newFormat = oldFormatUTC.strftime('%Y-%m-%dT%H:%M:%SZ')
         print(newFormat)
         return(newFormat)
     elif(whichCommand == "consumedEnergy"):

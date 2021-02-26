@@ -7,9 +7,9 @@ commands.connectorStatus(token)
 commands.startCharger(token,transactionID)
 commands.consumedEnergy(token)
 commands.changeActiveCurrent(token)
-commands.stopCharger(token)
+commands.stopCharger(token,transactionID)
 commands.setRFIDtagID(token)
-optireal.current()
+#optireal.current()
 commands.stopCharger(token,transactionID)
 commands.setRFIDtagID(token)
 
@@ -23,5 +23,4 @@ for length of array of optimised charging
 '''
 '%Y-%m-%d %H:%M:%S'
 commands.timeConverter("2020-02-26 14:47:20","startCharger")
-commands.timeConverter("2020-02-26 14:47:20","consumedEnergy")
-commands.timeConverter("2020-02-26 14:47:20","setRFIDtagID")
+
