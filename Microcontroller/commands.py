@@ -43,7 +43,7 @@ def startCharger(token,transactionId):
 #Server response
 
 #Stop Charger
-def stopCharger(token,transactionId):
+def stopCharger(token):
     print("stopCharger")
     headers = {
         'Authorization': 'Bearer ' + token,
@@ -141,3 +141,18 @@ def requestRFIDtagID(token):
     response = requests.get('https://test4.oamportal.com/ServicesApi/rest/tag/[tag_id]', headers=headers)
     print(response)
     print(response.text)
+
+#Increment transaction ID
+#Transaction ID has format (8-4-4-4-12)
+def incrementTransactionID(currentID):
+    print("incrementing transaction ID")
+    print(currentID)
+    splitID = currentID.split("-")
+    fullString = ''.join(map(str, splitID)) 
+    integerID = int(fullString)
+    integerID+=1
+    incrementedStringID = str(integerID)
+    filledIncrementedStringID = incrementedStringID.zfill(8+4+4+4+12)
+    newTransactionID = filledIncrementedStringID[:8] + "-" + filledIncrementedStringID[8:12] + "-" + filledIncrementedStringID[12:16] + "-" + filledIncrementedStringID[16:20] + "-" + filledIncrementedStringID[20:32]
+    print(newTransactionID)
+    return(newTransactionID)
