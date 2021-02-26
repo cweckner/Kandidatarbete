@@ -43,17 +43,17 @@ def startCharger(token,transactionId):
 #Server response
 
 #Stop Charger
-def stopCharger(token):
+def stopCharger(token,transactionID):
     print("stopCharger")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
 
-    data = '{"evseId" : "d4ceb292-12ef-46b2-9724-0aeca7b62827", "transactionId" : "00000000-0000-0000-0000-000000000000"}'
-
+    data = '{"evseId" : "d4ceb292-12ef-46b2-9724-0aeca7b62827", "transactionId" :' +transactionID+'}'
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/stop', 
     headers=headers, data=data)
+    print(data)
     print(response)
 
 #Notify Stop (request sent by charger)
@@ -153,6 +153,6 @@ def incrementTransactionID(currentID):
     integerID+=1
     incrementedStringID = str(integerID)
     filledIncrementedStringID = incrementedStringID.zfill(8+4+4+4+12)
-    newTransactionID = filledIncrementedStringID[:8] + "-" + filledIncrementedStringID[8:12] + "-" + filledIncrementedStringID[12:16] + "-" + filledIncrementedStringID[16:20] + "-" + filledIncrementedStringID[20:32]
+    newTransactionID = "\"" + filledIncrementedStringID[:8] + "-" + filledIncrementedStringID[8:12] + "-" + filledIncrementedStringID[12:16] + "-" + filledIncrementedStringID[16:20] + "-" + filledIncrementedStringID[20:32] + "\""
     print(newTransactionID)
     return(newTransactionID)
