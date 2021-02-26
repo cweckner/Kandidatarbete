@@ -1,13 +1,13 @@
 from Microcontroller import commands
-id= "00000000-0000-0000-0000-000000000000"
-id = commands.incrementTransactionID(id)
+transactionID= "00000000-0000-0000-0000-000000000000"
+transactionID = commands.incrementTransactionID(transactionID)
 token = commands.createToken()
 commands.requestSiteInfo(token)
 commands.connectorStatus(token)
-#commands.startCharger(token)
+commands.startCharger(token,transactionID)
 commands.consumedEnergy(token)
 commands.changeActiveCurrent(token)
-commands.stopCharger(token,id)
+commands.stopCharger(token,transactionID)
 commands.setRFIDtagID(token)
 
 

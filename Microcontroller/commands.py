@@ -33,9 +33,10 @@ def startCharger(token,transactionId):
         'Content-Type': 'application/json',
     }
 
-    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":"[tag_id]", "transactionId":"00000000-0000-0000-0000-000000000000", "stoptime":"YYYY-MM-DDTHH:MM:SSZ"}'
+    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":"[tag_id]", "transactionId":' +transactionId+', "stoptime":"YYYY-MM-DDTHH:MM:SSZ"}'
     response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
     headers=headers, data=data)
+    print(data)
     print(response)
     
 
@@ -147,12 +148,20 @@ def requestRFIDtagID(token):
 def incrementTransactionID(currentID):
     print("incrementing transaction ID")
     print(currentID)
+    #Convert the format of the transactionID to an array of the format [8,4,4,4,12] where each integer is the length of that substring
     splitID = currentID.split("-")
+    #Join all the array elements to one single string
     fullString = ''.join(map(str, splitID)) 
+    #Convert the single string to an integer 
     integerID = int(fullString)
+    #Increment the integer
     integerID+=1
+    #Convert the integer back to a string
     incrementedStringID = str(integerID)
+    #Fill the integer with zeroes until it is the correct length
     filledIncrementedStringID = incrementedStringID.zfill(8+4+4+4+12)
+    #Add back the hyphens and add quotation marks to the beginning and end of the string (might be unnecessary)
     newTransactionID = "\"" + filledIncrementedStringID[:8] + "-" + filledIncrementedStringID[8:12] + "-" + filledIncrementedStringID[12:16] + "-" + filledIncrementedStringID[16:20] + "-" + filledIncrementedStringID[20:32] + "\""
     print(newTransactionID)
+    #return the new transactionID which has been incremented by 1 and retains the same format
     return(newTransactionID)
