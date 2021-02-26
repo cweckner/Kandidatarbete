@@ -22,5 +22,5 @@ for length of array of optimised charging
     "transactionId" : "00000000-0000-0000-0000-000000000000"
 '''
 '%Y-%m-%d %H:%M:%S'
-commands.timeConverter("2020-02-26 14:47:20","startCharger")
+commands.timeConverter("2020-02-26 14:47:20","consumedEnergy")
 

@@ -33,10 +33,9 @@ def startCharger(token,transactionId):
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
+    url = APIServer + "/ServicesApi/rest/charger/uuid/start"
     data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":"[tag_id]", "transactionId":' +transactionId+', "stoptime":"YYYY-MM-DDTHH:MM:SSZ"}'
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
-    headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     print(data)
     print(response)
     
@@ -51,10 +50,9 @@ def stopCharger(token,transactionID):
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
+    url = APIServer + "/ServicesApi/rest/charger/uuid/stop"
     data = '{"evseId" : "d4ceb292-12ef-46b2-9724-0aeca7b62827", "transactionId" :' +transactionID+'}'
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/stop', 
-    headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     print(data)
     print(response)
 
@@ -70,11 +68,9 @@ def changeActiveCurrent(token):
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
+    url = APIServer + "/ServicesApi/rest/charger/changeactivecurrent"
     data = '{"current": "[current]", "chargeboxidentity": "000005354-1","connectorid": "1"}'
-
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/changeactivecurrent', 
-    headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
     
@@ -85,11 +81,9 @@ def consumedEnergy(token):
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
+    url = APIServer + "/ServicesApi/rest/tag/getSessionsByTag"
     data = '{"tagId" : "[tag_id]", "intervalStart" : "YYYY-MM-DD"," intervalEnd" : "YYYY-MM-DD"}'
-
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/tag/getSessionsByTag', 
-    headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
 
@@ -100,10 +94,9 @@ def requestSiteInfo(token):
     'Authorization': 'Bearer ' + token,
     'Content-Type': 'application/json',
     }
-
+    url = APIServer + "/ServicesApi/rest/charger/siteinfo"
     data = '{"siteid" : "6d411116-91cc-4a61-9b83-b83380a04e69"}'
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/siteinfo', 
-    headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
 
@@ -113,9 +106,8 @@ def connectorStatus(token):
     headers = {
         'Authorization': 'Bearer ' + token,
     }
-
-    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/charger/status/d4ceb292-12ef-46b2-9724-0aeca7b62827', 
-    headers=headers)
+    url = APIServer + "/ServicesApi/rest/charger/status/d4ceb292-12ef-46b2-9724-0aeca7b62827"
+    response = requests.get(url, headers=headers)
     print(response)
     print(response.text)
 
@@ -126,10 +118,9 @@ def setRFIDtagID(token):
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
+    url = APIServer + "/ServicesApi/rest/tag/"
     data = '{"tagId":"918273645","companyId":170401,"validTo" : "YYYY-MM-DDTHH:MM:SSZ"}'
-
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/tag/', headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
 
@@ -139,8 +130,8 @@ def requestRFIDtagID(token):
     headers = {
         'Authorization': 'Bearer ' + token,
     }
-
-    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/tag/[tag_id]', headers=headers)
+    url = APIServer + "/ServicesApi/rest/tag/[tag_id]"
+    response = requests.get(url, headers=headers)
     print(response)
     print(response.text)
 
@@ -172,11 +163,11 @@ def incrementTransactionID(currentID):
 def timeConverter(timeToEdit,whichCommand):
     print("timeConverter")
     #Input has format '%Y-%m-%d %H:%M:%S')
-    timeZone = pytz.timezone('Europe/Stockholm')
+    timeSweden = pytz.timezone('Europe/Stockholm')
     utc = pytz.timezone('UTC')
     oldFormat = datetime.datetime.strptime(timeToEdit,'%Y-%m-%d %H:%M:%S')
     print(oldFormat)
-    oldFormatTimeZoneAware = timeZone.localize(oldFormat)
+    oldFormatTimeZoneAware = timeSweden.localize(oldFormat)
     print(oldFormatTimeZoneAware)
     if(whichCommand == "startCharger" or whichCommand == "setRFIDtagID"):
         #Format is "YYYY-MM-DDTHH:MM:SSZ"
