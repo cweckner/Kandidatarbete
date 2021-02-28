@@ -27,14 +27,16 @@ def createToken():
 #Send the request to activate the connector on the charge station
 #TODO:
 #Add stoptime
-def startCharger(token,transactionId):
+def startCharger(token,transactionId,tagID,stoptime):
     print("startCharger")
+    tagIDSTR = "\""+tagID+"\""
+    stopTimeSTR = "\""+stoptime+"\""
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
     url = APIServer + "/ServicesApi/rest/charger/uuid/start"
-    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":"[tag_id]", "transactionId":' +transactionId+', "stoptime":"YYYY-MM-DDTHH:MM:SSZ"}'
+    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":'+tagIDSTR+', "transactionId":' +transactionId+', "stoptime":'+stopTimeSTR+'}'
     response = requests.post(url, headers=headers, data=data)
     print(data)
     print(response)
@@ -62,27 +64,27 @@ def stopCharger(token,transactionID):
 #Change Active Current (amps)
 #TODO:
 #Add input from optimisation model
-def changeActiveCurrent(token):
+def changeActiveCurrent(token, connector, current):
     print("changeActiveCurrent")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
     url = APIServer + "/ServicesApi/rest/charger/changeactivecurrent"
-    data = '{"current": "[current]", "chargeboxidentity": "000005354-1","connectorid": "1"}'
+    data = '{"current":' +current+ ', "chargeboxidentity": "000005354-1","connectorid":' +connector+ '}'
     response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
     
 #Consumed Energy (KWh) / duration
-def consumedEnergy(token):
+def consumedEnergy(token,tagID,intervalStart,intervalEnd):
     print("consumedEnergy")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
     url = APIServer + "/ServicesApi/rest/tag/getSessionsByTag"
-    data = '{"tagId" : "[tag_id]", "intervalStart" : "YYYY-MM-DD"," intervalEnd" : "YYYY-MM-DD"}'
+    data = '{"tagId" : '+tagID+', "intervalStart" : '+intervalStart+'," intervalEnd" : '+intervalEnd+'}'
     response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
@@ -112,14 +114,14 @@ def connectorStatus(token):
     print(response.text)
 
 #Set RFID tagID
-def setRFIDtagID(token):
+def setRFIDtagID(token, time):
     print("setRFIDtagID")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
     url = APIServer + "/ServicesApi/rest/tag/"
-    data = '{"tagId":"918273645","companyId":170401,"validTo" : "YYYY-MM-DDTHH:MM:SSZ"}'
+    data = '{"tagId":"918273645","companyId":170401,"validTo" :' +time+'}'
     response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
