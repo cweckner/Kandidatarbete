@@ -14,7 +14,7 @@ from kivy.core.window import Window
 from kivy.uix.vkeyboard import VKeyboard 
 from kivy.config import Config
 import datetime
-from Microcontroller import optireal
+#from Microcontroller import optireal
 Window.size = (800, 480) #WxH
 Config.set('kivy', 'keyboard_layout', 'numeric.json')
 print(Config.get('kivy', 'keyboard_layout'))
@@ -116,7 +116,7 @@ class DemoApp(MDApp):
 
 
     def CARSPEC(self,b,m):
-        with open('Bilkap.csv','r') as infile:
+        with open(r'c:/Users/norao/Documents/Skola/Kandidatarbete/Display/Bilkap.csv','r') as infile:
             reader = csv.reader(infile, delimiter=",")
             for row in reader:
                 if b == row[0]:
@@ -147,8 +147,9 @@ class DemoApp(MDApp):
 
     def get_time(self, instance, time):
         self.timepicker = str(time)
-        print(self.timepicker)
-        self.root.ids.timebutton.text = self.timepicker
+        nosecstr = self.timepicker[:5]
+        print(nosecstr)
+        self.root.ids.timebutton.text = nosecstr
 
     def on_save(self, instance, value, date_range):
         self.datepicker = str(value)
@@ -201,11 +202,11 @@ class DemoApp(MDApp):
             'datepicker': self.datepicker
         }
         print(tfvalues)
-        date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
-        avfard = datetime.datetime.strptime(date_timestr, '%Y-%m-%d %H:%M:%S')
-        print(avfard)
-        C = (optireal.current(avfard,int(maxcurrenttf),int(batterytf),int(wantedtf),int(currenttf)))
-        print(C)
+        #date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
+        #avfard = datetime.datetime.strptime(date_timestr, '%Y-%m-%d %H:%M:%S')
+        #print(avfard)
+        #C = (optireal.current(avfard,int(maxcurrenttf),int(batterytf),int(wantedtf),int(currenttf)))
+        #print(C)
 
 if __name__ == '__main__':
     DemoApp().run()

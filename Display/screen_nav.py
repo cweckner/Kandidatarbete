@@ -32,14 +32,16 @@ ScreenManager:
             id: timebutton
             text: app.timepicker
             md_bg_color: 1,1,1,1
-            text_color: 1,1,1,1
-            pos_hint: {'center_x': 0.6, 'center_y': 0.35}
+            theme_text_color: "Custom"
+            text_color: 0.46, 0.46, 0.46,1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.40}
             on_release: app.show_time_picker()  
         MDRaisedButton:
             id: datebutton
             text: app.datepicker
-            md_bg_color: app.theme_cls.primary_light
-            pos_hint: {'center_x': 0.4, 'center_y': 0.35}
+            md_bg_color: 1,1,1,1
+            text_color: 0.46, 0.46, 0.46,1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.50}
             on_release: app.show_date_picker()  
 
     CarBrandScreen:
@@ -82,13 +84,13 @@ ScreenManager:
             size_hint: None, None
             size: dp(48), dp(48)
             active: True
-            pos_hint: {'center_x': 0.45, 'center_y': 0.4}
+            pos_hint: {'center_x': 0.40, 'center_y': 0.4}
         MDCheckbox:
             id: checkbox2
             group: 'group'
             size_hint: None, None
             size: dp(48), dp(48)
-            pos_hint: {'center_x': 0.6, 'center_y': 0.4}
+            pos_hint: {'center_x': 0.65, 'center_y': 0.4}
     GoodbyeScreen:
         id: goodbyescreen
 
@@ -117,7 +119,12 @@ ScreenManager:
 
 <CurrentChargeScreen>:
     name: 'currentcharge'
-            
+    MDIconButton:
+        id: infoicon
+        icon: "information-outline"
+        pos_hint: {'center_x': 0.90, 'center_y': 0.93}
+        user_font_size: "20sp"
+        theme_text_color: "Hint"
     MDFlatButton:
         text: '1/6'
         theme_text_color: "Hint"
@@ -141,7 +148,12 @@ ScreenManager:
 
 <WantedChargeScreen>:
     name: 'wantedcharge'
-
+    MDIconButton:
+        id: infoicon
+        icon: "information-outline"
+        pos_hint: {'center_x': 0.90, 'center_y': 0.93}
+        user_font_size: "20sp"
+        theme_text_color: "Hint"
     MDFlatButton:
         text: '2/6'
         theme_text_color: "Hint"
@@ -162,9 +174,38 @@ ScreenManager:
 
 <TimeDateScreen>:
     name: 'timedate'
-    MDLabel:
-        text: "Departure Date & Time"
-        halign: 'center'
+    
+    MDIconButton:
+        id: infoicon
+        icon: "information-outline"
+        pos_hint: {'center_x': 0.90, 'center_y': 0.93}
+        user_font_size: "20sp"
+        theme_text_color: "Hint"
+    
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: "50dp"
+        padding: 0, 0, 0, "450dp"
+        MDLabel:
+            text: "Departure Date & Time"
+            halign: 'center'
+            font_style: "H6"
+            adaptive_height: True
+    
+    MDIconButton:
+        id: dateicon
+        icon: "calendar"
+        pos_hint: {"center_x": 0.35, "center_y": 0.50}
+        #theme_text_color: "Custom"
+        #text_color: app.theme_cls.primary_color
+    
+    MDIconButton:
+        id: timeicon
+        icon: "clock"
+        pos_hint: {"center_x": 0.35, "center_y": 0.40}
+        #theme_text_color: "Custom"
+        #text_color: app.theme_cls.primary_color
+            
     MDFlatButton:
         text: '3/6'
         theme_text_color: "Hint"
@@ -614,15 +655,15 @@ ScreenManager:
     MDFlatButton:
         text: '1'
         theme_text_color: "Hint"
-        pos_hint: {'center_x': 0.4, 'center_y': 0.4}
+        pos_hint: {'center_x': 0.35, 'center_y': 0.4}
     MDFlatButton:
         text: '2'
         theme_text_color: "Hint"
-        pos_hint: {'center_x': 0.55, 'center_y': 0.4}
+        pos_hint: {'center_x': 0.60, 'center_y': 0.4}
     
     MDRectangleFlatButton:
         text: 'Charge'
-        pos_hint: {'center_x': 0.9, 'center_y': 0.1}
+        pos_hint: {'center_x': 0.8, 'center_y': 0.1}
         on_press:
             app.save_outletcbx()
             app.print_tfvalues()
