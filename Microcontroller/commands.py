@@ -185,3 +185,14 @@ def timeConverter(timeToEdit,whichCommand):
         return(newFormat)
     else:
         return(oldFormat)
+
+#Calculate the number of times to update the charging current
+def calculateNumberOfUpdates(endTime):
+    timeAtStart = datetime.datetime.now()
+    #endTime = ("2021-03-02 20:00:00") #test time
+    endTimeSeconds = datetime.datetime.strptime(endTime,'%Y-%m-%d %H:%M:%S')
+    timeDelta = endTimeSeconds - timeAtStart
+    chargetimeInSeconds = timeDelta.total_seconds()
+    numberOfUpdates = (chargetimeInSeconds - (chargetimeInSeconds % 5))/5
+    print(numberOfUpdates)
+    return numberOfUpdates
