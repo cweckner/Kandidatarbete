@@ -11,6 +11,3 @@
 #Year,Month,Day,Hour,Minute,[W/m2]
 import csv
 
-
-with open('PVforecast', 'r') as infile:
-reader = csv.reader(infile,delimiter=",")

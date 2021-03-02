@@ -58,9 +58,8 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
 
     rhs_eq = [kwh]   #Krav på hur många KWh vi behöver
 
-    bnd = [(0, current_limit)]*inter    # Current, mellan 0 och currentlimit // Möjligtvis att detta är argument också
-
+    bnd = [(0, current_limit)]*inter    # Current, mellan 0 och currentlimit //
     opt = linprog(c=obj,        #Solver, minimize
     A_eq=lhs_eq, b_eq=rhs_eq, bounds=bnd,
     method="revised simplex")
-    return opt.x
+    return opt.x(1)
