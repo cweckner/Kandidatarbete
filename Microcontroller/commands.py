@@ -103,15 +103,24 @@ def requestSiteInfo(token):
     print(response.text)
 
 #Get Connector Status
-def connectorStatus(token):
+def connectorStatus(token, outletID):
     print("connectorStatus")
+    if(outletID == 1):
+        outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
+    else:
+        outlet = "fe294fba-d6ad-4616-8ab8-9999fe9bad58"
     headers = {
         'Authorization': 'Bearer ' + token,
     }
-    url = APIServer + "/ServicesApi/rest/charger/status/d4ceb292-12ef-46b2-9724-0aeca7b62827"
+    url = APIServer + "/ServicesApi/rest/charger/status/" + outlet
     response = requests.get(url, headers=headers)
+    responseJSON = json.loads(response.text)
+    status = responseJSON["status"]
     print(response)
     print(response.text)
+    print(status)
+    return(status)
+
 
 #Set RFID tagID
 def setRFIDtagID(token, time):

@@ -39,7 +39,7 @@ for length of array of optimised charging
 '''
 '%Y-%m-%d %H:%M:%S'
 #commands.timeConverter("2020-02-26 14:47:20","consumedEnergy")
-
+'''
 #Delay for 5 minutes
 def delay():
     sched.scheduler(time.time(), time.sleep(300))
@@ -58,7 +58,13 @@ while(screen.start == 1):
     endTimeCharging = datetime.datetime.strptime(timeString, '%Y-%m-%d %H:%M:%S')
     numberOfUpdates = commands.calculateNumberOfUpdates(endTimeCharging)
 
+    
+    while(numberOfUpdates > 0):
+        chargingCurrent = optireal.current(endTimeCharging, screen.maxcurrenttf, screen.batterytf, screen.wantedtf, screen.currenttf)
 
 
-    chargingCurrent = optireal.current(endTimeCharging, screen.maxcurrenttf, screen.batterytf, screen.wantedtf, screen.currenttf)
-
+        numberOfUpdates -= 1
+'''
+token = commands.createToken()
+commands.connectorStatus(token,1)
+commands.connectorStatus(token,2)
