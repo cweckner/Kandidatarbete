@@ -1,5 +1,6 @@
 import json
 import datetime
+import pytz
 import requests
 
 APIServer = 'https://test4.oamportal.com' 
@@ -26,16 +27,17 @@ def createToken():
 #Send the request to activate the connector on the charge station
 #TODO:
 #Add stoptime
-def startCharger(token,transactionId):
+def startCharger(token,transactionId,tagID,stoptime):
     print("startCharger")
+    tagIDSTR = "\""+tagID+"\""
+    stopTimeSTR = "\""+stoptime+"\""
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
-    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":"[tag_id]", "transactionId":' +transactionId+', "stoptime":"YYYY-MM-DDTHH:MM:SSZ"}'
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', 
-    headers=headers, data=data)
+    url = APIServer + "/ServicesApi/rest/charger/uuid/start"
+    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":'+tagIDSTR+', "transactionId":' +transactionId+', "stoptime":'+stopTimeSTR+'}'
+    response = requests.post(url, headers=headers, data=data)
     print(data)
     print(response)
     
@@ -50,10 +52,9 @@ def stopCharger(token,transactionID):
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
+    url = APIServer + "/ServicesApi/rest/charger/uuid/stop"
     data = '{"evseId" : "d4ceb292-12ef-46b2-9724-0aeca7b62827", "transactionId" :' +transactionID+'}'
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/stop', 
-    headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     print(data)
     print(response)
 
@@ -63,32 +64,28 @@ def stopCharger(token,transactionID):
 #Change Active Current (amps)
 #TODO:
 #Add input from optimisation model
-def changeActiveCurrent(token):
+def changeActiveCurrent(token, connector, current):
     print("changeActiveCurrent")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
-    data = '{"current": "[current]", "chargeboxidentity": "000005354-1","connectorid": "1"}'
-
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/changeactivecurrent', 
-    headers=headers, data=data)
+    url = APIServer + "/ServicesApi/rest/charger/changeactivecurrent"
+    data = '{"current":' +current+ ', "chargeboxidentity": "000005354-1","connectorid":' +connector+ '}'
+    response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
     
 #Consumed Energy (KWh) / duration
-def consumedEnergy(token):
+def consumedEnergy(token,tagID,intervalStart,intervalEnd):
     print("consumedEnergy")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
-    data = '{"tagId" : "[tag_id]", "intervalStart" : "YYYY-MM-DD"," intervalEnd" : "YYYY-MM-DD"}'
-
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/tag/getSessionsByTag', 
-    headers=headers, data=data)
+    url = APIServer + "/ServicesApi/rest/tag/getSessionsByTag"
+    data = '{"tagId" : '+tagID+', "intervalStart" : '+intervalStart+'," intervalEnd" : '+intervalEnd+'}'
+    response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
 
@@ -99,10 +96,9 @@ def requestSiteInfo(token):
     'Authorization': 'Bearer ' + token,
     'Content-Type': 'application/json',
     }
-
+    url = APIServer + "/ServicesApi/rest/charger/siteinfo"
     data = '{"siteid" : "6d411116-91cc-4a61-9b83-b83380a04e69"}'
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/siteinfo', 
-    headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
 
@@ -112,23 +108,21 @@ def connectorStatus(token):
     headers = {
         'Authorization': 'Bearer ' + token,
     }
-
-    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/charger/status/d4ceb292-12ef-46b2-9724-0aeca7b62827', 
-    headers=headers)
+    url = APIServer + "/ServicesApi/rest/charger/status/d4ceb292-12ef-46b2-9724-0aeca7b62827"
+    response = requests.get(url, headers=headers)
     print(response)
     print(response.text)
 
 #Set RFID tagID
-def setRFIDtagID(token):
+def setRFIDtagID(token, time):
     print("setRFIDtagID")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
-
-    data = '{"tagId":"918273645","companyId":170401,"validTo" : "YYYY-MM-DDTHH:MM:SSZ"}'
-
-    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/tag/', headers=headers, data=data)
+    url = APIServer + "/ServicesApi/rest/tag/"
+    data = '{"tagId":"918273645","companyId":170401,"validTo" :' +time+'}'
+    response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
 
@@ -138,8 +132,8 @@ def requestRFIDtagID(token):
     headers = {
         'Authorization': 'Bearer ' + token,
     }
-
-    response = requests.get('https://test4.oamportal.com/ServicesApi/rest/tag/[tag_id]', headers=headers)
+    url = APIServer + "/ServicesApi/rest/tag/[tag_id]"
+    response = requests.get(url, headers=headers)
     print(response)
     print(response.text)
 
@@ -165,3 +159,28 @@ def incrementTransactionID(currentID):
     print(newTransactionID)
     #return the new transactionID which has been incremented by 1 and retains the same format
     return(newTransactionID)
+
+#Convert date to correct format depending on the command being sent
+#The input timeToEdit should be a string
+def timeConverter(timeToEdit,whichCommand):
+    print("timeConverter")
+    #Input has format '%Y-%m-%d %H:%M:%S')
+    timeSweden = pytz.timezone('Europe/Stockholm')
+    utc = pytz.timezone('UTC')
+    oldFormat = datetime.datetime.strptime(timeToEdit,'%Y-%m-%d %H:%M:%S')
+    print(oldFormat)
+    oldFormatTimeZoneAware = timeSweden.localize(oldFormat)
+    print(oldFormatTimeZoneAware)
+    if(whichCommand == "startCharger" or whichCommand == "setRFIDtagID"):
+        #Format is "YYYY-MM-DDTHH:MM:SSZ"
+        oldFormatUTC = oldFormatTimeZoneAware.astimezone(utc)
+        newFormat = oldFormatUTC.strftime('%Y-%m-%dT%H:%M:%SZ')
+        print(newFormat)
+        return(newFormat)
+    elif(whichCommand == "consumedEnergy"):
+        #Format is ""YYYY-MM-DD""
+        newFormat = oldFormat.strftime('%Y-%m-%d')
+        print(newFormat)
+        return(newFormat)
+    else:
+        return(oldFormat)
