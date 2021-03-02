@@ -1,41 +1,15 @@
 from scipy.optimize import linprog
 import datetime
+from Microcontroller import parameters
 def current(end_time,current_limit,capacity,battery_goal,battery_current):
     V=400
     kwh = (battery_goal-battery_current)*capacity/100
-    priser = {                #Detta ska senare komma från argument men får vara tills vidare
-        10: 80,
-        11: 43,
-        12: 50,
-        13: 86,
-        14: 79,
-        15: 30,
-        16: 87,
-        17: 86,
-        18: 95,
-        19: 87,
-        20: 85,
-        21: 78,
-        22: 74,
-        23: 72,
-        0: 67,
-        1: 65,
-        2: 50,
-        3: 45,
-        4: 46,
-        5: 45,
-        6: 58,
-        7: 68,
-        8: 44,
-        9:67
-    }
-                #Beräkna hur lång laddtid vi har
+    time_now = datetime.datetime.now()
+    priser = parameters.param(time_now,end_time)
 
 #TODO: Lösa hur man bestämmer EP(pris) till varje variabel Xi, Xi är varje 5 minuters current nivå, detta blir
 #TODO: En array med alla current värden fram till den bestämda tiden
     kvot = V*5/60000          #Fast värde
-    time_now = datetime.datetime.now()
-    print(time_now)
     #end_time = datetime.datetime(2021,2,13,8,0,0)##yyyy-mm.DD.HH.MM
     chargetime = end_time - time_now
     time_minutes = chargetime.total_seconds()/60
@@ -44,7 +18,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     print(end_time-time_now)
     print(intervall)
     inter = int(intervall)
-
+    inter = min(inter,144)
 
     obj = [kvot]*inter          #Initialisera obj
     i=0
@@ -62,4 +36,8 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     opt = linprog(c=obj,        #Solver, minimize
     A_eq=lhs_eq, b_eq=rhs_eq, bounds=bnd,
     method="revised simplex")
-    return opt.x(1)
+    return opt.x[1]
+
+end_time = datetime.datetime(2021,3,3,8,0,0)
+
+print(current(end_time,32,100,80,20))
