@@ -1,4 +1,5 @@
 from Microcontroller import commands, optireal
+#from Display import main as disp
 import datetime
 
 transactionID= "00000000-0000-0000-0000-000000000000"
@@ -22,7 +23,7 @@ commands.stopCharger(token,transactionID)
 commands.setRFIDtagID(token,timeSetRFIDtagID)
 #optireal.current()
 commands.stopCharger(token,transactionID)
-commands.requestRFIDtagID(token)
+#commands.requestRFIDtagID(token,tagID)
 
 
 '''
@@ -34,4 +35,10 @@ for length of array of optimised charging
 '''
 '%Y-%m-%d %H:%M:%S'
 commands.timeConverter("2020-02-26 14:47:20","consumedEnergy")
+
+
+#start screen
+#while screen object start = 1
+    #create token
+    #screen object time
 

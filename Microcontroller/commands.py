@@ -116,23 +116,24 @@ def connectorStatus(token):
 #Set RFID tagID
 def setRFIDtagID(token, time):
     print("setRFIDtagID")
+    timeSTR = "\""+time+"\""
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
     url = APIServer + "/ServicesApi/rest/tag/"
-    data = '{"tagId":"918273645","companyId":170401,"validTo" :' +time+'}'
+    data = '{"tagId":"918273645","companyId":170401,"validTo" :' +timeSTR+'}'
     response = requests.post(url, headers=headers, data=data)
     print(response)
     print(response.text)
 
 #Request RFID tagID info
-def requestRFIDtagID(token):
+def requestRFIDtagID(token,tagID):
     print("requestRFIDtagID")
     headers = {
         'Authorization': 'Bearer ' + token,
     }
-    url = APIServer + "/ServicesApi/rest/tag/[tag_id]"
+    url = APIServer + "/ServicesApi/rest/tag/" + tagID
     response = requests.get(url, headers=headers)
     print(response)
     print(response.text)
