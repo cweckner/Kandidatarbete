@@ -224,80 +224,90 @@ ScreenManager:
             root.manager.current = 'wantedcharge'
 
 <CarBrandScreen>:
-    name: 'carbrand'            
-    ScrollView:
-        MDList:
-            id: carbrandlist
-            OneLineAvatarListItem:
-                text: 'Audi'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'audimodels'
-                ImageLeftWidget:
-                    source: "Images/audi_logo.png" 
-            OneLineAvatarListItem:
-                text: 'BMW'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'bmwmodels'
-                ImageLeftWidget:
-                    source: "Images/bmw_logo.png"
-            OneLineAvatarListItem:
-                text: 'Kia'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'kiamodels'
-                ImageLeftWidget:
-                    source: "Images/kia_logo.png"
-            OneLineAvatarListItem:
-                text: 'Mitsubishi'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'mitsubishimodels'
-                ImageLeftWidget:
-                    source: "Images/mitsubishi_logo.png"
-            OneLineAvatarListItem:
-                text: 'Nissan'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'nissanmodels'
-                ImageLeftWidget:
-                    source: "Images/nissan_logo.png"
-            OneLineAvatarListItem:
-                text: 'Renault'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'renaultmodels'
-                ImageLeftWidget:
-                    source: "Images/renault_logo.png"
-            OneLineAvatarListItem:
-                text: 'Volkswagen'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'volkswagenmodels'
-                ImageLeftWidget:
-                    source: "Images/volkswagen_logo.png"
-            OneLineAvatarListItem:
-                text: 'Volvo'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'volvomodels'
-                ImageLeftWidget:
-                    source: "Images/volvo_logo.png"
-            OneLineAvatarListItem:
-                text: 'Tesla'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'teslamodels'
-                ImageLeftWidget:
-                    source: "Images/tesla_logo.png"
-            OneLineAvatarListItem:
-                text: 'Other'
-                on_release: 
-                    root.manager.transition.direction = 'left'
-                    root.manager.current = 'batterycapacity'
-                ImageLeftWidget:
-                    source: "Images/other.png"
+    name: 'carbrand'
+    BoxLayout:
+        orientation: 'vertical'
+                    
+        ScrollView:
+            MDList:
+                id: carbrandlist
+                OneLineAvatarListItem:
+                    text: 'Audi'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'audimodels'
+                    ImageLeftWidget:
+                        source: "Images/audi_logo.png" 
+                OneLineAvatarListItem:
+                    text: 'BMW'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'bmwmodels'
+                    ImageLeftWidget:
+                        source: "Images/bmw_logo.png"
+                OneLineAvatarListItem:
+                    text: 'Kia'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'kiamodels'
+                    ImageLeftWidget:
+                        source: "Images/kia_logo.png"
+                OneLineAvatarListItem:
+                    text: 'Mitsubishi'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'mitsubishimodels'
+                    ImageLeftWidget:
+                        source: "Images/mitsubishi_logo.png"
+                OneLineAvatarListItem:
+                    text: 'Nissan'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'nissanmodels'
+                    ImageLeftWidget:
+                        source: "Images/nissan_logo.png"
+                OneLineAvatarListItem:
+                    text: 'Renault'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'renaultmodels'
+                    ImageLeftWidget:
+                        source: "Images/renault_logo.png"
+                OneLineAvatarListItem:
+                    text: 'Volkswagen'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'volkswagenmodels'
+                    ImageLeftWidget:
+                        source: "Images/volkswagen_logo.png"
+                OneLineAvatarListItem:
+                    text: 'Volvo'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'volvomodels'
+                    ImageLeftWidget:
+                        source: "Images/volvo_logo.png"
+                OneLineAvatarListItem:
+                    text: 'Tesla'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'teslamodels'
+                    ImageLeftWidget:
+                        source: "Images/tesla_logo.png"
+                OneLineAvatarListItem:
+                    text: 'Other'
+                    on_release: 
+                        root.manager.transition.direction = 'left'
+                        root.manager.current = 'batterycapacity'
+                    ImageLeftWidget:
+                        source: "Images/other.png"
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'    
+            adaptive_height: True
             
             
                 
@@ -331,7 +341,13 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
-                        app.CARSPEC('Audi', 'E-TRON Q4')                     
+                        app.CARSPEC('Audi', 'E-TRON Q4')      
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'                
     
 <BmwModelsScreen>:
     name: 'bmwmodels'
@@ -378,6 +394,12 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('BMW', 'I3s 120 Ah')
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'
    
         
 <KiaModelsScreen>:
@@ -419,6 +441,12 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('KIA', 'E-NIRO 67kWh')
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'
   
         
 <MitsubishiModelsScreen>:
@@ -438,6 +466,12 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('MITUBISHI', 'OUTLANDER')
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'
  
         
 <NissanModelsScreen>:
@@ -464,6 +498,12 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('NISSAN', 'LEAF e+')
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'
    
         
 <RenaultModelsScreen>:
@@ -497,6 +537,12 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('RENAULT', 'ZOE')
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'
    
         
 <VolkswagenModelsScreen>:
@@ -552,6 +598,12 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('Volkswagen', 'Passat GTe')
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'
    
         
 <VolvoModelsScreen>:
@@ -578,6 +630,12 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('Volvo', 'V60 D6')
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'
    
         
 <TeslaModelsScreen>:
@@ -604,6 +662,12 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('Tesla', '3')
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_x": 0.1, "center_y": 0.1}
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'timedate'
    
 
 <BatteryCapacityScreen>:
