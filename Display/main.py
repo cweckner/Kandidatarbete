@@ -68,9 +68,6 @@ class TeslaModelsScreen(Screen):
 class BatteryCapacityScreen(Screen):
     pass
 
-class MaxCurrentScreen(Screen):
-    pass
-
 class OutletScreen(Screen):
     pass
 
@@ -96,7 +93,6 @@ screen_manager.add_widget(VolkswagenModelsScreen(name = 'volkswagenmodels'))
 screen_manager.add_widget(VolvoModelsScreen(name = 'volvomodels'))
 screen_manager.add_widget(TeslaModelsScreen(name = 'teslamodels'))
 screen_manager.add_widget(BatteryCapacityScreen(name = 'batterycapacity'))
-screen_manager.add_widget(MaxCurrentScreen(name = 'maxcurrent'))
 screen_manager.add_widget(OutletScreen(name = 'outlet'))
 screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 
@@ -106,6 +102,7 @@ screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 class DemoApp(MDApp):
     datepicker="Choose date"
     timepicker= "Choose time"
+    readytosend= False
 
     def build(self):
         print("main")
@@ -201,6 +198,7 @@ class DemoApp(MDApp):
             'timepicker': self.timepicker,
             'datepicker': self.datepicker
         }
+        self.readytosend = True
         print(tfvalues)
         #date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
         #avfard = datetime.datetime.strptime(date_timestr, '%Y-%m-%d %H:%M:%S')

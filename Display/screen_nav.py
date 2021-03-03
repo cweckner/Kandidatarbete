@@ -59,23 +59,21 @@ ScreenManager:
         id: batterycapacityscreen
         MDTextField:
             id:  batterycapacitytf  
-            hint_text: "Enter the battery capacity"
+            hint_text: "Enter the battery capacity of EV"
             helper_text: ""
             helper_text_mode: "on_focus"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
             size_hint_x: None
             width: 300
-
-    MaxCurrentScreen:
-        id: maxcurrentscreen
         MDTextField:
             id: maxcurrenttf
             hint_text: "Enter max current of EV"
             helper_text: ""
             helper_text_mode: "on_focus"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
             size_hint_x: None
             width: 300
+
     OutletScreen:
         id: outletscreen
         MDCheckbox:
@@ -301,13 +299,28 @@ ScreenManager:
                         root.manager.current = 'batterycapacity'
                     ImageLeftWidget:
                         source: "Images/other.png"
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'    
-            adaptive_height: True
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: "100dp"
+            padding: "50dp",0 ,0 , "30dp" 
+            MDIconButton: 
+                icon: "arrow-left"
+                pos_hint: {"center_x": 0.1, "center_y": 0.1}
+                on_press: 
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'timedate'    
+                adaptive_height: True
+            MDFlatButton:
+                text: '4/6'
+                theme_text_color: "Hint"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+            MDIconButton:
+                id: infoicon
+                icon: "information-outline"
+                pos_hint: {'center_x': 0.90, 'center_y': 0.1}
+                user_font_size: "20sp"
+                theme_text_color: "Hint"
+                adaptive_height: True
             
             
                 
@@ -327,27 +340,35 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left' 
                         root.manager.current = 'outlet'
-                        app.CARSPEC('Audi', 'E-TRON 50 Quattro')
+                        app.CARSPEC('AUDI', 'E-TRON 50 Quattro')
                     
                 OneLineListItem:
                     text: 'E-TRON 55 Quattro'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
-                        app.CARSPEC('Audi', 'E-TRON 55 Quattro')
+                        app.CARSPEC('AUDI', 'E-TRON 55 Quattro')
                 
                 OneLineListItem:
                     text: 'E-TRON Q4'
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
-                        app.CARSPEC('Audi', 'E-TRON Q4')      
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'                
+                        app.CARSPEC('AUDI', 'E-TRON Q4')   
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: "100dp"
+            padding: "50dp",0 ,0 , "30dp"   
+            MDIconButton: 
+                icon: "arrow-left"
+                pos_hint: {"center_x": 0.1, "center_y": 0.1}
+                on_press: 
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'timedate' 
+            MDFlatButton:
+                text: '5/6'
+                theme_text_color: "Hint"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.1}               
     
 <BmwModelsScreen>:
     name: 'bmwmodels'
@@ -400,6 +421,10 @@ ScreenManager:
             on_press: 
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'timedate'
+        MDFlatButton:
+            text: '5/6'
+            theme_text_color: "Hint"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
    
         
 <KiaModelsScreen>:
@@ -447,6 +472,10 @@ ScreenManager:
             on_press: 
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'timedate'
+        MDFlatButton:
+            text: '5/6'
+            theme_text_color: "Hint"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
   
         
 <MitsubishiModelsScreen>:
@@ -472,6 +501,10 @@ ScreenManager:
             on_press: 
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'timedate'
+        MDFlatButton:
+            text: '5/6'
+            theme_text_color: "Hint"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
  
         
 <NissanModelsScreen>:
@@ -504,6 +537,10 @@ ScreenManager:
             on_press: 
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'timedate'
+        MDFlatButton:
+            text: '5/6'
+            theme_text_color: "Hint"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
    
         
 <RenaultModelsScreen>:
@@ -543,6 +580,10 @@ ScreenManager:
             on_press: 
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'timedate'
+        MDFlatButton:
+            text: '5/6'
+            theme_text_color: "Hint"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
    
         
 <VolkswagenModelsScreen>:
@@ -604,6 +645,10 @@ ScreenManager:
             on_press: 
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'timedate'
+        MDFlatButton:
+            text: '5/6'
+            theme_text_color: "Hint"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
    
         
 <VolvoModelsScreen>:
@@ -636,6 +681,10 @@ ScreenManager:
             on_press: 
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'timedate'
+        MDFlatButton:
+            text: '5/6'
+            theme_text_color: "Hint"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
    
         
 <TeslaModelsScreen>:
@@ -662,6 +711,10 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('Tesla', '3')
+        MDFlatButton:
+            text: '5/6'
+            theme_text_color: "Hint"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
         MDIconButton: 
             icon: "arrow-left"
             pos_hint: {"center_x": 0.1, "center_y": 0.1}
@@ -672,27 +725,12 @@ ScreenManager:
 
 <BatteryCapacityScreen>:
     name: 'batterycapacity'
-    MDFlatButton:
-        text: '4/6'
+    MDIconButton:
+        id: infoiconbatterycapacity
+        icon: "information-outline"
+        pos_hint: {'center_x': 0.90, 'center_y': 0.93}
+        user_font_size: "20sp"
         theme_text_color: "Hint"
-        pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-    MDIconButton:
-        icon: "arrow-right"
-        pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press: 
-            app.save_batterytf()
-            root.manager.transition.direction = 'left'
-            root.manager.current = 'maxcurrent'
-    MDIconButton:
-        icon: "arrow-left"
-        pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
-            root.manager.transition.direction = 'right'
-            root.manager.current = 'timedate'
-    
-
-<MaxCurrentScreen>:
-    name: 'maxcurrent'
     MDFlatButton:
         text: '5/6'
         theme_text_color: "Hint"
@@ -701,6 +739,7 @@ ScreenManager:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
         on_press: 
+            app.save_batterytf()
             app.save_maxcurrenttf()
             root.manager.transition.direction = 'left'
             root.manager.current = 'outlet'
@@ -709,7 +748,8 @@ ScreenManager:
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
         on_press: 
             root.manager.transition.direction = 'right'
-            root.manager.current = 'batterycapacity'
+            root.manager.current = 'timedate'
+    
 
 <OutletScreen>:
     name: 'outlet'
@@ -741,7 +781,7 @@ ScreenManager:
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
         on_press: 
             root.manager.transition.direction = 'right'
-            root.manager.current = 'maxcurrent'
+            root.manager.current = 'batterycapacity'
 
 
 <GoodbyeScreen>:
