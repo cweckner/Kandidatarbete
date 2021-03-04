@@ -36,34 +36,59 @@ class TimeDateScreen(Screen):
     pass
 
 class CarBrandScreen(Screen):
-    pass
+    def callbackcarbrand(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'timedate'
+        
 
 class AudiModelsScreen(Screen):
-    pass
+    previousscreen = ""
+
+    def callbackcarmodel(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'carbrand'
+
+    
 
 class BmwModelsScreen(Screen):
-    pass
+    def callbackcarmodel(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'carbrand'
 
 class KiaModelsScreen(Screen):
-    pass
+    def callbackcarmodel(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'carbrand'
 
 class MitsubishiModelsScreen(Screen):
-    pass
+    def callbackcarmodel(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'carbrand'
 
 class NissanModelsScreen(Screen):
-    pass
+    def callbackcarmodel(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'carbrand'
 
 class RenaultModelsScreen(Screen):
-    pass
+    def callbackcarmodel(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'carbrand'
 
 class VolkswagenModelsScreen(Screen):
-    pass
+    def callbackcarmodel(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'carbrand'
 
 class VolvoModelsScreen(Screen):
-    pass
+    def callbackcarmodel(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'carbrand'
 
 class TeslaModelsScreen(Screen):
-    pass
+    def callbackcarmodel(self):
+        self.parent.transition.direction = 'right'
+        self.parent.current = 'carbrand'
 
 class BatteryCapacityScreen(Screen):
     pass
@@ -103,6 +128,7 @@ class DemoApp(MDApp):
     datepicker="Choose date"
     timepicker= "Choose time"
     readytosend= False
+    previousscreen= ""
 
     def build(self):
         print("main")
@@ -136,6 +162,15 @@ class DemoApp(MDApp):
     def callback_animation(self, *args):
         print("I'm done!")
   
+    
+    def set_previous_screen(self, widget):
+        self.previousscreen = widget
+        print(widget)
+        print(self.previousscreen)
+
+    def get_previous_screen(self):
+        return self.previousscreen
+
 
     def show_time_picker(self):
         time_dialog = MDTimePicker()

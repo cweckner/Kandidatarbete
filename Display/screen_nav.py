@@ -225,20 +225,27 @@ ScreenManager:
     name: 'carbrand'
     BoxLayout:
         orientation: 'vertical'
-                    
+        MDToolbar:
+            title: "Car brand"
+            specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarbrand()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
+                 
         ScrollView:
             MDList:
                 id: carbrandlist
                 OneLineAvatarListItem:
                     text: 'Audi'
                     on_release: 
+                        app.set_previous_screen('audimodels')
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'audimodels'
                     ImageLeftWidget:
                         source: "Images/audi_logo.png" 
                 OneLineAvatarListItem:
                     text: 'BMW'
-                    on_release: 
+                    on_release:
+                        app.set_previous_screen('bmwmodels')
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'bmwmodels'
                     ImageLeftWidget:
@@ -246,13 +253,15 @@ ScreenManager:
                 OneLineAvatarListItem:
                     text: 'Kia'
                     on_release: 
+                        app.set_previous_screen('kiamodels')
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'kiamodels'
                     ImageLeftWidget:
                         source: "Images/kia_logo.png"
                 OneLineAvatarListItem:
                     text: 'Mitsubishi'
-                    on_release: 
+                    on_release:
+                        app.set_previous_screen('mitsubishimodels') 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'mitsubishimodels'
                     ImageLeftWidget:
@@ -260,6 +269,7 @@ ScreenManager:
                 OneLineAvatarListItem:
                     text: 'Nissan'
                     on_release: 
+                        app.set_previous_screen('nissanmodels')
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'nissanmodels'
                     ImageLeftWidget:
@@ -267,6 +277,7 @@ ScreenManager:
                 OneLineAvatarListItem:
                     text: 'Renault'
                     on_release: 
+                        app.set_previous_screen('renaultmodels')
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'renaultmodels'
                     ImageLeftWidget:
@@ -274,6 +285,7 @@ ScreenManager:
                 OneLineAvatarListItem:
                     text: 'Volkswagen'
                     on_release: 
+                        app.set_previous_screen('volkswagenmodels')
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'volkswagenmodels'
                     ImageLeftWidget:
@@ -281,13 +293,15 @@ ScreenManager:
                 OneLineAvatarListItem:
                     text: 'Volvo'
                     on_release: 
+                        app.set_previous_screen('volvomodels')
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'volvomodels'
                     ImageLeftWidget:
                         source: "Images/volvo_logo.png"
                 OneLineAvatarListItem:
                     text: 'Tesla'
-                    on_release: 
+                    on_release:
+                        app.set_previous_screen('teslamodels')
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'teslamodels'
                     ImageLeftWidget:
@@ -295,32 +309,12 @@ ScreenManager:
                 OneLineAvatarListItem:
                     text: 'Other'
                     on_release: 
+                        app.set_previous_screen('batterycapacity')
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'batterycapacity'
                     ImageLeftWidget:
                         source: "Images/other.png"
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: "100dp"
-            padding: "50dp",0 ,0 , "30dp" 
-            MDIconButton: 
-                icon: "arrow-left"
-                pos_hint: {"center_x": 0.1, "center_y": 0.1}
-                on_press: 
-                    root.manager.transition.direction = 'right'
-                    root.manager.current = 'timedate'    
-                adaptive_height: True
-            MDFlatButton:
-                text: '4/6'
-                theme_text_color: "Hint"
-                pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-            MDIconButton:
-                id: infoicon
-                icon: "information-outline"
-                pos_hint: {'center_x': 0.90, 'center_y': 0.1}
-                user_font_size: "20sp"
-                theme_text_color: "Hint"
-                adaptive_height: True
+        
             
             
                 
@@ -332,6 +326,8 @@ ScreenManager:
             title: "Audi Models"
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -355,20 +351,7 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('AUDI', 'E-TRON Q4')   
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: "100dp"
-            padding: "50dp",0 ,0 , "30dp"   
-            MDIconButton: 
-                icon: "arrow-left"
-                pos_hint: {"center_x": 0.1, "center_y": 0.1}
-                on_press: 
-                    root.manager.transition.direction = 'right'
-                    root.manager.current = 'timedate' 
-            MDFlatButton:
-                text: '5/6'
-                theme_text_color: "Hint"
-                pos_hint: {'center_x': 0.5, 'center_y': 0.1}               
+                      
     
 <BmwModelsScreen>:
     name: 'bmwmodels'
@@ -378,6 +361,8 @@ ScreenManager:
             title: "BMW Models"
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -415,16 +400,7 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('BMW', 'I3s 120 Ah')
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'
-        MDFlatButton:
-            text: '5/6'
-            theme_text_color: "Hint"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+          
    
         
 <KiaModelsScreen>:
@@ -435,6 +411,8 @@ ScreenManager:
             title: "Kia Models"
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -465,17 +443,7 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
-                        app.CARSPEC('KIA', 'E-NIRO 67kWh')
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'
-        MDFlatButton:
-            text: '5/6'
-            theme_text_color: "Hint"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                        app.CARSPEC('KIA', 'E-NIRO 67kWh')  
   
         
 <MitsubishiModelsScreen>:
@@ -486,6 +454,8 @@ ScreenManager:
             title: "Mitsubishi Models"
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -495,16 +465,7 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('MITUBISHI', 'OUTLANDER')
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'
-        MDFlatButton:
-            text: '5/6'
-            theme_text_color: "Hint"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+         
  
         
 <NissanModelsScreen>:
@@ -515,6 +476,8 @@ ScreenManager:
             title: "Nissan Models"
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -531,16 +494,6 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('NISSAN', 'LEAF e+')
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'
-        MDFlatButton:
-            text: '5/6'
-            theme_text_color: "Hint"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
    
         
 <RenaultModelsScreen>:
@@ -551,6 +504,8 @@ ScreenManager:
             title: "Renault Models"
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -573,17 +528,7 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
-                        app.CARSPEC('RENAULT', 'ZOE')
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'
-        MDFlatButton:
-            text: '5/6'
-            theme_text_color: "Hint"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                        app.CARSPEC('RENAULT', 'ZOE')  
    
         
 <VolkswagenModelsScreen>:
@@ -594,6 +539,8 @@ ScreenManager:
             title: "Volkswagen Models"
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -639,16 +586,6 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('Volkswagen', 'Passat GTe')
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'
-        MDFlatButton:
-            text: '5/6'
-            theme_text_color: "Hint"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
    
         
 <VolvoModelsScreen>:
@@ -659,6 +596,8 @@ ScreenManager:
             title: "Volvo Models"
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -674,17 +613,7 @@ ScreenManager:
                     on_release: 
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
-                        app.CARSPEC('Volvo', 'V60 D6')
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'
-        MDFlatButton:
-            text: '5/6'
-            theme_text_color: "Hint"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                        app.CARSPEC('Volvo', 'V60 D6') 
    
         
 <TeslaModelsScreen>:
@@ -695,6 +624,8 @@ ScreenManager:
             title: "Tesla Models"
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
+            left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
+            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -711,16 +642,6 @@ ScreenManager:
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'outlet'
                         app.CARSPEC('Tesla', '3')
-        MDFlatButton:
-            text: '5/6'
-            theme_text_color: "Hint"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-        MDIconButton: 
-            icon: "arrow-left"
-            pos_hint: {"center_x": 0.1, "center_y": 0.1}
-            on_press: 
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'timedate'
    
 
 <BatteryCapacityScreen>:
@@ -748,7 +669,7 @@ ScreenManager:
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
         on_press: 
             root.manager.transition.direction = 'right'
-            root.manager.current = 'timedate'
+            root.manager.current = 'carbrand'
     
 
 <OutletScreen>:
@@ -781,7 +702,7 @@ ScreenManager:
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
         on_press: 
             root.manager.transition.direction = 'right'
-            root.manager.current = 'batterycapacity'
+            root.manager.current = app.get_previous_screen()
 
 
 <GoodbyeScreen>:
