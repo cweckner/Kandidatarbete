@@ -4,10 +4,11 @@ from screen_nav import sc_helper
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
 from kivy.lang import Builder
-from kivymd.uix.button import MDRectangleFlatButton
+from kivymd.uix.button import MDRectangleFlatButton, MDFlatButton
 from kivymd.uix.picker import MDTimePicker, MDDatePicker
 from kivymd.uix.list import OneLineAvatarListItem, OneLineListItem, MDList, ImageLeftWidget, ContainerSupport
 from kivy.uix.scrollview import ScrollView
+from kivymd.uix.dialog import MDDialog
 from kivy.animation import Animation
 from kivy.utils import get_color_from_hex
 from kivy.core.window import Window
@@ -129,6 +130,9 @@ class DemoApp(MDApp):
     timepicker= "Choose time"
     readytosend= False
     previousscreen= ""
+    #dialog = None
+    global dialog
+
 
     def build(self):
         print("main")
@@ -165,12 +169,45 @@ class DemoApp(MDApp):
     
     def set_previous_screen(self, widget):
         self.previousscreen = widget
-        print(widget)
-        print(self.previousscreen)
 
     def get_previous_screen(self):
         return self.previousscreen
 
+    def show_info(self, widget):
+         
+        self.dialog = MDDialog(
+        title=self.info_title(widget),
+        text=self.info_text(widget),
+        buttons=[
+            MDFlatButton(
+                text="OK", text_color=self.theme_cls.primary_color, on_release=self.close_dialog
+            )])
+        self.dialog.open()
+    
+    def info_title(self, widget):
+        return {
+            'currentcharge': "Current charge level",
+            'wantedcharge': "Wanted charge level",
+            'batterycapacity': "Battery capacity & maximum current",
+            'timedate': "Time & Date of departure",
+            'carbrand': "Car brand",
+            'outlet': "Outlet"
+
+        }.get(widget)
+    
+    def info_text(self, widget):
+        return {
+            'currentcharge': "Info about current charge level",
+            'wantedcharge': "Info about wanted charge level",
+            'batterycapacity': "Your car model is not in our systems, please enter your car's battery capacity and maximum current manually. If you don't know these specifications, check the car brand's website or contact your car provider directly.",
+            'timedate': "Info about time & Date of departure",
+            'carbrand': "Info about car brand",
+            'outlet': "Info about outlet"
+
+        }.get(widget)
+
+    def close_dialog(self, widget):
+        self.dialog.dismiss(force=True)
 
     def show_time_picker(self):
         time_dialog = MDTimePicker()

@@ -123,6 +123,8 @@ ScreenManager:
         pos_hint: {'center_x': 0.90, 'center_y': 0.93}
         user_font_size: "20sp"
         theme_text_color: "Hint"
+        on_release:
+            app.show_info('currentcharge')
     MDFlatButton:
         text: '1/6'
         theme_text_color: "Hint"
@@ -152,6 +154,8 @@ ScreenManager:
         pos_hint: {'center_x': 0.90, 'center_y': 0.93}
         user_font_size: "20sp"
         theme_text_color: "Hint"
+        on_release:
+            app.show_info('wantedcharge')
     MDFlatButton:
         text: '2/6'
         theme_text_color: "Hint"
@@ -179,6 +183,8 @@ ScreenManager:
         pos_hint: {'center_x': 0.90, 'center_y': 0.93}
         user_font_size: "20sp"
         theme_text_color: "Hint"
+        on_release:
+            app.show_info('timedate')
     
     BoxLayout:
         orientation: 'vertical'
@@ -229,7 +235,7 @@ ScreenManager:
             title: "Car brand"
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarbrand()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
+            right_action_items: [["information-outline", lambda x: app.show_info('carbrand')]]
                  
         ScrollView:
             MDList:
@@ -327,7 +333,6 @@ ScreenManager:
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -362,7 +367,6 @@ ScreenManager:
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -412,7 +416,6 @@ ScreenManager:
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -455,7 +458,6 @@ ScreenManager:
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -477,7 +479,6 @@ ScreenManager:
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -505,7 +506,6 @@ ScreenManager:
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -540,7 +540,6 @@ ScreenManager:
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -597,7 +596,6 @@ ScreenManager:
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -625,7 +623,6 @@ ScreenManager:
             md_bg_color: app.theme_cls.accent_color
             specific_text_color: 1,1,1,1
             left_action_items: [["arrow-left", lambda x: root.callbackcarmodel()]]
-            right_action_items: [["information-outline", lambda x: app.callback_2()]]
         ScrollView:
             MDList:
                 id: carmodellist
@@ -646,12 +643,17 @@ ScreenManager:
 
 <BatteryCapacityScreen>:
     name: 'batterycapacity'
+
     MDIconButton:
         id: infoiconbatterycapacity
         icon: "information-outline"
         pos_hint: {'center_x': 0.90, 'center_y': 0.93}
         user_font_size: "20sp"
         theme_text_color: "Hint"
+        on_release:
+            app.show_info('batterycapacity')
+
+        
     MDFlatButton:
         text: '5/6'
         theme_text_color: "Hint"
@@ -674,6 +676,14 @@ ScreenManager:
 
 <OutletScreen>:
     name: 'outlet'
+    MDIconButton:
+        id: infoiconbatterycapacity
+        icon: "information-outline"
+        pos_hint: {'center_x': 0.90, 'center_y': 0.93}
+        user_font_size: "20sp"
+        theme_text_color: "Hint"
+        on_release:
+            app.show_info('outlet')
     MDLabel:
         text: 'Charging outlet'
         halign: 'center'
