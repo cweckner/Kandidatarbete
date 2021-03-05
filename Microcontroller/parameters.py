@@ -36,8 +36,10 @@ def param(time_now,end_time):
     }
     i = int((((end_time-time_now).total_seconds())/3600)+0.5)
     print(i)
+    print("antal timmar avrundat")
     y = int(time_now.strftime("%H"))
     print(y)
+    print("vilken timme som är nu")
     if i < 12:
         for j in range(y,y+i+1):
             print(j)
@@ -49,6 +51,7 @@ def param(time_now,end_time):
             p = j % 24
             params[p] = priser[p]
     print(params)
+    print("retur från params")
     return params
 
 #end_time = datetime.datetime(2021,3,3,8,0,0)

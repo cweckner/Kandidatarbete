@@ -16,10 +16,13 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     time_minutes -=  time_minutes % 5           #Omvandla till intervall av 5 minuter, och sedan till int
     intervall = time_minutes/5                  #Drar även bort resten från mod division
     print(end_time-time_now)
+    print("tids duration")
     print(intervall)
+    print("5 minuters intervall")
     inter = int(intervall)
     inter = min(inter,144)
     print(inter)
+    print("inter avrundat t antal 5or")
     obj = [kvot]*inter          #Initialisera obj
     i=0
     while i<inter:              #Fyller obj med motsvarande pris för motsvarande tid
@@ -38,6 +41,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     method="revised simplex")
     return opt.x[1]
 
-end_time = datetime.datetime(2021,3,3,8,0,0)
+end_time = datetime.datetime(2021,3,6,8,15,0)
 
 print(current(end_time,32,100,80,20))
+print("retur från opt modell")
