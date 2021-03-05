@@ -3,16 +3,16 @@ import datetime
 from Microcontroller import parameters
 def current(end_time,current_limit,capacity,battery_goal,battery_current):
     V=400
-    kwh = (battery_goal-battery_current)*capacity/100
-    time_now = datetime.datetime.now()
-    priser = parameters.param(time_now,end_time)
+    kwh = (battery_goal-battery_current)*capacity/100   #Omvandling till kWh
+    time_now = datetime.datetime.now()      #Tiden right now
+    priser = parameters.param(time_now,end_time)    #Anropa parametrar för att få pristabell
 
 #TODO: Lösa hur man bestämmer EP(pris) till varje variabel Xi, Xi är varje 5 minuters current nivå, detta blir
 #TODO: En array med alla current värden fram till den bestämda tiden
-    kvot = V*5/60000          #Fast värde
+    kvot = V*5/60000          #Fast värde       #typ kwh/5 minuter
     #end_time = datetime.datetime(2021,2,13,8,0,0)##yyyy-mm.DD.HH.MM
-    chargetime = end_time - time_now
-    time_minutes = chargetime.total_seconds()/60
+    chargetime = end_time - time_now        #Laddningstid exakt
+    time_minutes = chargetime.total_seconds()/60    #Laddningstid i minuter
     time_minutes -=  time_minutes % 5           #Omvandla till intervall av 5 minuter, och sedan till int
     intervall = time_minutes/5                  #Drar även bort resten från mod division
     print(end_time-time_now)
@@ -20,7 +20,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     print(intervall)
     print("5 minuters intervall")
     inter = int(intervall)
-    inter = min(inter,144)
+    inter = min(inter,144)      # 288 för 24 timmar
     print(inter)
     print("inter avrundat t antal 5or")
     obj = [kvot]*inter          #Initialisera obj
@@ -35,13 +35,13 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
 
     rhs_eq = [kwh]   #Krav på hur många KWh vi behöver
 
-    bnd = [(0, current_limit)]*inter    # Current, mellan 0 och currentlimit //
+    bnd = [(0, current_limit)]*inter    # Current, mellan 0 och currentlimit // Antingen 0, eller mellan 6 och MAX
     opt = linprog(c=obj,        #Solver, minimize
     A_eq=lhs_eq, b_eq=rhs_eq, bounds=bnd,
     method="revised simplex")
-    return opt.x[1]
+    return opt.x
 
-end_time = datetime.datetime(2021,3,5,15,15,0)
+end_time = datetime.datetime(2021,3,5,11,45,0)  #År, månad, dag, timme, minut, sekund,(mikrosekund)
 
 print(current(end_time,32,100,80,20))
 print("retur från opt modell")

@@ -11,7 +11,7 @@ priser = {
     5: 45,
     6: 58,
     7: 68,
-    8: 44,
+    8: 44,  
     9: 67,  # Dessa ska beräknas senare
     10: 80,
     11: 43,
@@ -43,7 +43,7 @@ def param(time_now,end_time):
     print("vilken timme som är nu")
     if i < 12:
         for j in range(y,y+i+1):
-            print(j)
+            #print(j)
             p = j % 24
             params[p] = priser[p]
     else:
