@@ -19,7 +19,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     print(intervall)
     inter = int(intervall)
     inter = min(inter,144)
-
+    print(inter)
     obj = [kvot]*inter          #Initialisera obj
     i=0
     while i<inter:              #Fyller obj med motsvarande pris för motsvarande tid
