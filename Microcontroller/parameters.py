@@ -34,10 +34,11 @@ def param(time_now,end_time):
     params ={
 
     }
-    i = int((((end_time-time_now).total_seconds())/3600)+0.5)
+    i = int((((end_time-time_now).total_seconds())/3600)+0.5)   #laddningstid avrundat till timmar
     print(i)
     print("antal timmar avrundat")
-    y = int(time_now.strftime("%H"))
+    y = int((time_now+datetime.timedelta(minutes = 30)).strftime("%H"))
+
     print(y)
     print("vilken timme som är nu")
     if i < 12:

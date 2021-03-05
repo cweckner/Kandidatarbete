@@ -41,7 +41,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     method="revised simplex")
     return opt.x[1]
 
-end_time = datetime.datetime(2021,3,6,8,15,0)
+end_time = datetime.datetime(2021,3,5,15,15,0)
 
 print(current(end_time,32,100,80,20))
 print("retur från opt modell")
