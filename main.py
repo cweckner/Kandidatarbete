@@ -1,5 +1,5 @@
 from Microcontroller import commands#, optireal
-#from Display import main as disp
+from Display import main as disp
 import datetime
 import sched
 import time
@@ -48,35 +48,38 @@ def delay():
 screen = disp.DemoApp().run()
 transactionID= "00000000-0000-0000-0000-000000000000"
 tagID = "918273645"
+while(True):
+    while(screen.readytosend == 1):
+        #Initial inputs needed to continue
+        token = commands.createToken()
+        currentTransactionID = commands.incrementTransactionID(transactionID)
 
-while(screen.readytosend == 1):
-    #Initial inputs needed to continue
-    token = commands.createToken()
-    currentTransactionID = commands.incrementTransactionID(transactionID)
+        timeString = str(screen.datepicker) + str(screen.timepicker)
+        endTimeCharging = datetime.datetime.strptime(timeString, '%Y-%m-%d %H:%M:%S')
+        numberOfUpdates = commands.calculateNumberOfUpdates(endTimeCharging)
+        outlet = screen.outletcbx
+        timeNow = datetime.datetime.strptime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
+        startDate = commands.timeConverter(timeNow, "consumedEnergy")
+        endDate = commands.timeConverter(endTimeCharging, "consumedEnergy")
 
-    timeString = str(screen.datepicker) + str(screen.timepicker)
-    endTimeCharging = datetime.datetime.strptime(timeString, '%Y-%m-%d %H:%M:%S')
-    numberOfUpdates = commands.calculateNumberOfUpdates(endTimeCharging)
-    outlet = screen.outletcbx
-    timeNow = datetime.datetime.strptime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-    startDate = commands.timeConverter(timeNow, "consumedEnergy")
-    endDate = commands.timeConverter(endTimeCharging, "consumedEnergy")
-
-    stopTime = commands.timeConverter(endTimeCharging, "startCharger")
-    commands.startCharger(token, currentTransactionID, tagID, stopTime)
-    
-    #This will be the loop that runs the whole charging process
-    while(numberOfUpdates > 0):
-        chargingCurrent = optireal.current(endTimeCharging, screen.maxcurrenttf, screen.batterytf, screen.wantedtf, screen.currenttf)
-        outletStatus = commands.connectorStatus(token, outlet)
-        if(outletStatus != "AVAILABLE"):
-            commands.changeActiveCurrent(token, outlet, chargingCurrent)
-            numberOfUpdates -= 1
-            delay()
-        else:
-            #if the outlet is available -> car is not connected to the charger -> stop the charging loop
-            break
-    
-    #All iterations done, stop the charger
-    commands.consumedEnergy(token, tagID, startDate, endDate)
-    commands.stopCharger(token, currentTransactionID)
+        stopTime = commands.timeConverter(endTimeCharging, "startCharger")
+        commands.startCharger(token, currentTransactionID, tagID, stopTime)
+        
+        #This will be the loop that runs the whole charging process
+        while(numberOfUpdates > 0):
+            chargingCurrent = optireal.current(endTimeCharging, screen.maxcurrenttf, screen.batterytf, screen.wantedtf, screen.currenttf)
+            outletStatus = commands.connectorStatus(token, outlet)
+            if(outletStatus != "AVAILABLE"):
+                commands.changeActiveCurrent(token, outlet, chargingCurrent)
+                numberOfUpdates -= 1
+                delay()
+            else:
+                #if the outlet is available -> car is not connected to the charger -> stop the charging loop
+                break
+        
+        #All iterations done, stop the charger
+        commands.consumedEnergy(token, tagID, startDate, endDate)
+        commands.stopCharger(token, currentTransactionID)
+        screen.readytosend = 0
+    disp.DemoApp().stop()
+    disp.DemoApp().run()
