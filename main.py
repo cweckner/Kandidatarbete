@@ -49,7 +49,7 @@ screen = disp.DemoApp().run()
 transactionID= "00000000-0000-0000-0000-000000000000"
 tagID = "918273645"
 while(True):
-    while(screen.readytosend == 1):
+    while(screen.readytosend == True):
         #Initial inputs needed to continue
         token = commands.createToken()
         currentTransactionID = commands.incrementTransactionID(transactionID)
@@ -80,6 +80,6 @@ while(True):
         #All iterations done, stop the charger
         commands.consumedEnergy(token, tagID, startDate, endDate)
         commands.stopCharger(token, currentTransactionID)
-        screen.readytosend = 0
+        screen.readytosend = False
     disp.DemoApp().stop()
     disp.DemoApp().run()
