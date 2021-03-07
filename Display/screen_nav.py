@@ -1,7 +1,6 @@
 
 
 sc_helper = """
-#:import rgba kivy.utils.get_color_from_hex
 
 ScreenManager:
     WelcomeScreen:
@@ -89,6 +88,7 @@ ScreenManager:
             size_hint: None, None
             size: dp(48), dp(48)
             pos_hint: {'center_x': 0.65, 'center_y': 0.4}
+    SummaryScreen:
     GoodbyeScreen:
         id: goodbyescreen
 
@@ -702,7 +702,7 @@ ScreenManager:
         on_press:
             app.save_outletcbx()
             app.print_tfvalues()
-            root.manager.current = 'goodbye'
+            root.manager.current = 'summary'
     MDFlatButton:
         text: '6/6'
         theme_text_color: "Hint"
@@ -713,6 +713,61 @@ ScreenManager:
         on_press: 
             root.manager.transition.direction = 'right'
             root.manager.current = app.get_previous_screen()
+
+<SummaryScreen>:
+    name: 'summary'
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: "30dp"
+        padding: 0, '50dp', 0, '50dp'
+        MDLabel:
+            text: 'Your car will be charged with the following values'
+            halign: 'center'
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: "30dp"
+            padding: 0, '50dp', 0, '50dp'
+            BoxLayout:
+                orientation: 'vertical'
+                MDLabel:
+                    text: 'Current charge'
+                    halign: 'center'
+                MDLabel:
+                    text: 'Wanted charge'
+                    halign: 'center'
+                MDLabel:
+                    text: 'Date & time'
+                    halign: 'center'
+                MDLabel:
+                    text: 'app.brandorbatterycapacity()'
+                    halign: 'center'
+                MDLabel:
+                    text: 'app.modelormaxcurrent'
+                    halign: 'center'
+                MDLabel:
+                    text: 'Outlet'
+                    halign: 'center'
+            BoxLayout:
+                orientation: 'vertical'
+                MDLabel:
+                    text: 'app.currenttf'
+                    halign: 'center'
+                MDLabel:
+                    text: 'app.wantedtf'
+                    halign: 'center'
+                MDLabel:
+                    text: 'app.currenttf'
+                    halign: 'center'
+                MDLabel:
+                    text: 'app.currenttf'
+                    halign: 'center'
+                MDLabel:
+                    text: 'app.currenttf'
+                    halign: 'center'
+                MDLabel:
+                    text: 'app.currenttf'
+                    halign: 'center'
+    
 
 
 <GoodbyeScreen>:

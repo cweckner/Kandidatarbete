@@ -43,8 +43,6 @@ class CarBrandScreen(Screen):
         
 
 class AudiModelsScreen(Screen):
-    previousscreen = ""
-
     def callbackcarmodel(self):
         self.parent.transition.direction = 'right'
         self.parent.current = 'carbrand'
@@ -97,6 +95,9 @@ class BatteryCapacityScreen(Screen):
 class OutletScreen(Screen):
     pass
 
+class SummaryScreen(Screen):
+    pass
+
 class GoodbyeScreen(Screen):
     pass
 
@@ -120,6 +121,7 @@ screen_manager.add_widget(VolvoModelsScreen(name = 'volvomodels'))
 screen_manager.add_widget(TeslaModelsScreen(name = 'teslamodels'))
 screen_manager.add_widget(BatteryCapacityScreen(name = 'batterycapacity'))
 screen_manager.add_widget(OutletScreen(name = 'outlet'))
+screen_manager.add_widget(SummaryScreen(name = 'summary'))
 screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 
 
@@ -130,7 +132,6 @@ class DemoApp(MDApp):
     timepicker= "Choose time"
     readytosend= False
     previousscreen= ""
-    #dialog = None
     global dialog
 
 
