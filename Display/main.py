@@ -133,6 +133,9 @@ class DemoApp(MDApp):
     readytosend= False
     previousscreen= ""
     global dialog
+    tfvalues = {'timepicker': '20.00'}
+    global brand
+    global model
 
 
     def build(self):
@@ -155,6 +158,9 @@ class DemoApp(MDApp):
                         maxcurrenttf = row[3]
                         print(batterytf)
                         print(maxcurrenttf)
+                        self.brand = b
+                        self.model = m
+
     
     def animate_the_label(self, widget, *args):
         anim = Animation(opacity=0.1, duration=3)
@@ -175,7 +181,6 @@ class DemoApp(MDApp):
         return self.previousscreen
 
     def show_info(self, widget):
-         
         self.dialog = MDDialog(
         title=self.info_title(widget),
         text=self.info_text(widget),
@@ -261,8 +266,7 @@ class DemoApp(MDApp):
         print(outletcbx)
 
     def print_tfvalues(self):
-        global tfvalues
-        tfvalues = {
+        self.tfvalues = {
             'currenttf': currenttf,
             'wantedtf': wantedtf,
             'batterytf': batterytf,
@@ -272,12 +276,36 @@ class DemoApp(MDApp):
             'datepicker': self.datepicker
         }
         self.readytosend = True
-        print(tfvalues)
+        print(self.tfvalues)
         #date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
         #avfard = datetime.datetime.strptime(date_timestr, '%Y-%m-%d %H:%M:%S')
         #print(avfard)
         #C = (optireal.current(avfard,int(maxcurrenttf),int(batterytf),int(wantedtf),int(currenttf)))
         #print(C)
+
+    def return_tfvalues(self):
+        self.root.ids.currentsummary.text = self.tfvalues['currenttf']
+        self.root.ids.wantedsummary.text = self.tfvalues['wantedtf']
+        self.root.ids.datetimesummary.text = self.tfvalues['datepicker'] + ' ' + self.tfvalues['timepicker']
+        self.root.ids.outletsummary.text = self.tfvalues['outletcbx']
+        if self.brand != '':
+            self.root.ids.brandorbatterysummary.text = 'Brand'
+            self.root.ids.modelormaxcurrentsummary.text = 'Model'
+
+            self.root.ids.brandorbatteryvaluesummary.text = self.brand
+            self.root.ids.modelormaxcurrentvaluesummary.text = self.model
+        else:
+            self.root.ids.brandorbatterysummary.text = 'Battery capacity'
+            self.root.ids.modelormaxcurrentsummary.text = 'Maximum current'
+
+            self.root.ids.brandorbatteryvaluesummary.text = self.tfvalues['batterytf']
+            self.root.ids.modelormaxcurrentvaluesummary.text = self.tfvalues['maxcurrenttf']
+
+    def reset_brand_model(self):
+        self.brand = ''
+        self.model = ''
+    
+
 
 if __name__ == '__main__':
     DemoApp().run()

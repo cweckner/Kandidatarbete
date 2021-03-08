@@ -89,6 +89,66 @@ ScreenManager:
             size: dp(48), dp(48)
             pos_hint: {'center_x': 0.65, 'center_y': 0.4}
     SummaryScreen:
+        id: summaryscreen
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: "30dp"
+            padding: 0, '50dp', 0, '50dp'
+            MDLabel:
+                text: 'Your car will be charged with the following values'
+                halign: 'center'
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: "30dp"
+                padding: 0, '50dp', 0, '50dp'
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        text: 'Current charge'
+                        halign: 'center'
+                    MDLabel:
+                        text: 'Wanted charge'
+                        halign: 'center'
+                    MDLabel:
+                        text: 'Date & time'
+                        halign: 'center'
+                    MDLabel:
+                        id: brandorbatterysummary
+                        text: ''
+                        halign: 'center'
+                    MDLabel:
+                        id: modelormaxcurrentsummary
+                        text: ''
+                        halign: 'center'
+                    MDLabel:
+                        text: 'Outlet'
+                        halign: 'center'
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        id: currentsummary
+                        text: ''
+                        halign: 'center'
+                    MDLabel:
+                        id: wantedsummary
+                        text: ''
+                        halign: 'center'
+                    MDLabel:
+                        id: datetimesummary
+                        text: ''
+                        halign: 'center'
+                    MDLabel:
+                        id: brandorbatteryvaluesummary
+                        text: ''
+                        halign: 'center'
+                    MDLabel:
+                        id: modelormaxcurrentvaluesummary
+                        text: ''
+                        halign: 'center'
+                    MDLabel:
+                        id: outletsummary
+                        text: ''
+                        halign: 'center'
     GoodbyeScreen:
         id: goodbyescreen
 
@@ -96,7 +156,7 @@ ScreenManager:
 <WelcomeScreen>:
     name: 'welcome'
     on_enter:
-        app.animate_the_label(welcomelabel)
+        app.animate_the_label(wifiicon)
     MDLabel:
         id: welcomelabel
         text: 'Welcome, please scan your RFID-tag'
@@ -316,6 +376,7 @@ ScreenManager:
                     text: 'Other'
                     on_release: 
                         app.set_previous_screen('batterycapacity')
+                        app.reset_brand_model()
                         root.manager.transition.direction = 'left'
                         root.manager.current = 'batterycapacity'
                     ImageLeftWidget:
@@ -702,6 +763,7 @@ ScreenManager:
         on_press:
             app.save_outletcbx()
             app.print_tfvalues()
+            app.return_tfvalues()
             root.manager.current = 'summary'
     MDFlatButton:
         text: '6/6'
@@ -716,57 +778,7 @@ ScreenManager:
 
 <SummaryScreen>:
     name: 'summary'
-    BoxLayout:
-        orientation: 'vertical'
-        spacing: "30dp"
-        padding: 0, '50dp', 0, '50dp'
-        MDLabel:
-            text: 'Your car will be charged with the following values'
-            halign: 'center'
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: "30dp"
-            padding: 0, '50dp', 0, '50dp'
-            BoxLayout:
-                orientation: 'vertical'
-                MDLabel:
-                    text: 'Current charge'
-                    halign: 'center'
-                MDLabel:
-                    text: 'Wanted charge'
-                    halign: 'center'
-                MDLabel:
-                    text: 'Date & time'
-                    halign: 'center'
-                MDLabel:
-                    text: 'app.brandorbatterycapacity()'
-                    halign: 'center'
-                MDLabel:
-                    text: 'app.modelormaxcurrent'
-                    halign: 'center'
-                MDLabel:
-                    text: 'Outlet'
-                    halign: 'center'
-            BoxLayout:
-                orientation: 'vertical'
-                MDLabel:
-                    text: 'app.currenttf'
-                    halign: 'center'
-                MDLabel:
-                    text: 'app.wantedtf'
-                    halign: 'center'
-                MDLabel:
-                    text: 'app.currenttf'
-                    halign: 'center'
-                MDLabel:
-                    text: 'app.currenttf'
-                    halign: 'center'
-                MDLabel:
-                    text: 'app.currenttf'
-                    halign: 'center'
-                MDLabel:
-                    text: 'app.currenttf'
-                    halign: 'center'
+    
     
 
 
