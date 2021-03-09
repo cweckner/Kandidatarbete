@@ -1,6 +1,7 @@
 from scipy.optimize import linprog
 import datetime
-from Microcontroller import parameters
+#from Microcontroller import parameters
+import parameters
 def current(end_time,current_limit,capacity,battery_goal,battery_current,time_now):
     V=400
     kwh = (battery_goal-battery_current)*capacity/100   #Omvandling till kWh
