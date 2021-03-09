@@ -1,4 +1,8 @@
-
+from kivy.app import App
+from kivy.base import Builder
+from kivy.properties import NumericProperty
+from kivy.uix.boxlayout import BoxLayout
+from numeric_input_class import NumInput
 
 sc_helper = """
 
@@ -7,18 +11,25 @@ ScreenManager:
     InputScreen:
     CurrentChargeScreen:
         id: currentchargescreen
-        MDTextField:
+        NumInput:
             id: currentchargetf
+            min_value : 0
+            max_value : 100            
             hint_text: "Enter current charge level"
             helper_text: "Input should be in %"
             helper_text_mode: "on_focus"
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             size_hint_x: None
             width: 300
+
+
+
     WantedChargeScreen:
         id: wantedchargescreen
-        MDTextField:
+        NumInput:
             id: wantedchargetf
+            min_value : 0
+            max_value : 100             
             hint_text: "Enter wanted charge level at departure"
             helper_text: "Input should be in %"
             helper_text_mode: "on_focus"
@@ -80,13 +91,14 @@ ScreenManager:
             group: 'group'
             size_hint: None, None
             size: dp(48), dp(48)
-            active: True
+            disabled: app.disable_charger(1)                
             pos_hint: {'center_x': 0.40, 'center_y': 0.4}
         MDCheckbox:
             id: checkbox2
             group: 'group'
             size_hint: None, None
             size: dp(48), dp(48)
+            disabled: app.disable_charger(2)              
             pos_hint: {'center_x': 0.65, 'center_y': 0.4}
     SummaryScreen:
         id: summaryscreen
@@ -798,6 +810,4 @@ ScreenManager:
             root.manager.current = 'outlet'
     
 """
-
-
 
