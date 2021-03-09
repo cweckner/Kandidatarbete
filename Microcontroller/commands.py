@@ -28,7 +28,7 @@ def createToken():
 #TODO:
 #Add stoptime
 def startCharger(token,transactionId,tagID,stoptime):
-    print("startCharger")
+    #print("startCharger")
     tagIDSTR = "\""+tagID+"\""
     stopTimeSTR = "\""+stoptime+"\""
     headers = {
@@ -201,7 +201,7 @@ def calculateNumberOfUpdates(endTime):
     #endTime = ("2021-03-02 20:00:00") #test time
     endTimeSeconds = datetime.datetime.strptime(endTime,'%Y-%m-%d %H:%M:%S')
     timeDelta = endTimeSeconds - timeAtStart
-    chargetimeInSeconds = timeDelta.total_seconds()
+    chargetimeInSeconds = timeDelta.total_seconds()/60
     numberOfUpdates = (chargetimeInSeconds - (chargetimeInSeconds % 5))/5
     print(numberOfUpdates)
     return numberOfUpdates
