@@ -1,4 +1,4 @@
-from Microcontroller import commands#, optireal
+from Microcontroller import commands, optireal
 from Display import main as disp
 import datetime
 import sched
@@ -33,7 +33,8 @@ while(True):
         
         #This will be the loop that runs the whole charging process
         while(numberOfUpdates > 0):
-            chargingCurrent = optireal.current(endTimeCharging, screen.maxcurrenttf, screen.batterytf, screen.wantedtf, screen.currenttf)
+            chargingCurrent = optireal.current(endTimeCharging, int(screen.maxcurrenttf), int(screen.batterytf), int(screen.wantedtf), int(screen.currenttf))
+            print(chargingCurrent)
             outletStatus = commands.connectorStatus(token, outlet)
             if(outletStatus != "AVAILABLE"):
                 commands.changeActiveCurrent(token, outlet, chargingCurrent)
