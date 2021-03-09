@@ -43,7 +43,7 @@ while(True):
         #Initial inputs needed to continue
         token = commands.createToken()
         currentTransactionID = commands.incrementTransactionID(transactionID)
-
+    
         timeString = str(screen.datepicker) + str(screen.timepicker)
         endTimeCharging = datetime.datetime.strptime(timeString, '%Y-%m-%d %H:%M:%S')
         numberOfUpdates = commands.calculateNumberOfUpdates(endTimeCharging)
