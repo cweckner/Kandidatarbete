@@ -19,10 +19,8 @@ TO-DO GUI:
 
 -om man känner sig manad, fixa koden så att spara inputs (save_currenttf, save_wantedtf...) är i en funktion ist för varsin. Samt annan kod som är hårdkodad.
 
-TO-DO TouchScreen
--få vänsterklick att fungera
--skriva userguide för oss
-
-
+-fixa en konstruktor för display, som tar [Bool(laddare 1 tagen), Bool(laddare 2 tagen)], som låser laddarna om de används. 
+  +Är båda/ingen ledig, sätt ingen som active
+  +Sätt den enda lediga som active
 
 --------------------------------------------------------------------------------------------------

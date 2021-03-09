@@ -43,8 +43,6 @@ class CarBrandScreen(Screen):
         
 
 class AudiModelsScreen(Screen):
-    previousscreen = ""
-
     def callbackcarmodel(self):
         self.parent.transition.direction = 'right'
         self.parent.current = 'carbrand'
@@ -97,6 +95,9 @@ class BatteryCapacityScreen(Screen):
 class OutletScreen(Screen):
     pass
 
+class SummaryScreen(Screen):
+    pass
+
 class GoodbyeScreen(Screen):
     pass
 
@@ -120,6 +121,7 @@ screen_manager.add_widget(VolvoModelsScreen(name = 'volvomodels'))
 screen_manager.add_widget(TeslaModelsScreen(name = 'teslamodels'))
 screen_manager.add_widget(BatteryCapacityScreen(name = 'batterycapacity'))
 screen_manager.add_widget(OutletScreen(name = 'outlet'))
+screen_manager.add_widget(SummaryScreen(name = 'summary'))
 screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 
 
@@ -130,8 +132,16 @@ class DemoApp(MDApp):
     timepicker= "Choose time"
     readytosend= False
     previousscreen= ""
-    #dialog = None
     global dialog
+    tfvalues = {'timepicker': '20.00'}
+    global brand
+    global model
+
+    global charger_taken; # set [True, True],[True, False], [False, True], [False, False] i konstruktorn
+    #konstruktor
+    #def __init__(self, one, two):
+
+
 
 
     def build(self):
@@ -154,6 +164,9 @@ class DemoApp(MDApp):
                         maxcurrenttf = row[3]
                         print(batterytf)
                         print(maxcurrenttf)
+                        self.brand = b
+                        self.model = m
+
     
     def animate_the_label(self, widget, *args):
         anim = Animation(opacity=0.1, duration=3)
@@ -174,7 +187,6 @@ class DemoApp(MDApp):
         return self.previousscreen
 
     def show_info(self, widget):
-         
         self.dialog = MDDialog(
         title=self.info_title(widget),
         text=self.info_text(widget),
@@ -260,8 +272,7 @@ class DemoApp(MDApp):
         print(outletcbx)
 
     def print_tfvalues(self):
-        global tfvalues
-        tfvalues = {
+        self.tfvalues = {
             'currenttf': currenttf,
             'wantedtf': wantedtf,
             'batterytf': batterytf,
@@ -271,12 +282,38 @@ class DemoApp(MDApp):
             'datepicker': self.datepicker
         }
         self.readytosend = True
-        print(tfvalues)
+        print(self.tfvalues)
         #date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
         #avfard = datetime.datetime.strptime(date_timestr, '%Y-%m-%d %H:%M:%S')
         #print(avfard)
         #C = (optireal.current(avfard,int(maxcurrenttf),int(batterytf),int(wantedtf),int(currenttf)))
         #print(C)
+
+    def return_tfvalues(self):
+        self.root.ids.currentsummary.text = self.tfvalues['currenttf']
+        self.root.ids.wantedsummary.text = self.tfvalues['wantedtf']
+        self.root.ids.datetimesummary.text = self.tfvalues['datepicker'] + ' ' + self.tfvalues['timepicker']
+        self.root.ids.outletsummary.text = self.tfvalues['outletcbx']
+        if self.brand != '':
+            self.root.ids.brandorbatterysummary.text = 'Brand'
+            self.root.ids.modelormaxcurrentsummary.text = 'Model'
+
+            self.root.ids.brandorbatteryvaluesummary.text = self.brand
+            self.root.ids.modelormaxcurrentvaluesummary.text = self.model
+        else:
+            self.root.ids.brandorbatterysummary.text = 'Battery capacity'
+            self.root.ids.modelormaxcurrentsummary.text = 'Maximum current'
+
+            self.root.ids.brandorbatteryvaluesummary.text = self.tfvalues['batterytf']
+            self.root.ids.modelormaxcurrentvaluesummary.text = self.tfvalues['maxcurrenttf']
+
+    def reset_brand_model(self):
+        self.brand = ''
+        self.model = ''
+    
+    def disable_charger(self, charger):
+        charger_taken = [True, True]
+        return charger_taken[charger-1]
 
 if __name__ == '__main__':
     DemoApp().run()
