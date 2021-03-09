@@ -137,6 +137,12 @@ class DemoApp(MDApp):
     global brand
     global model
 
+    global charger_taken; # set [True, True],[True, False], [False, True], [False, False] i konstruktorn
+    #konstruktor
+    #def __init__(self, one, two):
+
+
+
 
     def build(self):
         print("main")
@@ -305,7 +311,9 @@ class DemoApp(MDApp):
         self.brand = ''
         self.model = ''
     
-
+    def disable_charger(self, charger):
+        charger_taken = [True, True]
+        return charger_taken[charger-1]
 
 if __name__ == '__main__':
     DemoApp().run()
