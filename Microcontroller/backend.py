@@ -47,7 +47,7 @@ class backend:
             timeTuple = time.strptime(departureTime, '%Y-%m-%d %H:%M:%S')
             timeTupleFull = (timeTuple.tm_year, timeTuple.tm_mon, timeTuple.tm_mday, timeTuple.tm_hour, timeTuple.tm_min)
             optTime = datetime.datetime(*timeTupleFull[0:4])
-            print(optTime)
+            #print(optTime)
 
 
 
@@ -63,9 +63,10 @@ class backend:
                 #check if a car is connected to the outlet we want to use
                 outletStatus = commands.connectorStatus(token, chargingOutlet)
                 #update currentTime to the time right now
-                #currentTime = datetime.datetime.now()
-                #if(outletStatus != "AVAILABLE" and currentTime >= nexTime):
-                if(True):
+                currentTime = datetime.datetime.now()
+                #if(outletStatus != "AVAILABLE" and currentTime >= nextTime):
+                if(currentTime >= nextTime):
+                #if(True):
                     #receiving the optimised charging current from the optimisation model
                     chargingCurrent = optireal.current(optTime, int(carMaxCurrentInput), int(carBatteryCapacity), int(carWantedCharge), int(carChargeLevelNow+0.5), currentTime)
 
@@ -79,14 +80,14 @@ class backend:
                     print(str(int(carChargeLevelNow+0.5)) + "%")
 
                     #update what time it is, only for simulation
-                    currentTime += datetime.timedelta(minutes = 5)
-                    print(currentTime)
+                    #currentTime += datetime.timedelta(minutes = 5)
+                    #print(currentTime)
 
                     #instead of using delay function check if 5 minutes have passed
-                    #nextTime = currentTime + datetime.timedelta(minutes = 5)
+                    nextTime = currentTime + datetime.timedelta(minutes = 5)
 
                     numberOfUpdates -= 1
-                    self.delay()
+                    #self.delay()
                 #if the outlet is available -> no car is connected to the outlet -> stop the charging
                 #elif(outletStatus == "AVAILABLE"):
                     #break
@@ -102,6 +103,5 @@ class backend:
                 commands.stopCharger(token, currentTransactionID)
 
 
-backendTest = backend()
-
-backend.chargingLoop(backend, True, 20, 40, 100, 16, "2021-03-09 20:00:00", 1, backend.transactionID0, backend.tagID)
+#backendTest = backend()
+#backend.chargingLoop(backend, True, 20, 40, 100, 16, "2021-03-09 20:00:00", 1, backend.transactionID0, backend.tagID)
