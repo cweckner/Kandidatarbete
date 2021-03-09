@@ -1,18 +1,42 @@
 from Microcontroller import commands, optireal
-from Display import main as disp
+#from Display import main as disp
+#from Display import screen_nav
 import datetime
 import sched
 import time
+import pytz
 
 #Delay for 5 minutes
 def delay():
     sched.scheduler(time.time(), time.sleep(300))
 
+end_time = datetime.datetime(2021,3,9,23,0)  #År, månad, dag, timme, minut, sekund,(mikrosekund)
+
 #First time starting the device
-screen = disp.DemoApp().run()
+#screen = disp.DemoApp()
+#screen.run()
 transactionID= "00000000-0000-0000-0000-000000000000"
 tagID = "918273645"
+capacity = 100 # från skärm
+batteryCurrent = 20 #från skärm
+V = 400
+antal = 110 #beräknas se nedan
+time_now = datetime.datetime.now()
+while(antal > 0):
+    if(batteryCurrent == 80):
+        break
+    chargingCurrent = optireal.current(end_time, int(32), capacity, int(80), int(batteryCurrent+0.5), time_now)
+    print(chargingCurrent)
+    procent = (capacity/100) #antal KwH 1% är
+    newStatus = (V*5/60000)*chargingCurrent[0] #kolla igenom procentberäkning
+    batteryCurrent = batteryCurrent + newStatus/procent
+    time_now = time_now + datetime.timedelta(minutes = 5)
+    print(time_now)
+    antal -= 1
+    print(newStatus/procent)
+    print(str(int(batteryCurrent+0.5)) + "%")
 
+'''
 #Letting the device run forever it will run in this loop
 while(True):
     if(screen.readytosend == True):
@@ -52,3 +76,4 @@ while(True):
     #Restarting the screen to receive new input variables from the user
     disp.DemoApp().stop()
     disp.DemoApp().run()
+'''
