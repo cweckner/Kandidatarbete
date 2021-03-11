@@ -7,7 +7,7 @@ APIServer = 'https://test4.oamportal.com'
  
 #Retrieve access token (authentication)
 def createToken():
-    print("createToken")
+    #print("createToken")
     client_id = 'chalmers_test'
     client_secret = 'oWN3hmv9K6kYSGF96IP3pfWzrnk12Vo7'
     url = APIServer + "/oauth2/token"
@@ -18,7 +18,7 @@ def createToken():
 
     response = requests.post(url, data=data, auth=(client_id,client_secret))
     #print(response.text)                           #debugging
-    print(response)                                 #debugging
+    #print(response)                                 #debugging
     acc_response_json = response.json()             #Convert response to json object
     acc_token = acc_response_json["access_token"]   #Get the access token from the json object
     return(acc_token)                               #Return the access token so that it can be used later
@@ -28,7 +28,7 @@ def createToken():
 #TODO:
 #Add stoptime
 def startCharger(token,transactionId,tagID,stoptime):
-    print("startCharger")
+    #print("startCharger")
     tagIDSTR = "\""+tagID+"\""
     stopTimeSTR = "\""+stoptime+"\""
     headers = {
@@ -38,8 +38,8 @@ def startCharger(token,transactionId,tagID,stoptime):
     url = APIServer + "/ServicesApi/rest/charger/uuid/start"
     data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":'+tagIDSTR+', "transactionId":' +transactionId+', "stoptime":'+stopTimeSTR+'}'
     response = requests.post(url, headers=headers, data=data)
-    print(data)
-    print(response)
+    #print(data)
+    #print(response)
     
 
 #Notify Start (request sent by charger)
@@ -47,7 +47,7 @@ def startCharger(token,transactionId,tagID,stoptime):
 
 #Stop Charger
 def stopCharger(token,transactionID):
-    print("stopCharger")
+    #print("stopCharger")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
@@ -55,8 +55,8 @@ def stopCharger(token,transactionID):
     url = APIServer + "/ServicesApi/rest/charger/uuid/stop"
     data = '{"evseId" : "d4ceb292-12ef-46b2-9724-0aeca7b62827", "transactionId" :' +transactionID+'}'
     response = requests.post(url, headers=headers, data=data)
-    print(data)
-    print(response)
+    #print(data)
+    #print(response)
 
 #Notify Stop (request sent by charger)
 #Server Response
@@ -65,7 +65,7 @@ def stopCharger(token,transactionID):
 #TODO:
 #Add input from optimisation model
 def changeActiveCurrent(token, connector, current):
-    print("changeActiveCurrent")
+    #print("changeActiveCurrent")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
@@ -73,12 +73,12 @@ def changeActiveCurrent(token, connector, current):
     url = APIServer + "/ServicesApi/rest/charger/changeactivecurrent"
     data = '{"current":' +current+ ', "chargeboxidentity": "000005354-1","connectorid":' +connector+ '}'
     response = requests.post(url, headers=headers, data=data)
-    print(response)
-    print(response.text)
+    #print(response)
+    #print(response.text)
     
 #Consumed Energy (KWh) / duration
 def consumedEnergy(token,tagID,intervalStart,intervalEnd):
-    print("consumedEnergy")
+    #print("consumedEnergy")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
@@ -86,12 +86,12 @@ def consumedEnergy(token,tagID,intervalStart,intervalEnd):
     url = APIServer + "/ServicesApi/rest/tag/getSessionsByTag"
     data = '{"tagId" : '+tagID+', "intervalStart" : '+intervalStart+'," intervalEnd" : '+intervalEnd+'}'
     response = requests.post(url, headers=headers, data=data)
-    print(response)
-    print(response.text)
+    #print(response)
+    #print(response.text)
 
 #Request Site Info
 def requestSiteInfo(token):
-    print("requestSiteInfo")
+    #print("requestSiteInfo")
     headers = {
     'Authorization': 'Bearer ' + token,
     'Content-Type': 'application/json',
@@ -99,12 +99,12 @@ def requestSiteInfo(token):
     url = APIServer + "/ServicesApi/rest/charger/siteinfo"
     data = '{"siteid" : "6d411116-91cc-4a61-9b83-b83380a04e69"}'
     response = requests.post(url, headers=headers, data=data)
-    print(response)
-    print(response.text)
+    #print(response)
+    #print(response.text)
 
 #Get Connector Status
 def connectorStatus(token, outletID):
-    print("connectorStatus")
+    #print("connectorStatus")
     if(outletID == 1):
         outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
     else:
@@ -116,15 +116,15 @@ def connectorStatus(token, outletID):
     response = requests.get(url, headers=headers)
     responseJSON = json.loads(response.text)
     status = responseJSON["status"]
-    print(response)
-    print(response.text)
-    print(status)
+    #print(response)
+    #print(response.text)
+    #print(status)
     return(status)
 
 
 #Set RFID tagID
 def setRFIDtagID(token, time):
-    print("setRFIDtagID")
+    #print("setRFIDtagID")
     timeSTR = "\""+time+"\""
     headers = {
         'Authorization': 'Bearer ' + token,
@@ -133,25 +133,25 @@ def setRFIDtagID(token, time):
     url = APIServer + "/ServicesApi/rest/tag/"
     data = '{"tagId":"918273645","companyId":170401,"validTo" :' +timeSTR+'}'
     response = requests.post(url, headers=headers, data=data)
-    print(response)
-    print(response.text)
+    #print(response)
+    #print(response.text)
 
 #Request RFID tagID info
 def requestRFIDtagID(token,tagID):
-    print("requestRFIDtagID")
+    #print("requestRFIDtagID")
     headers = {
         'Authorization': 'Bearer ' + token,
     }
     url = APIServer + "/ServicesApi/rest/tag/" + tagID
     response = requests.get(url, headers=headers)
-    print(response)
-    print(response.text)
+    #print(response)
+    #print(response.text)
 
 #Increment transaction ID
 #Transaction ID has format (8-4-4-4-12)
 def incrementTransactionID(currentID):
-    print("incrementing transaction ID")
-    print(currentID)
+    #print("incrementing transaction ID")
+    #print(currentID)
     #Convert the format of the transactionID to an array of the format [8,4,4,4,12] where each integer is the length of that substring
     splitID = currentID.split("-")
     #Join all the array elements to one single string
@@ -166,31 +166,31 @@ def incrementTransactionID(currentID):
     filledIncrementedStringID = incrementedStringID.zfill(8+4+4+4+12)
     #Add back the hyphens and add quotation marks to the beginning and end of the string (might be unnecessary)
     newTransactionID = "\"" + filledIncrementedStringID[:8] + "-" + filledIncrementedStringID[8:12] + "-" + filledIncrementedStringID[12:16] + "-" + filledIncrementedStringID[16:20] + "-" + filledIncrementedStringID[20:32] + "\""
-    print(newTransactionID)
+    #print(newTransactionID)
     #return the new transactionID which has been incremented by 1 and retains the same format
     return(newTransactionID)
 
 #Convert date to correct format depending on the command being sent
 #The input timeToEdit should be a string
 def timeConverter(timeToEdit,whichCommand):
-    print("timeConverter")
+    #print("timeConverter")
     #Input has format '%Y-%m-%d %H:%M:%S')
     timeSweden = pytz.timezone('Europe/Stockholm')
     utc = pytz.timezone('UTC')
     oldFormat = datetime.datetime.strptime(timeToEdit,'%Y-%m-%d %H:%M:%S')
-    print(oldFormat)
+    #print(oldFormat)
     oldFormatTimeZoneAware = timeSweden.localize(oldFormat)
-    print(oldFormatTimeZoneAware)
+    #print(oldFormatTimeZoneAware)
     if(whichCommand == "startCharger" or whichCommand == "setRFIDtagID"):
         #Format is "YYYY-MM-DDTHH:MM:SSZ"
         oldFormatUTC = oldFormatTimeZoneAware.astimezone(utc)
         newFormat = oldFormatUTC.strftime('%Y-%m-%dT%H:%M:%SZ')
-        print(newFormat)
+        #print(newFormat)
         return(newFormat)
     elif(whichCommand == "consumedEnergy"):
         #Format is ""YYYY-MM-DD""
         newFormat = oldFormat.strftime('%Y-%m-%d')
-        print(newFormat)
+        #print(newFormat)
         return(newFormat)
     else:
         return(oldFormat)
@@ -201,7 +201,7 @@ def calculateNumberOfUpdates(endTime):
     #endTime = ("2021-03-02 20:00:00") #test time
     endTimeSeconds = datetime.datetime.strptime(endTime,'%Y-%m-%d %H:%M:%S')
     timeDelta = endTimeSeconds - timeAtStart
-    chargetimeInSeconds = timeDelta.total_seconds()
+    chargetimeInSeconds = timeDelta.total_seconds()/60
     numberOfUpdates = (chargetimeInSeconds - (chargetimeInSeconds % 5))/5
     print(numberOfUpdates)
     return numberOfUpdates
