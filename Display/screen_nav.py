@@ -18,7 +18,7 @@ ScreenManager:
             hint_text: "Enter current charge level"
             helper_text: "Input should be in %"
             helper_text_mode: "on_focus"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
             size_hint_x: None
             width: 300
 
@@ -33,7 +33,7 @@ ScreenManager:
             hint_text: "Enter wanted charge level at departure"
             helper_text: "Input should be in %"
             helper_text_mode: "on_focus"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
             size_hint_x: None
             width: 300    
     TimeDateScreen:
@@ -72,7 +72,7 @@ ScreenManager:
             hint_text: "Enter the battery capacity of EV"
             helper_text: ""
             helper_text_mode: "on_focus"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
             size_hint_x: None
             width: 300
         MDTextField:
@@ -80,7 +80,7 @@ ScreenManager:
             hint_text: "Enter max current of EV"
             helper_text: ""
             helper_text_mode: "on_focus"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.65}
             size_hint_x: None
             width: 300
 
