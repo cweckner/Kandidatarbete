@@ -104,63 +104,101 @@ ScreenManager:
         id: summaryscreen
         BoxLayout:
             orientation: 'vertical'
-            spacing: "30dp"
+            spacing: "10dp"
             padding: 0, '50dp', 0, '50dp'
             MDLabel:
                 text: 'Your car will be charged with the following values'
                 halign: 'center'
             BoxLayout:
                 orientation: 'horizontal'
-                spacing: "30dp"
-                padding: 0, '50dp', 0, '50dp'
+                spacing: "10dp"
+                padding: '120dp', 0, 0, '50dp'
                 BoxLayout:
                     orientation: 'vertical'
-                    MDLabel:
-                        text: 'Current charge'
-                        halign: 'center'
-                    MDLabel:
-                        text: 'Wanted charge'
-                        halign: 'center'
-                    MDLabel:
-                        text: 'Date & time'
-                        halign: 'center'
-                    MDLabel:
-                        id: brandorbatterysummary
-                        text: ''
-                        halign: 'center'
-                    MDLabel:
-                        id: modelormaxcurrentsummary
-                        text: ''
-                        halign: 'center'
-                    MDLabel:
-                        text: 'Outlet'
-                        halign: 'center'
+                    padding: 0, 0, 0, 0
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '120dp'
+                        MDLabel:
+                            text: 'Current charge'
+                            halign: 'center'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '140dp'
+                        MDLabel:
+                            text: 'Wanted charge'
+                            halign: 'center'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '160dp'
+                        MDLabel:
+                            text: 'Date & time'
+                            halign: 'center'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '180dp'
+                        MDLabel:
+                            id: brandorbatterysummary
+                            text: ''
+                            halign: 'center'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '200dp'
+                        MDLabel:
+                            id: modelormaxcurrentsummary
+                            text: ''
+                            halign: 'center'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '220dp'
+                        MDLabel:
+                            text: 'Outlet'
+                            halign: 'center'
                 BoxLayout:
                     orientation: 'vertical'
-                    MDLabel:
-                        id: currentsummary
-                        text: ''
-                        halign: 'center'
-                    MDLabel:
-                        id: wantedsummary
-                        text: ''
-                        halign: 'center'
-                    MDLabel:
-                        id: datetimesummary
-                        text: ''
-                        halign: 'center'
-                    MDLabel:
-                        id: brandorbatteryvaluesummary
-                        text: ''
-                        halign: 'center'
-                    MDLabel:
-                        id: modelormaxcurrentvaluesummary
-                        text: ''
-                        halign: 'center'
-                    MDLabel:
-                        id: outletsummary
-                        text: ''
-                        halign: 'center'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '120dp'
+                        MDLabel:
+                            id: currentsummary
+                            text: ''
+                            halign: 'left'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '140dp'
+                        MDLabel:
+                            id: wantedsummary
+                            text: ''
+                            halign: 'left'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '160dp'
+                        MDLabel:
+                            id: datetimesummary
+                            text: ''
+                            halign: 'left'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '180dp'
+                        MDLabel:
+                            id: brandorbatteryvaluesummary
+                            text: ''
+                            halign: 'left'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '200dp'
+                        MDLabel:
+                            id: modelormaxcurrentvaluesummary
+                            text: ''
+                            halign: 'left'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        padding: 0, 0, 0, '220dp'
+                        MDLabel:
+                            id: outletsummary
+                            text: ''
+                            halign: 'left'
+        
     GoodbyeScreen:
         id: goodbyescreen
 
@@ -768,14 +806,14 @@ ScreenManager:
         text: '2'
         theme_text_color: "Hint"
         pos_hint: {'center_x': 0.60, 'center_y': 0.4}
-    
-    MDRectangleFlatButton:
-        text: 'Charge'
-        pos_hint: {'center_x': 0.8, 'center_y': 0.1}
-        on_press:
+    MDIconButton: 
+        icon: "arrow-right"
+        pos_hint: {"center_x": 0.9, "center_y": 0.1}
+        on_press: 
             app.save_outletcbx()
             app.print_tfvalues()
             app.return_tfvalues()
+            root.manager.transition.direction = 'left'
             root.manager.current = 'summary'
     MDFlatButton:
         text: '6/6'
@@ -790,7 +828,17 @@ ScreenManager:
 
 <SummaryScreen>:
     name: 'summary'
-    
+    MDIconButton:
+        icon: "arrow-left"
+        pos_hint: {"center_x": 0.1, "center_y": 0.1}
+        on_press:
+            root.manager.transition.direction = 'right'            
+            root.manager.current = 'outlet'
+    MDRectangleFlatButton:
+        text: 'Charge'
+        pos_hint: {'center_x': 0.8, 'center_y': 0.1}
+        on_press:
+            root.manager.current = 'goodbye'
     
 
 
@@ -807,7 +855,7 @@ ScreenManager:
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
         on_press: 
             root.manager.transition.direction = 'right'
-            root.manager.current = 'outlet'
+            root.manager.current = 'summary'
     
 """
 

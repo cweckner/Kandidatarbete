@@ -155,7 +155,7 @@ class DemoApp(MDApp):
 
 
     def CARSPEC(self,b,m):
-        with open(r'c:/Users/norao/Documents/Skola/Kandidatarbete/Display/Bilkap.csv','r') as infile:
+        with open(r'/home/nora/School/Kandidatarbete/Display/Bilkap.csv','r') as infile:
             reader = csv.reader(infile, delimiter=",")
             for row in reader:
                 if b == row[0]:
