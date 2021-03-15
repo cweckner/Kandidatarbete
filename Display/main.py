@@ -8,6 +8,8 @@ from kivymd.uix.button import MDRectangleFlatButton, MDFlatButton
 from kivymd.uix.picker import MDTimePicker, MDDatePicker
 from kivymd.uix.list import OneLineAvatarListItem, OneLineListItem, MDList, ImageLeftWidget, ContainerSupport
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.dialog import MDDialog
 from kivy.animation import Animation
 from kivy.utils import get_color_from_hex
@@ -211,12 +213,12 @@ class DemoApp(MDApp):
     
     def info_text(self, widget):
         return {
-            'currentcharge': "Info about current charge level",
-            'wantedcharge': "Info about wanted charge level",
+            'currentcharge': "Current charge level of your car's battery. Huur vet man?",
+            'wantedcharge': "Desired charge level of your car's battery at the time of your next departure",
             'batterycapacity': "Your car model is not in our systems, please enter your car's battery capacity and maximum current manually. If you don't know these specifications, check the car brand's website or contact your car provider directly.",
             'timedate': "Info about time & Date of departure",
-            'carbrand': "Info about car brand",
-            'outlet': "Info about outlet"
+            'carbrand': "Please select the car's brand and model. If your car is not in the list we unfortunately do not have it in our systems, select the option  'Other' and manually enter the car's battery capacity and battery's maximum current.",
+            'outlet': "The outlet in which your car is plugged in on the charging station. "
 
         }.get(widget)
 
@@ -283,18 +285,20 @@ class DemoApp(MDApp):
             'timepicker': self.timepicker,
             'datepicker': self.datepicker
         }
-        self.readytosend = True
-        print(self.tfvalues)
         #date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
         #avfard = datetime.datetime.strptime(date_timestr, '%Y-%m-%d %H:%M:%S')
         #print(avfard)
         #C = (optireal.current(avfard,int(maxcurrenttf),int(batterytf),int(wantedtf),int(currenttf)))
         #print(C)
+    
+    def ready_to_send(self):
+        self.readytosend = True
+        print(self.tfvalues)
 
     def return_tfvalues(self):
         self.root.ids.currentsummary.text = self.tfvalues['currenttf']
         self.root.ids.wantedsummary.text = self.tfvalues['wantedtf']
-        self.root.ids.datetimesummary.text = self.tfvalues['datepicker'] + ' ' + self.tfvalues['timepicker']
+        self.root.ids.datetimesummary.text = self.tfvalues['datepicker'] + ' at ' + (self.tfvalues['timepicker'])[:5]
         self.root.ids.outletsummary.text = self.tfvalues['outletcbx']
         if self.brand != '':
             self.root.ids.brandorbatterysummary.text = 'Brand'

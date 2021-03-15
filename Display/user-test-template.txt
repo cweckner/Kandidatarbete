@@ -1,0 +1,19 @@
+
+1. Welcome user
+2. Reassure/sign written compliance form
+3. Explain a little about the project
+    - The object is to test our user interface for our smart charging station.
+    - The charging station is running an algorithm that computes when to charge to lower the cost and minimise load on the electric network at peak load times. 
+    - The values you put in will be put into our algorithm.
+4. Hand over required RFID-tag
+
+OBSERVATION------------------------
+
+    Task 1.
+        You want to charge your car (Tesla Model S) with the charging station
+
+
+
+INTERVIEW---------------------------
+
+
