@@ -18,7 +18,7 @@ from kivy.uix.vkeyboard import VKeyboard
 from kivy.config import Config
 import datetime
 #from Microcontroller import optireal
-Window.size = (800, 480) #WxH
+Window.size = (480, 800) #WxH
 Config.set('kivy', 'keyboard_layout', 'numeric.json')
 print(Config.get('kivy', 'keyboard_layout'))
 Config.set("kivy", "keyboard_mode", 'dock')

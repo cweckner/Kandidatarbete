@@ -105,56 +105,56 @@ ScreenManager:
         Image:
             source: '/home/nora/School/Kandidatarbete/Display/Images/green-car.png'
             size: self.texture_size
-            pos: 130, -360
+            pos: 130, -300
         BoxLayout:
             orientation: 'vertical'
             spacing: "10dp"
-            padding: 0, '50dp', 0, '350dp'
+            padding: 0, '50dp', 0, '300dp'
             MDLabel:
                 text: 'Your car will be charged with the following values'
                 halign: 'center'
             BoxLayout:
                 orientation: 'horizontal'
                 spacing: "10dp"
-                padding: '120dp', 0, 0, '50dp'
+                padding: '50dp', 0, 0, '50dp'
                 BoxLayout:
                     orientation: 'vertical'
                     padding: 0, 0, 0, 0
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '140dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             text: 'Current charge'
                             halign: 'center'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '160dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             text: 'Wanted charge'
                             halign: 'center'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '180dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             text: 'Date & time'
                             halign: 'center'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '200dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             id: brandorbatterysummary
                             text: ''
                             halign: 'center'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '220dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             id: modelormaxcurrentsummary
                             text: ''
                             halign: 'center'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '240dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             text: 'Outlet'
                             halign: 'center'
@@ -162,42 +162,42 @@ ScreenManager:
                     orientation: 'vertical'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '140p'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             id: currentsummary
                             text: ''
                             halign: 'left'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '1600dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             id: wantedsummary
                             text: ''
                             halign: 'left'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '180dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             id: datetimesummary
                             text: ''
                             halign: 'left'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '200dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             id: brandorbatteryvaluesummary
                             text: ''
                             halign: 'left'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '220dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             id: modelormaxcurrentvaluesummary
                             text: ''
                             halign: 'left'
                     BoxLayout:
                         orientation: 'vertical'
-                        padding: 0, 0, 0, '240dp'
+                        padding: 0, 0, 0, 0
                         MDLabel:
                             id: outletsummary
                             text: ''
@@ -303,11 +303,10 @@ ScreenManager:
     BoxLayout:
         orientation: 'vertical'
         spacing: "50dp"
-        padding: 0, 0, 0, "450dp"
+        padding: 0, 0, 0, "475dp"
         MDLabel:
             text: "Departure Date & Time"
             halign: 'center'
-            font_style: "H6"
             adaptive_height: True
     
     MDIconButton:
@@ -840,7 +839,7 @@ ScreenManager:
             root.manager.current = 'outlet'
     MDRectangleFlatButton:
         text: 'Charge'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+        pos_hint: {'center_x': 0.5, 'center_y': 0.35}
         on_press:
             root.manager.current = 'goodbye'
     
