@@ -854,11 +854,10 @@ ScreenManager:
         text: 'Thank you, your car will now charge optimally'
         halign: 'center'
     MDRectangleFlatButton:
-        text: 'Go back'
+        text: 'Charge another car'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-        on_press: 
-            root.manager.transition.direction = 'right'
-            root.manager.current = 'summary'
+        on_press:
+            on_release: app.restart()
     
 """
 

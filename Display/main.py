@@ -18,6 +18,8 @@ from kivy.core.window import Window
 from kivy.uix.vkeyboard import VKeyboard 
 from kivy.config import Config
 import datetime
+import sys
+import os
 #from Microcontroller import optireal
 Window.size = (480, 800) #WxH
 Config.set('kivy', 'keyboard_layout', 'numeric.json')
@@ -323,6 +325,15 @@ class DemoApp(MDApp):
     def disable_charger(self, charger):
         charger_taken = [False, False]
         return charger_taken[charger-1]
+
+
+    @staticmethod
+    def restart():
+        print(f'exec: {sys.executable} {["python"] + sys.argv}')
+        os.execvp(sys.executable, ['python'] + sys.argv)
+
+    def on_stop(self):
+        print('Exiting App, press return to continue...')
 
 if __name__ == '__main__':
     DemoApp().run()
