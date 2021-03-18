@@ -70,7 +70,7 @@ ScreenManager:
         MDTextField:
             id:  batterycapacitytf  
             hint_text: "Enter the battery capacity of EV"
-            helper_text: ""
+            helper_text: "Input should be in kWh"
             helper_text_mode: "on_focus"
             pos_hint: {'center_x': 0.5, 'center_y': 0.8}
             size_hint_x: None
@@ -78,7 +78,7 @@ ScreenManager:
         MDTextField:
             id: maxcurrenttf
             hint_text: "Enter max current of EV"
-            helper_text: ""
+            helper_text: "Input should be in amp"
             helper_text_mode: "on_focus"
             pos_hint: {'center_x': 0.5, 'center_y': 0.65}
             size_hint_x: None
