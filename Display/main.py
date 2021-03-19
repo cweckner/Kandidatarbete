@@ -28,7 +28,7 @@ Config.set("kivy", "keyboard_mode", 'dock')
 
 class WelcomeScreen(Screen):
     pass
-
+       
 class InputScreen(Screen):
     pass
 
@@ -156,8 +156,8 @@ class DemoApp(MDApp):
         self.theme_cls.primary_palette = "Green"
         self.screen = Builder.load_string(sc_helper) 
         return self.screen
-
-
+        
+        
 
     def CARSPEC(self,b,m):
         with open(r'/home/nora/School/Kandidatarbete/Display/Bilkap.csv','r') as infile:
@@ -175,13 +175,12 @@ class DemoApp(MDApp):
                         self.model = m
 
     
-    def animate_the_label(self, widget, *args):
-        anim = Animation(opacity=0.1, duration=3)
-        for x in range(5):
-            anim += Animation(opacity=1, duration=3)
-            anim += Animation(opacity=0.1, duration=3)
+    def animate_the_label(self, widget, time):
+        anim = Animation(opacity=0.1, duration=time) + Animation(opacity=1, duration=time)
         anim.bind(on_complete=self.callback_animation)
+        anim.repeat = True
         anim.start(widget)
+        print(widget)
     
     def callback_animation(self, *args):
         print("I'm done!")

@@ -209,8 +209,9 @@ ScreenManager:
 
 <WelcomeScreen>:
     name: 'welcome'
-    on_enter:
-        app.animate_the_label(wifiicon)
+    on_parent:
+        app.animate_the_label(wifiicon, 1)
+
     MDLabel:
         id: welcomelabel
         text: 'Welcome, please scan your RFID-tag'
@@ -842,7 +843,6 @@ ScreenManager:
         text: 'Charge'
         pos_hint: {'center_x': 0.5, 'center_y': 0.35}
         on_press:
-            print(root.manager)
             app.charge_or_dialog(root)
     
 
@@ -851,7 +851,7 @@ ScreenManager:
     name: 'goodbye'
     id: goodbye
     on_enter:
-        app.animate_the_label(goodbyelabel)
+        app.animate_the_label(goodbyelabel, 2)
     MDLabel:
         id: goodbyelabel
         text: 'Thank you, your car will now charge optimally'
