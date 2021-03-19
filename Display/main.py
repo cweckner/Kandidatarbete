@@ -325,6 +325,21 @@ class DemoApp(MDApp):
     def disable_charger(self, charger):
         charger_taken = [False, False]
         return charger_taken[charger-1]
+    
+    def charge_or_dialog(self, root):
+        if currenttf != "" and wantedtf != "" and batterytf != "" and maxcurrenttf != "" and self.timepicker != "Choose time" and self.datepicker != "Choose date":
+            self.ready_to_send()
+            root.manager.current = 'goodbye'
+           
+        else:
+            self.dialog = MDDialog(
+            title= "Oops..!",
+            text="Please, fill out all parameters before you charge",
+            buttons=[
+                MDFlatButton(
+                text="OK", text_color=self.theme_cls.primary_color, on_release=self.close_dialog
+            )])
+            self.dialog.open()
 
 
     @staticmethod

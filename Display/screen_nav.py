@@ -831,6 +831,7 @@ ScreenManager:
 
 <SummaryScreen>:
     name: 'summary'
+    id: summary
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
@@ -841,12 +842,14 @@ ScreenManager:
         text: 'Charge'
         pos_hint: {'center_x': 0.5, 'center_y': 0.35}
         on_press:
-            root.manager.current = 'goodbye'
+            print(root.manager)
+            app.charge_or_dialog(root)
     
 
 
 <GoodbyeScreen>:
     name: 'goodbye'
+    id: goodbye
     on_enter:
         app.animate_the_label(goodbyelabel)
     MDLabel:
