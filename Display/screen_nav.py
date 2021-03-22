@@ -67,16 +67,20 @@ ScreenManager:
 
     BatteryCapacityScreen:
         id: batterycapacityscreen
-        MDTextField:
-            id:  batterycapacitytf  
+        NumInput:
+            id:  batterycapacitytf
+            min_value : 0
+            max_value : 200                     
             hint_text: "Enter the battery capacity of EV"
             helper_text: "Input should be in kWh"
             helper_text_mode: "on_focus"
             pos_hint: {'center_x': 0.5, 'center_y': 0.8}
             size_hint_x: None
             width: 300
-        MDTextField:
+        NumInput:
             id: maxcurrenttf
+            min_value : 1
+            max_value : 200                   
             hint_text: "Enter max current of EV"
             helper_text: "Input should be in amp"
             helper_text_mode: "on_focus"
@@ -240,10 +244,12 @@ ScreenManager:
         theme_text_color: "Hint"
         on_release:
             app.show_info('currentcharge')
+
     MDFlatButton:
         text: '1/6'
         theme_text_color: "Hint"
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
@@ -252,7 +258,6 @@ ScreenManager:
             root.manager.transition.direction = 'left'
             root.manager.current = 'wantedcharge'
 
-            
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
