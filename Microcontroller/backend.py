@@ -7,7 +7,7 @@ import time
 class backend:
 
     transactionID0 = "00000000-0000-0000-0000-000000000000"
-    #tagID = "918273645"
+    tagID = "918273645" #default id used for testing
 
     #Delay for 5 minutes
     def delay(self):
@@ -23,7 +23,7 @@ class backend:
     def chargingLoop(self, readyVariable, carChargeLevelNow, carWantedCharge, carBatteryCapacity, carMaxCurrentInput, departureTime, outlet, transactionID):
         if(readyVariable):
             #initial variables
-            tagID = commands.getTagID(transactionID)
+            tagID = self.tagID
             token = commands.createToken()
             currentTransactionID = commands.incrementTransactionID(transactionID)
             numberOfUpdates = commands.calculateNumberOfUpdates(departureTime)
@@ -53,6 +53,7 @@ class backend:
 
             #starting the charger
             commands.startCharger(token, currentTransactionID, tagID, stopTime)
+            tagID = commands.getTagID(transactionID)
 
             #the charging loop
             while(numberOfUpdates > 0):
