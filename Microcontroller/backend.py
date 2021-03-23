@@ -7,7 +7,7 @@ import time
 class backend:
 
     transactionID0 = "00000000-0000-0000-0000-000000000000"
-    tagID = "918273645"
+    #tagID = "918273645"
 
     #Delay for 5 minutes
     def delay(self):
@@ -21,9 +21,10 @@ class backend:
     #departureTime = format as datetime.datetime.strptime(inputTime, '%Y-%m-%d %H:%M:%S')
     #transactionID = string "00000000-0000-0000-0000-000000000000"
     #tagID = string of integers 
-    def chargingLoop(self, readyVariable, carChargeLevelNow, carWantedCharge, carBatteryCapacity, carMaxCurrentInput, departureTime, outlet, transactionID, tagID):
+    def chargingLoop(self, readyVariable, carChargeLevelNow, carWantedCharge, carBatteryCapacity, carMaxCurrentInput, departureTime, outlet, transactionID):
         if(readyVariable):
             #initial variables
+            tagID = commands.getTagID(transactionID)
             token = commands.createToken()
             currentTransactionID = commands.incrementTransactionID(transactionID)
             numberOfUpdates = commands.calculateNumberOfUpdates(departureTime)
