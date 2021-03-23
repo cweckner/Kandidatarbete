@@ -20,7 +20,6 @@ class backend:
     #carMaxCurrentInput = integer
     #departureTime = format as datetime.datetime.strptime(inputTime, '%Y-%m-%d %H:%M:%S')
     #transactionID = string "00000000-0000-0000-0000-000000000000"
-    #tagID = string of integers 
     def chargingLoop(self, readyVariable, carChargeLevelNow, carWantedCharge, carBatteryCapacity, carMaxCurrentInput, departureTime, outlet, transactionID):
         if(readyVariable):
             #initial variables
