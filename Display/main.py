@@ -17,9 +17,11 @@ from kivy.utils import get_color_from_hex
 from kivy.core.window import Window
 from kivy.uix.vkeyboard import VKeyboard 
 from kivy.config import Config
+from time import sleep
 import datetime
 import sys
 import os
+
 #from Microcontroller import optireal
 Window.size = (480, 800) #WxH
 Config.set('kivy', 'keyboard_layout', 'numeric.json')
@@ -340,6 +342,14 @@ class DemoApp(MDApp):
             )])
             self.dialog.open()
 
+
+    def set_focus(self, textfield):
+        if (textfield == 'currentcharge'):
+            self.root.ids.currentchargetf.focus = True 
+        if (textfield == 'wantedcharge'):
+            self.root.ids.wantedchargetf.focus = True
+        if (textfield == 'batterycapacity'):
+            self.root.ids.batterycapacitytf.focus = True
 
     @staticmethod
     def restart():

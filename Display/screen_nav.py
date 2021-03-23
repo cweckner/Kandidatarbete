@@ -23,7 +23,6 @@ ScreenManager:
             width: 300
 
 
-
     WantedChargeScreen:
         id: wantedchargescreen
         NumInput:
@@ -232,10 +231,14 @@ ScreenManager:
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
         on_press:
             root.manager.transition.direction = 'left'
-            root.manager.current = 'currentcharge'
+            root.manager.current = 'currentcharge'              
+
 
 <CurrentChargeScreen>:
     name: 'currentcharge'
+    on_enter: 
+        app.set_focus('currentcharge')
+
     MDIconButton:
         id: infoicon
         icon: "information-outline"
@@ -268,6 +271,8 @@ ScreenManager:
 
 <WantedChargeScreen>:
     name: 'wantedcharge'
+    on_enter: 
+        app.set_focus('wantedcharge')    
     MDIconButton:
         id: infoicon
         icon: "information-outline"
@@ -763,6 +768,8 @@ ScreenManager:
 
 <BatteryCapacityScreen>:
     name: 'batterycapacity'
+    on_enter: 
+        app.set_focus('batterycapacity')        
 
     MDIconButton:
         id: infoiconbatterycapacity
