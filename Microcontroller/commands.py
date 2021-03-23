@@ -4,6 +4,7 @@ import pytz
 import requests
 
 APIServer = 'https://test4.oamportal.com' 
+databaseTag = "http://127.0.0.1:5001/log/chargestorm/notify"
  
 #Retrieve access token (authentication)
 def createToken():
@@ -146,6 +147,22 @@ def requestRFIDtagID(token,tagID):
     response = requests.get(url, headers=headers)
     #print(response)
     #print(response.text)
+
+#GET request to the server to retreive the current RFID tagID in use this charging session
+def getTagID(transactionID):
+    url = databaseTag
+    payload = json.dumps({
+    "transactionID": transactionID
+    })
+    headers = {
+    'Content-Type': 'application/json'
+    }
+    response = requests.request("GET", url, headers=headers, data=payload)
+    responseJSON = json.loads(response.text)
+    tagID = responseJSON["rfid"]
+    #print(tagID)
+    return tagID
+
 
 #Increment transaction ID
 #Transaction ID has format (8-4-4-4-12)
