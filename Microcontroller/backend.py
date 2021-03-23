@@ -10,7 +10,7 @@ class backend:
     tagID = "918273645"
 
     #Delay for 5 minutes
-    def delay():
+    def delay(self):
         sched.scheduler(time.time(), time.sleep(1))
 
     #readyVariable = True/False
@@ -87,7 +87,7 @@ class backend:
                     nextTime = currentTime + datetime.timedelta(minutes = 5)
 
                     numberOfUpdates -= 1
-                    #self.delay()
+                    #self.delay(self)
                 #if the outlet is available -> no car is connected to the outlet -> stop the charging
                 #elif(outletStatus == "AVAILABLE"):
                     #break
