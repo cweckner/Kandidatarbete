@@ -43,9 +43,13 @@ def get_notify():
 #Endpoint for chargestorm to send the notifyStart and notifyStop requests
 @app.route('/log/chargestorm/notify', methods=['POST'])
 def post_notify():
+    #The json message sent by chargestorm
     msg = flask.request.get_json()
+    #msgType gets set to either transactionStart or transactionStop depending on which one chargestorm sent
     msgType = msg["messageType"]
+    #the RFID tag ID is set depending on what chargestorm sent
     rfid = msg["tagID"]
+    #the transactionID is used as an identifier for indexing in the database
     transactionIDmsg = msg["transactionID"]
     key = {
         "_id":transactionIDmsg
@@ -56,6 +60,8 @@ def post_notify():
     }
     if(msgType == "transactionStart"):
         print("Respond to start")
+        #if an entry with the same transactionID is already stored in the database, then update that entry
+        #else create a new entry in the database with that transactionID
         coll.update_one(key, data, upsert = True)
         return flask.jsonify({"accepted":True,"errorCode":"NO_Error"}),200
     elif(msgType == "transactionStop"):
