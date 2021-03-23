@@ -27,7 +27,20 @@ priser = {
     21: 78,
     22: 74,
     23: 72,
+}   #Nyckel = datum + H, värde = pris/load/sol Gör 3 separata till att börja med
+mon = 1
+day = 1
+hou = 0
+tidspris = {
 }
+for j in range(3 * 24 + 1):
+    tidspris[datetime.datetime(2021, mon, day, hou, 0, 0)] =  60
+    hou = (hou + 1) % 24
+    if hou == 0:
+        day = day + 1
+    if day == 30:
+        mon = mon + 1
+
 def param(time_now,end_time):
     #Om end_time - time_now är större än 12h skickar vi 12 värden tillbaka
     #Om end_time - time_now är mindre än 12h skickar vi återstående värden tillbaka
