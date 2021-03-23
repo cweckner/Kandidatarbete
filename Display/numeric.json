@@ -16,7 +16,7 @@
 ["8", "8", "8", 1],
 ["9", "9", "9", 1]],
 "normal_4": [
-["\u232b", null, "backspace", 1],
+["<", null, "backspace", 1],
 ["0", "0", "0", 1],
-["\u23CE", null, "enter", 1]]
+["next", null, "enter", 1]]
 }

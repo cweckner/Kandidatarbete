@@ -21,6 +21,10 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.75}
             size_hint_x: None
             width: 300
+            on_text_validate: 
+                app.save_currenttf() 
+                root.transition.direction = 'left'
+                root.current = 'wantedcharge'            
 
 
     WantedChargeScreen:
@@ -34,7 +38,12 @@ ScreenManager:
             helper_text_mode: "on_focus"
             pos_hint: {'center_x': 0.5, 'center_y': 0.75}
             size_hint_x: None
-            width: 300    
+            width: 300
+            on_text_validate:
+                app.save_wantedtf() 
+                root.transition.direction = 'left'
+                root.current = 'timedate'                
+
     TimeDateScreen:
         id: timedatescreen
         MDRaisedButton:
@@ -76,6 +85,9 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.8}
             size_hint_x: None
             width: 300
+            on_text_validate:
+                app.set_focus('maxcurrent')
+
         NumInput:
             id: maxcurrenttf
             min_value : 1
@@ -86,6 +98,12 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.65}
             size_hint_x: None
             width: 300
+            on_text_validate:
+                app.save_batterytf()
+                app.save_maxcurrenttf()
+                root.transition.direction = 'left'
+                root.current = 'outlet'            
+
 
     OutletScreen:
         id: outletscreen

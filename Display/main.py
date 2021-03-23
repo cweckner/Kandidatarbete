@@ -350,6 +350,10 @@ class DemoApp(MDApp):
             self.root.ids.wantedchargetf.focus = True
         if (textfield == 'batterycapacity'):
             self.root.ids.batterycapacitytf.focus = True
+        if (textfield == 'maxcurrent'):
+            self.root.ids.maxcurrenttf.focus = True
+   
+
 
     @staticmethod
     def restart():
