@@ -71,6 +71,8 @@ class backend:
                 #if(True):
                     #receiving the optimised charging current from the optimisation model
                     chargingCurrent = optireal.current(optTime, int(carMaxCurrentInput), int(carBatteryCapacity), int(carWantedCharge), int(carChargeLevelNow+0.5), currentTime)
+                    #send the chargingCurrent to the charger to change the current
+                    commands.changeactivecurrent(token, outlet, chargingCurrent)
 
                     #calculations to get the car's current percentage of battery charge
                     #how much kwh that represent 1 %
@@ -95,6 +97,7 @@ class backend:
                     #break
                     
             #All iterations done, or the car is not connected and the other outlet is not in use -> stop the charger
+            commands.changeActiveCurrent(token, outlet, 0)
             if(outlet == 1):
                 otherOutlet = 2
             else:
