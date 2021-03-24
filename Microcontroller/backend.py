@@ -64,7 +64,8 @@ class backend:
                 #check if a car is connected to the outlet we want to use
                 outletStatus = commands.connectorStatus(token, chargingOutlet)
                 #update currentTime to the time right now
-                currentTime = datetime.datetime.now()
+                #currentTime = datetime.datetime.now()
+                comparingTimeNow = datetime.datetime.timestamp(currentTime)
                 #if(outletStatus != "AVAILABLE" and currentTime >= nextTime):
                 if(currentTime >= nextTime):
                 #if(True):
@@ -81,7 +82,7 @@ class backend:
                     print(str(int(carChargeLevelNow+0.5)) + "%")
 
                     #update what time it is, only for simulation
-                    #currentTime += datetime.timedelta(minutes = 5)
+                    currentTime += datetime.timedelta(minutes = 5)
                     #print(currentTime)
 
                     #instead of using delay function check if 5 minutes have passed
