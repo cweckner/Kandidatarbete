@@ -4,7 +4,7 @@ import pytz
 import requests
 
 APIServer = 'https://test4.oamportal.com' 
-databaseTag = "http://127.0.0.1:5001/log/chargestorm/notify"
+databaseTag = "https://kandidat.ojensa.se/log/chargestorm/notify"
  
 #Retrieve access token (authentication)
 def createToken():
