@@ -105,5 +105,5 @@ class backend:
                 commands.stopCharger(token, currentTransactionID)
 
 
-#backendTest = backend()
-#backend.chargingLoop(backend, True, 20, 40, 100, 16, "2021-03-09 20:00:00", 1, backend.transactionID0, backend.tagID)
+backendTest = backend()
+backendTest.chargingLoop(backend, True, 20, 40, 100, 16, "2021-03-09 20:00:00", 1, backendTest.transactionID0)
