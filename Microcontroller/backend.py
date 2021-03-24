@@ -57,7 +57,7 @@ class backend:
 
             #the charging loop
             while(numberOfUpdates > 0):
-                if(carChargeLevelNow >= carWantedCharge or comparingTimeNow >= comparingTimeDeparture):
+                if(int(carChargeLevelNow+0.5) >= carWantedCharge or comparingTimeNow >= comparingTimeDeparture):
                     break
                 print("entered loop")
                 print("number of updates" + " " + str(numberOfUpdates))
@@ -72,14 +72,14 @@ class backend:
                     #receiving the optimised charging current from the optimisation model
                     chargingCurrent = optireal.current(optTime, int(carMaxCurrentInput), int(carBatteryCapacity), int(carWantedCharge), int(carChargeLevelNow+0.5), currentTime)
                     #send the chargingCurrent to the charger to change the current
-                    commands.changeactivecurrent(token, outlet, chargingCurrent)
+                    commands.changeActiveCurrent(token, str(outlet), str(chargingCurrent))
 
                     #calculations to get the car's current percentage of battery charge
                     #how much kwh that represent 1 %
                     kwhAsPercent = carBatteryCapacity/100
 
                     #how much current we got from the charger
-                    currentStatus = (voltage*5/60000)*chargingCurrent[0]
+                    currentStatus = (voltage*5/60000)*chargingCurrent
                     carChargeLevelNow += currentStatus/kwhAsPercent
                     print(str(int(carChargeLevelNow+0.5)) + "%")
 
@@ -88,7 +88,7 @@ class backend:
                     #print(currentTime)
 
                     #instead of using delay function check if 5 minutes have passed
-                    nextTime = currentTime + datetime.timedelta(minutes = 5)
+                    nextTime = currentTime #+ datetime.timedelta(minutes = 5)
 
                     numberOfUpdates -= 1
                     #self.delay(self)
@@ -97,7 +97,7 @@ class backend:
                     #break
                     
             #All iterations done, or the car is not connected and the other outlet is not in use -> stop the charger
-            commands.changeActiveCurrent(token, outlet, 0)
+            commands.changeActiveCurrent(token, str(outlet), "0")
             if(outlet == 1):
                 otherOutlet = 2
             else:
@@ -109,4 +109,4 @@ class backend:
 
 
 backendTest = backend()
-backendTest.chargingLoop(backend, True, 20, 40, 100, 16, "2021-03-09 20:00:00", 1, backendTest.transactionID0)
+backendTest.chargingLoop( True, 20, 25, 100, 16, "2021-03-24 20:00:00", 1, backendTest.transactionID0)
