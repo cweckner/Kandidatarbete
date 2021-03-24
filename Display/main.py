@@ -162,7 +162,7 @@ class DemoApp(MDApp):
         
 
     def CARSPEC(self,b,m):
-        with open(r'/home/nora/School/Kandidatarbete/Display/Bilkap.csv','r') as infile:
+        with open(r'Bilkap.csv','r') as infile:
             reader = csv.reader(infile, delimiter=",")
             for row in reader:
                 if b == row[0]:
@@ -247,9 +247,14 @@ class DemoApp(MDApp):
         
     def show_date_picker(self):
         today = date.today()
-        end_date = today + datetime.timedelta(days=7)
-        date_dialog = MDDatePicker(min_date=datetime.date(date.today().year, date.today().month, date.today().day),
-        max_date=datetime.date(end_date.year, end_date.month, end_date.day), primary_color=get_color_from_hex("#70C170"), text_toolbar_color=get_color_from_hex("#244511"), selector_color=get_color_from_hex("#70C170"))
+        end_date = today + datetime.timedelta(days=7)        
+        date_dialog = MDDatePicker(
+            min_date=datetime.date(date.today().year, date.today().month, date.today().day), 
+            max_date=datetime.date(end_date.year, end_date.month, end_date.day), 
+            primary_color=get_color_from_hex("#70C170"), 
+            text_toolbar_color=get_color_from_hex("#244511"), 
+            selector_color=get_color_from_hex("#70C170"))
+        
         date_dialog.bind(on_save=self.on_save)
         date_dialog.open()
 

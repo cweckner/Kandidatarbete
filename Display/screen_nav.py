@@ -124,7 +124,7 @@ ScreenManager:
     SummaryScreen:
         id: summaryscreen
         Image:
-            source: '/home/nora/School/Kandidatarbete/Display/Images/green-car.png'
+            source: 'Images/green-car.png'
             size: self.texture_size
             pos: 130, -300
         BoxLayout:

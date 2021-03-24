@@ -21,7 +21,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     #print(intervall)
     #print("5 minuters intervall")
     inter = int(intervall)
-    inter = min(inter,144)      # 288 för 24 timmar
+    inter = min(inter,288)      # 288 för 24 timmar
     if(inter == 0):
         inter = 1
     print(inter)
@@ -29,9 +29,13 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     obj = [kvot]*inter          #Initialisera obj
     i=0
     while i<inter:              #Fyller obj med motsvarande pris för motsvarande tid
+        z = int((time_now+datetime.timedelta(minutes = 0)).strftime("%H"))
         y = int((time_now+datetime.timedelta(minutes = 30)).strftime("%H"))
-        time_now = time_now + datetime.timedelta(minutes = 5)
-        obj[i] = obj[i]*priser[y]
+        if z == 23 and y == 0:
+            obj[i] = obj[i] * priser[datetime.datetime(time_now.year, time_now.month, time_now.day+1, y)]
+        else:
+            obj[i] = obj[i]*priser[datetime.datetime(time_now.year,time_now.month,time_now.day,y)]
+        time_now = time_now + datetime.timedelta(minutes=5)
         i += 1
 
     lhs_eq = [[kvot]*inter]     #Beräkning av KWh
@@ -48,5 +52,5 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6            #Tillfällig silvertejpslösnings
     return opt.x[0]
 
-tid = datetime.datetime(2021,3,25,8,0,0)
-print(current(tid,32,100,100,0))
+tid = datetime.datetime(2021,3,27,6,45,0)
+print(current(tid,32,63,100,0))
