@@ -12,7 +12,7 @@ tidspris = {
 date = datetime.datetime(year, mon, day, hou)
 for j in range(365 * 24 + 1):
     #print (date)
-    tidspris[date] =  60                                #Skapar en dictionary med alla datum/timslag som nycklar för år 2021
+    tidspris[date] =  25                                #Skapar en dictionary med alla datum/timslag som nycklar för år 2021
     date = date + datetime.timedelta(hours=1)
                                                         #Värden kan dock uppdateras varje gång om man tänker forecast
 def param(time_now,end_time):
@@ -54,3 +54,5 @@ def param(time_now,end_time):
 #print(param(datetime.datetime.now(),end_time))
 
 
+#forecastpv - producerar 1kwh 2kwh 5kwh - använda alla dem
+#sen kolla på load typ, bara living lab, eller hela sverige? - Historisk data -- Genomsnitt

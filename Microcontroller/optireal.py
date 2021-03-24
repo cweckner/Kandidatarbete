@@ -52,5 +52,5 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6            #Tillfällig silvertejpslösnings
     return opt.x[0]
 
-tid = datetime.datetime(2021,3,27,6,45,0)
-print(current(tid,32,63,100,0))
+#tid = datetime.datetime(2021,3,27,6,45,0)
+#print(current(tid,32,63,100,90))
