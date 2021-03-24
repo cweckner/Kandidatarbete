@@ -45,7 +45,7 @@ def param(time_now,end_time):
             #print(p)
             params[p] = tidspris[p]
             p = p + datetime.timedelta(hours=1)
-    print(params)
+    #print(params)
 
     return params
 

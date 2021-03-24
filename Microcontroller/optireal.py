@@ -2,10 +2,10 @@ from scipy.optimize import linprog
 import datetime
 #from Microcontroller import parameters
 import parameters
-def current(end_time,current_limit,capacity,battery_goal,battery_current):
+def current(end_time,current_limit,capacity,battery_goal,battery_current,tid_nu):
     V=400
     kwh = (battery_goal-battery_current)*capacity/100   #Omvandling till kWh
-    time_now = datetime.datetime.now()      #Tiden right now
+    time_now = tid_nu #datetime.datetime.now()      #Tiden right now
     priser = parameters.param(time_now,end_time)    #Anropa parametrar för att få pristabell
     
 #TODO: Lösa hur man bestämmer EP(pris) till varje variabel Xi, Xi är varje 5 minuters current nivå, detta blir
@@ -24,7 +24,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     inter = min(inter,288)      # 288 för 24 timmar
     if(inter == 0):
         inter = 1
-    print(inter)
+    #print(inter)
     #print("inter avrundat t antal 5or")
     obj = [kvot]*inter          #Initialisera obj
     i=0
@@ -46,8 +46,8 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     opt = linprog(c=obj,        #Solver, minimize
     A_eq=lhs_eq, b_eq=rhs_eq, bounds=bnd,
     method="revised simplex")
-    print(sum(opt.x)*kvot)
-    print (opt.x)
+    #print(sum(opt.x)*kvot)
+    #print (opt.x)
     if opt.x[0] < 6 and opt.x[0]!=0:
         opt.x[0] = 6            #Tillfällig silvertejpslösnings
     return opt.x[0]
