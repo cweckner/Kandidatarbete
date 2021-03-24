@@ -55,8 +55,10 @@ def post_notify():
         "_id":transactionIDmsg
     }
     data = {
-        "_id": transactionIDmsg,
-        "rfid": rfid
+        "$set":{
+            "_id": transactionIDmsg,
+            "rfid": rfid
+        }
     }
     if(msgType == "transactionStart"):
         print("Respond to start")
