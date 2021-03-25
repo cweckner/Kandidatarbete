@@ -145,6 +145,7 @@ class DemoApp(MDApp):
     tfvalues = {'timepicker': '20.00'}
     global brand
     global model
+    anim_or_not = 0
 
     global charger_taken; # set [True, True],[True, False], [False, True], [False, False] i konstruktorn
     #konstruktor
@@ -180,12 +181,15 @@ class DemoApp(MDApp):
 
     
     def animate_the_label(self, widget, time):
-        global anim 
-        anim = Animation(opacity=0.1, duration=time) + Animation(opacity=1, duration=time)
-        anim.bind(on_complete=self.callback_animation)
-        anim.repeat = True
-        anim.start(widget)  
-        print(widget)
+        print(self.anim_or_not)
+        if self.anim_or_not != 3:
+            anim = Animation(opacity=0.1, duration=time) + Animation(opacity=1, duration=time)
+            anim.bind(on_complete=self.callback_animation)
+            anim.repeat = True
+            anim.start(widget)  
+            print(widget)
+            self.anim_or_not += 1
+
 
     def stop_animating(self, widget):
         anim.cancel(widget)

@@ -891,7 +891,6 @@ ScreenManager:
         text: 'Charge another car'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
         on_release:
-            app.stop_animating(wifiicon)
             app.restart()
             root.manager.transition.direction = 'right'            
             root.manager.current = 'welcome'
