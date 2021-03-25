@@ -249,9 +249,8 @@ ScreenManager:
         text: 'Go directly to inputs (For test purposes only)'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
         on_release:
-            app.stop_animating(wifiicon)
-            #root.manager.transition.direction = 'left'
-            #root.manager.current = 'currentcharge'              
+            root.manager.transition.direction = 'left'
+            root.manager.current = 'currentcharge'              
 
 
 <CurrentChargeScreen>:
