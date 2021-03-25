@@ -6,12 +6,8 @@ import time
 
 class backend:
 
-    transactionID0 = "00000000-0000-0000-0000-000000000000"
+    transactionID0 = "00000000-0000-0000-0000-000000000000" #the transactionID will be handled by the front end to ease parallellism
     tagID = "918273645" #default id used for testing
-
-    #Delay for 5 minutes
-    def delay(self):
-        sched.scheduler(time.time(), time.sleep(1))
 
     #readyVariable = True/False
     #carChargeAtStart = number in percent
@@ -27,13 +23,20 @@ class backend:
             token = commands.createToken()
             currentTransactionID = commands.incrementTransactionID(transactionID)
             numberOfUpdates = commands.calculateNumberOfUpdates(departureTime)
-            chargingOutlet = outlet
             otherOutlet = 3
+
+            #set starting times, nextTime is set to equal currentTime to allow the program to start its
+            #first loop and is then calculated inside the loop
             currentTime = datetime.datetime.now()
-            nextTime = datetime.datetime.now()
+            nextTime = currentTime
+            
+            #comparingTime are used to stop the charger if it has gone past the set departure time
+            #even if the car didn't reach the wanted final charge level
             comparingTimeNow = datetime.datetime.timestamp(currentTime)
             comparingTimeDeparture = datetime.datetime.timestamp(datetime.datetime.strptime(departureTime,'%Y-%m-%d %H:%M:%S'))
-            voltage = 400 #Charger specific voltage
+            
+            #Charger specific voltage
+            voltage = 400 
 
             #time format conversion for the consumedEnergy command to see how much energy it took to charge the car
             timeForStartDate = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
@@ -43,61 +46,59 @@ class backend:
             #time format conversion for the startCharger command so that it knows when its expected to stop
             stopTime = commands.timeConverter(departureTime, "startCharger")
 
-            #time format for optimimisation model
+            #time format for the optimimisation model
             timeTuple = time.strptime(departureTime, '%Y-%m-%d %H:%M:%S')
             timeTupleFull = (timeTuple.tm_year, timeTuple.tm_mon, timeTuple.tm_mday, timeTuple.tm_hour, timeTuple.tm_min)
             optTime = datetime.datetime(*timeTupleFull[0:4])
-            #print(optTime)
-
-
 
             #starting the charger
-            commands.startCharger(token, currentTransactionID, tagID, stopTime)
+            commands.startCharger(token, currentTransactionID, tagID)
             tagID = commands.getTagID(transactionID)
 
             #the charging loop
             while(numberOfUpdates > 0):
                 if(int(carChargeLevelNow+0.5) >= carWantedCharge or comparingTimeNow >= comparingTimeDeparture):
+                    commands.changeActiveCurrent(token, str(outlet), "0")
                     break
                 print("entered loop")
                 print("number of updates" + " " + str(numberOfUpdates))
                 #check if a car is connected to the outlet we want to use
-                outletStatus = commands.connectorStatus(token, chargingOutlet)
-                #update currentTime to the time right now
+                outletStatus = commands.connectorStatus(token, outlet)
+                
+                #update currentTime to the time right now, FINAL PRODUCT
                 #currentTime = datetime.datetime.now()
+
+                #add 5 minutes to wait before updating the charging current, FINAL PRODUCT
+                #nextTime = currentTime + datetime.timedelta(minutes = 5)
+
+                #update what time it is, TESTING
+                currentTime += datetime.timedelta(minutes = 5)
+
+                #TESTING
+                nextTime = currentTime
+
                 comparingTimeNow = datetime.datetime.timestamp(currentTime)
+
+                #Switch the if cases depending on if you are testing or not
                 #if(outletStatus != "AVAILABLE" and currentTime >= nextTime):
                 if(currentTime >= nextTime):
-                #if(True):
                     #receiving the optimised charging current from the optimisation model
                     chargingCurrent = optireal.current(optTime, int(carMaxCurrentInput), int(carBatteryCapacity), int(carWantedCharge), int(carChargeLevelNow+0.5), currentTime)
                     #send the chargingCurrent to the charger to change the current
-                    commands.changeActiveCurrent(token, str(outlet), str(chargingCurrent))
+                    commands.changeActiveCurrent(token, str(outlet), str(chargingCurrent[0]))
 
                     #calculations to get the car's current percentage of battery charge
                     #how much kwh that represent 1 %
                     kwhAsPercent = carBatteryCapacity/100
 
                     #how much current we got from the charger
-                    currentStatus = (voltage*5/60000)*chargingCurrent
+                    currentStatus = (voltage*5/60000)*chargingCurrent[0]
                     carChargeLevelNow += currentStatus/kwhAsPercent
                     print(str(int(carChargeLevelNow+0.5)) + "%")
 
-                    #update what time it is, only for simulation
-                    currentTime += datetime.timedelta(minutes = 5)
-                    #print(currentTime)
-
-                    #instead of using delay function check if 5 minutes have passed
-                    nextTime = currentTime #+ datetime.timedelta(minutes = 5)
-
                     numberOfUpdates -= 1
-                    #self.delay(self)
-                #if the outlet is available -> no car is connected to the outlet -> stop the charging
-                #elif(outletStatus == "AVAILABLE"):
-                    #break
                     
             #All iterations done, or the car is not connected and the other outlet is not in use -> stop the charger
-            commands.changeActiveCurrent(token, str(outlet), "0")
             if(outlet == 1):
                 otherOutlet = 2
             else:
@@ -109,4 +110,4 @@ class backend:
 
 
 backendTest = backend()
-backendTest.chargingLoop( True, 20, 25, 100, 16, "2021-03-24 20:00:00", 1, backendTest.transactionID0)
+backendTest.chargingLoop( True, 20, 26, 100, 16, "2021-03-25 20:00:00", 1, backendTest.transactionID0)

@@ -28,16 +28,15 @@ def createToken():
 #Send the request to activate the connector on the charge station
 #TODO:
 #Add stoptime
-def startCharger(token,transactionId,tagID,stoptime):
+def startCharger(token,transactionId,tagID):
     #print("startCharger")
     tagIDSTR = "\""+tagID+"\""
-    stopTimeSTR = "\""+stoptime+"\""
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
     url = APIServer + "/ServicesApi/rest/charger/uuid/start"
-    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":'+tagIDSTR+', "transactionId":' +transactionId+', "stoptime":'+stopTimeSTR+'}'
+    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
     response = requests.post(url, headers=headers, data=data)
     #print(data)
     #print(response)
@@ -74,8 +73,8 @@ def changeActiveCurrent(token, connector, current):
     url = APIServer + "/ServicesApi/rest/charger/changeactivecurrent"
     data = '{"current":' +current+ ', "chargeboxidentity": "000005354-1","connectorid":' +connector+ '}'
     response = requests.post(url, headers=headers, data=data)
-    #print(response)
-    #print(response.text)
+    print(response)
+    print(response.text)
     
 #Consumed Energy (KWh) / duration
 def consumedEnergy(token,tagID,intervalStart,intervalEnd):
