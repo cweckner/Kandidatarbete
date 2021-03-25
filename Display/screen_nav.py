@@ -247,7 +247,7 @@ ScreenManager:
     MDRectangleFlatButton:
         text: 'Go directly to inputs (For test purposes only)'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-        on_press:
+        on_release:
             root.manager.transition.direction = 'left'
             root.manager.current = 'currentcharge'              
 
@@ -274,7 +274,7 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press:
+        on_release:
             app.save_currenttf() 
             root.manager.transition.direction = 'left'
             root.manager.current = 'wantedcharge'
@@ -282,7 +282,7 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press:
+        on_release:
             root.manager.transition.direction = 'right'            
             root.manager.current = 'welcome'
         
@@ -306,14 +306,14 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press: 
+        on_release: 
             app.save_wantedtf() 
             root.manager.transition.direction = 'left'
             root.manager.current = 'timedate'
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
+        on_release: 
             root.manager.transition.direction = 'right'
             root.manager.current = 'currentcharge'
 
@@ -359,13 +359,13 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press:
+        on_release:
             root.manager.transition.direction = 'left'         
             root.manager.current = 'carbrand'
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
+        on_release: 
             root.manager.transition.direction = 'right'
             root.manager.current = 'wantedcharge'
 
@@ -806,7 +806,7 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press: 
+        on_release: 
             app.save_batterytf()
             app.save_maxcurrenttf()
             root.manager.transition.direction = 'left'
@@ -814,7 +814,7 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
+        on_release: 
             root.manager.transition.direction = 'right'
             root.manager.current = 'carbrand'
     
@@ -843,7 +843,7 @@ ScreenManager:
     MDIconButton: 
         icon: "arrow-right"
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
-        on_press: 
+        on_release: 
             app.save_outletcbx()
             app.print_tfvalues()
             app.return_tfvalues()
@@ -856,7 +856,7 @@ ScreenManager:
     MDIconButton: 
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press: 
+        on_release: 
             root.manager.transition.direction = 'right'
             root.manager.current = app.get_previous_screen()
 
@@ -866,13 +866,13 @@ ScreenManager:
     MDIconButton:
         icon: "arrow-left"
         pos_hint: {"center_x": 0.1, "center_y": 0.1}
-        on_press:
+        on_release:
             root.manager.transition.direction = 'right'            
             root.manager.current = 'outlet'
     MDRectangleFlatButton:
         text: 'Charge'
         pos_hint: {'center_x': 0.5, 'center_y': 0.35}
-        on_press:
+        on_release:
             app.charge_or_dialog(root)
     
 
@@ -889,7 +889,7 @@ ScreenManager:
     MDRectangleFlatButton:
         text: 'Charge another car'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-        on_press:
+        on_release:
             on_release: app.restart()
     
 """
