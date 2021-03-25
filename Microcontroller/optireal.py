@@ -1,26 +1,29 @@
 from scipy.optimize import linprog
 import datetime
+import matplotlib.pyplot as plt
 #from Microcontroller import parameters
 import parameters
-def current(end_time,current_limit,capacity,battery_goal,battery_current,tid_nu):
+def current(end_time,current_limit,capacity,battery_goal,battery_current):
     V=400
     kwh = (battery_goal-battery_current)*capacity/100   #Omvandling till kWh
-    time_now = tid_nu #datetime.datetime.now()      #Tiden right now
+    if kwh < 0:
+        kwh = 0
+    time_now = datetime.datetime.now()      #Tiden right now
     priser = parameters.param(time_now,end_time)    #Anropa parametrar för att få pristabell
     
 #TODO: Lösa hur man bestämmer EP(pris) till varje variabel Xi, Xi är varje 5 minuters current nivå, detta blir
 #TODO: En array med alla current värden fram till den bestämda tiden
-    kvot = V*5/60000          #Fast värde       #typ kwh/5 minuter
+    kvot = V*5/60000         #Fast värde       #typ kwh/5 minuter
     #end_time = datetime.datetime(2021,2,13,8,0,0)##yyyy-mm.DD.HH.MM
     chargetime = end_time - time_now        #Laddningstid exakt
     time_minutes = chargetime.total_seconds()/60    #Laddningstid i minuter
-    time_minutes -=  time_minutes % 5           #Omvandla till intervall av 5 minuter, och sedan till int
-    intervall = time_minutes/5                  #Drar även bort resten från mod division
+    #time_minutes -= time_minutes % 5           #Omvandla till intervall av 5 minuter, och sedan till int
+    inter = int(time_minutes/5)                  #Drar även bort resten från mod division
     #print(end_time-time_now)
     #print("tids duration")
     #print(intervall)
     #print("5 minuters intervall")
-    inter = int(intervall)
+    #inter = int(intervall)
     inter = min(inter,288)      # 288 för 24 timmar
     if(inter == 0):
         inter = 1
@@ -50,7 +53,10 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current,tid_nu)
     #print (opt.x)
     if opt.x[0] < 6 and opt.x[0]!=0:
         opt.x[0] = 6            #Tillfällig silvertejpslösnings
-    return opt.x[0]
+    return opt.x
 
-#tid = datetime.datetime(2021,3,27,6,45,0)
-#print(current(tid,32,63,100,90))
+tid = datetime.datetime(2021,3,29,0,0,0)
+plan = current(tid,32,63,100,20)
+xlables = []
+for j in range(288):
+    print(datetime.datetime.now()+datetime.timedelta(minutes=5*j),plan[j])
