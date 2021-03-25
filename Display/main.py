@@ -312,9 +312,13 @@ class DemoApp(MDApp):
         print(self.tfvalues)
 
     def return_tfvalues(self):
+        if self.datepicker == "" or self.timepicker == "":
+            at = ""
+        else:
+            at = " at "
         self.root.ids.currentsummary.text = self.tfvalues['currenttf']
         self.root.ids.wantedsummary.text = self.tfvalues['wantedtf']
-        self.root.ids.datetimesummary.text = self.tfvalues['datepicker'] + ' at ' + (self.tfvalues['timepicker'])[:5]
+        self.root.ids.datetimesummary.text = self.tfvalues['datepicker'] + at + (self.tfvalues['timepicker'])[:5]
         self.root.ids.outletsummary.text = self.tfvalues['outletcbx']
         if self.brand != '':
             self.root.ids.brandorbatterysummary.text = 'Brand'
