@@ -5,10 +5,10 @@ import datetime
 # #Nyckel = datum + H, värde = pris/load/sol Gör 3 separata till att börja med
 
 def get_prices():
-    tidspris = {}
+    tidspris = {}       #Initialisering av tidspriser
     year = 2021
     mon = 1
-    day = 1
+    day = 1             #Datum varifrån vi bygger upp tidspriser ifrån
     hou = 0
     hourprice = [
         16.78,
@@ -64,7 +64,7 @@ def get_prices():
         16.36
     ]
     date = datetime.datetime(year, mon, day, hou)
-    for j in range(365 * 24 + 1):
+    for j in range(365 * 24 + 1):       #Hur långt fram vi kollar, just nu 2021-2022
         #print (j)
         if date.weekday() in [5,6]:
             tidspris[date] =  wkndprice[date.hour]                               #Skapar en dictionary med alla datum/timslag som nycklar för år 2021
@@ -76,38 +76,25 @@ def get_prices():
 
 
 def param(time_now,end_time):
-    #Om end_time - time_now är större än 12h skickar vi 12 värden tillbaka
-    #Om end_time - time_now är mindre än 12h skickar vi återstående värden tillbaka
-    tidspris = get_prices()
-    params ={}
+    tidspris = get_prices()             #Hämtar priser för hela år 2021
+    params ={}                          #Initialiserar params som ska returneras till optmodell
     timmar = int((((end_time-time_now).total_seconds())/3600)+0.5)   #laddningstid avrundat till timmar
-    #print(i)
-    #print("antal timmar avrundat")
-    z = int((time_now+datetime.timedelta(minutes = 0)).strftime("%H"))
-    y = int((time_now+datetime.timedelta(minutes = 30)).strftime("%H")) #TODO: Kolla efter buggar vid 23:30 tider
-
-    #print(y)
-    #print("vilken timme som är nu")
-    if z == 23 and y == 0:
-        p = datetime.datetime(time_now.year, time_now.month, time_now.day + 1, y)
-    else:
-        p = datetime.datetime(time_now.year, time_now.month, time_now.day, y)
+    tidsavrund = (time_now + datetime.timedelta(minutes=30))
+    p = datetime.datetime(tidsavrund.year, tidsavrund.month, tidsavrund.day, tidsavrund.hour)
     if timmar < 24:
-        for j in range(y,y+timmar+1):
-            #print(j)
-           #print(p)
+        for j in range(tidsavrund.hour,tidsavrund.hour+timmar+1):
             params[p] = tidspris[p]
             p = p + datetime.timedelta(hours=1)
     else:
         timmar = 24
-        for j in range(y, y+timmar+1):
-            #print(p)
+        for j in range(tidsavrund.hour, tidsavrund.hour+timmar+1):
             params[p] = tidspris[p]
             p = p + datetime.timedelta(hours=1)
     #print(params)
 
     return params
 
+#Testrader
 end_time = datetime.datetime(2021,3,27,8,0,0)
 param(datetime.datetime.now(),end_time)
 print(param(datetime.datetime.now(),end_time))
