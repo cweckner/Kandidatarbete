@@ -386,7 +386,7 @@ class DemoApp(MDApp):
         self.root.ids.timebutton.text = "Choose time"
         self.datepicker = ""
         self.root.ids.datebutton.text = "Choose date"
-        ready_to_send = False
+        self.readytosend = False
 
 
 
