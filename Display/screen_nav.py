@@ -48,7 +48,7 @@ ScreenManager:
         id: timedatescreen
         MDRaisedButton:
             id: timebutton
-            text: app.timepicker
+            text: app.showontimepicker
             md_bg_color: 1,1,1,1
             theme_text_color: "Custom"
             text_color: 0.46, 0.46, 0.46,1
@@ -56,7 +56,7 @@ ScreenManager:
             on_release: app.show_time_picker()  
         MDRaisedButton:
             id: datebutton
-            text: app.datepicker
+            text: app.showondatepicker
             md_bg_color: 1,1,1,1
             text_color: 0.46, 0.46, 0.46,1
             pos_hint: {'center_x': 0.5, 'center_y': 0.50}
@@ -121,6 +121,7 @@ ScreenManager:
             size: dp(48), dp(48)
             disabled: app.disable_charger(2)              
             pos_hint: {'center_x': 0.65, 'center_y': 0.4}
+
     SummaryScreen:
         id: summaryscreen
         Image:
@@ -157,7 +158,7 @@ ScreenManager:
                         orientation: 'vertical'
                         padding: 0, 0, 0, 0
                         MDLabel:
-                            text: 'Date & time'
+                            text: 'Departure'
                             halign: 'center'
                     BoxLayout:
                         orientation: 'vertical'
@@ -248,8 +249,9 @@ ScreenManager:
         text: 'Go directly to inputs (For test purposes only)'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
         on_release:
-            root.manager.transition.direction = 'left'
-            root.manager.current = 'currentcharge'              
+            app.stop_animating(wifiicon)
+            #root.manager.transition.direction = 'left'
+            #root.manager.current = 'currentcharge'              
 
 
 <CurrentChargeScreen>:
@@ -890,7 +892,11 @@ ScreenManager:
         text: 'Charge another car'
         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
         on_release:
-            on_release: app.restart()
+            app.stop_animating(wifiicon)
+            app.restart()
+            root.manager.transition.direction = 'right'            
+            root.manager.current = 'welcome'
+
     
 """
 

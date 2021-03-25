@@ -135,8 +135,10 @@ screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 
 
 class DemoApp(MDApp):
-    datepicker="Choose date"
-    timepicker= "Choose time"
+    showondatepicker="Choose date"
+    showontimepicker= "Choose time"
+    datepicker = ""
+    timepicker = ""
     readytosend= False
     previousscreen= ""
     global dialog
@@ -178,11 +180,15 @@ class DemoApp(MDApp):
 
     
     def animate_the_label(self, widget, time):
+        global anim 
         anim = Animation(opacity=0.1, duration=time) + Animation(opacity=1, duration=time)
         anim.bind(on_complete=self.callback_animation)
         anim.repeat = True
-        anim.start(widget)
+        anim.start(widget)  
         print(widget)
+
+    def stop_animating(self, widget):
+        anim.cancel(widget)
     
     def callback_animation(self, *args):
         print("I'm done!")
@@ -236,14 +242,13 @@ class DemoApp(MDApp):
 
     def get_time(self, instance, time):
         self.timepicker = str(time)
-        nosecstr = self.timepicker[:5]
-        print(nosecstr)
-        self.root.ids.timebutton.text = nosecstr
+        self.showontimepicker = self.timepicker[:5]
+        self.root.ids.timebutton.text = self.showontimepicker
 
     def on_save(self, instance, value, date_range):
         self.datepicker = str(value)
-        print(self.datepicker)
-        self.root.ids.datebutton.text = self.datepicker
+        self.showondatepicker = str(value)
+        self.root.ids.datebutton.text = self.showondatepicker
         
     def show_date_picker(self):
         today = date.today()
@@ -358,15 +363,32 @@ class DemoApp(MDApp):
         if (textfield == 'maxcurrent'):
             self.root.ids.maxcurrenttf.focus = True
    
+    def restart(self):
+        self.tfvalues.clear()
+        self.reset_brand_model()
+        currenttf = ""
+        self.root.ids.wantedchargetf.text = ""
+        wantedtf = ""
+        self.root.ids.batterycapacitytf.text = ""
+        batterycapacitytf = ""
+        self.root.ids.currentchargetf.text = ""
+        maxcurrenttf = ""
+        self.root.ids.maxcurrenttf.text = ""
+        self.timepicker = ""
+        self.root.ids.timebutton.text = "Choose time"
+        self.datepicker = ""
+        self.root.ids.datebutton.text = "Choose date"
+        ready_to_send = False
 
 
-    @staticmethod
-    def restart():
-        print(f'exec: {sys.executable} {["python"] + sys.argv}')
-        os.execvp(sys.executable, ['python'] + sys.argv)
 
-    def on_stop(self):
-        print('Exiting App, press return to continue...')
+    #@staticmethod
+   # def restart():
+     #   print(f'exec: {sys.executable} {["python"] + sys.argv}')
+     #   os.execvp(sys.executable, ['python'] + sys.argv)
+
+    #def on_stop(self):
+     #   print('Exiting App, press return to continue...')
 
 if __name__ == '__main__':
     DemoApp().run()
