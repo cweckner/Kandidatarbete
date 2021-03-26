@@ -10,10 +10,14 @@
 OBSERVATION------------------------
 
     Task 1.
-        You want to charge your car (Tesla Model S) with the charging station
+        You want to charge your car (Tesla Model S) with the charging station. Plug in the charger and use the touch interface to start charging the car. 
 
+-- reset
 
+    Task 2. 
+        You want to charge your car, but your car model is not in the list. Can 
 
 INTERVIEW---------------------------
+
 
 

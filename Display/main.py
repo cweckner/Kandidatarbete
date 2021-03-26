@@ -135,14 +135,17 @@ screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 
 
 class DemoApp(MDApp):
-    datepicker="Choose date"
-    timepicker= "Choose time"
+    showondatepicker="Choose date"
+    showontimepicker= "Choose time"
+    datepicker = ""
+    timepicker = ""
     readytosend= False
     previousscreen= ""
     global dialog
     tfvalues = {'timepicker': '20.00'}
     global brand
     global model
+    anim_or_not = 0
 
     global charger_taken; # set [True, True],[True, False], [False, True], [False, False] i konstruktorn
     #konstruktor
@@ -178,11 +181,18 @@ class DemoApp(MDApp):
 
     
     def animate_the_label(self, widget, time):
-        anim = Animation(opacity=0.1, duration=time) + Animation(opacity=1, duration=time)
-        anim.bind(on_complete=self.callback_animation)
-        anim.repeat = True
-        anim.start(widget)
-        print(widget)
+        print(self.anim_or_not)
+        if self.anim_or_not != 3:
+            anim = Animation(opacity=0.1, duration=time) + Animation(opacity=1, duration=time)
+            anim.bind(on_complete=self.callback_animation)
+            anim.repeat = True
+            anim.start(widget)  
+            print(widget)
+            self.anim_or_not += 1
+
+
+    def stop_animating(self, widget):
+        anim.cancel(widget)
     
     def callback_animation(self, *args):
         print("I'm done!")
@@ -236,14 +246,13 @@ class DemoApp(MDApp):
 
     def get_time(self, instance, time):
         self.timepicker = str(time)
-        nosecstr = self.timepicker[:5]
-        print(nosecstr)
-        self.root.ids.timebutton.text = nosecstr
+        self.showontimepicker = self.timepicker[:5]
+        self.root.ids.timebutton.text = self.showontimepicker
 
     def on_save(self, instance, value, date_range):
         self.datepicker = str(value)
-        print(self.datepicker)
-        self.root.ids.datebutton.text = self.datepicker
+        self.showondatepicker = str(value)
+        self.root.ids.datebutton.text = self.showondatepicker
         
     def show_date_picker(self):
         today = date.today()
@@ -307,9 +316,13 @@ class DemoApp(MDApp):
         print(self.tfvalues)
 
     def return_tfvalues(self):
+        if self.datepicker == "" or self.timepicker == "":
+            at = ""
+        else:
+            at = " at "
         self.root.ids.currentsummary.text = self.tfvalues['currenttf']
         self.root.ids.wantedsummary.text = self.tfvalues['wantedtf']
-        self.root.ids.datetimesummary.text = self.tfvalues['datepicker'] + ' at ' + (self.tfvalues['timepicker'])[:5]
+        self.root.ids.datetimesummary.text = self.tfvalues['datepicker'] + at + (self.tfvalues['timepicker'])[:5]
         self.root.ids.outletsummary.text = self.tfvalues['outletcbx']
         if self.brand != '':
             self.root.ids.brandorbatterysummary.text = 'Brand'
@@ -358,15 +371,32 @@ class DemoApp(MDApp):
         if (textfield == 'maxcurrent'):
             self.root.ids.maxcurrenttf.focus = True
    
+    def restart(self):
+        self.tfvalues.clear()
+        self.reset_brand_model()
+        currenttf = ""
+        self.root.ids.wantedchargetf.text = ""
+        wantedtf = ""
+        self.root.ids.batterycapacitytf.text = ""
+        batterycapacitytf = ""
+        self.root.ids.currentchargetf.text = ""
+        maxcurrenttf = ""
+        self.root.ids.maxcurrenttf.text = ""
+        self.timepicker = ""
+        self.root.ids.timebutton.text = "Choose time"
+        self.datepicker = ""
+        self.root.ids.datebutton.text = "Choose date"
+        self.readytosend = False
 
 
-    @staticmethod
-    def restart():
-        print(f'exec: {sys.executable} {["python"] + sys.argv}')
-        os.execvp(sys.executable, ['python'] + sys.argv)
 
-    def on_stop(self):
-        print('Exiting App, press return to continue...')
+    #@staticmethod
+   # def restart():
+     #   print(f'exec: {sys.executable} {["python"] + sys.argv}')
+     #   os.execvp(sys.executable, ['python'] + sys.argv)
+
+    #def on_stop(self):
+     #   print('Exiting App, press return to continue...')
 
 if __name__ == '__main__':
     DemoApp().run()
