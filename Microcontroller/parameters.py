@@ -66,12 +66,11 @@ def get_prices():
     date = datetime.datetime(year, mon, day, hou)
     for j in range(365 * 24 + 1):       #Hur långt fram vi kollar, just nu 2021-2022
         #print (j)
-        if date.weekday() in [5,6]:
-            tidspris[date] =  wkndprice[date.hour]                               #Skapar en dictionary med alla datum/timslag som nycklar för år 2021
+        if date.weekday() in [5,6]:                 #Skapar en dict för alla datum/timslag
+            tidspris[date] =  wkndprice[date.hour]      #Priser för helger
         else:
-            tidspris[date] =  hourprice[date.hour]                               #Skapar en dictionary med alla datum/timslag som nycklar för år 2021
+            tidspris[date] =  hourprice[date.hour]      #Priser för vardagar
         date = date + datetime.timedelta(hours=1)
-        #print(date.weekday())
     return tidspris                                          #Värden kan dock uppdateras varje gång om man tänker forecast
 
 
@@ -80,25 +79,19 @@ def param(time_now,end_time):
     params ={}                          #Initialiserar params som ska returneras till optmodell
     timmar = int((((end_time-time_now).total_seconds())/3600)+0.5)   #laddningstid avrundat till timmar
     tidsavrund = (time_now + datetime.timedelta(minutes=30))
-    p = datetime.datetime(tidsavrund.year, tidsavrund.month, tidsavrund.day, tidsavrund.hour)
+    p = datetime.datetime(tidsavrund.year, tidsavrund.month, tidsavrund.day, tidsavrund.hour)   #Avrundning till närmsta timme
     if timmar < 24:
         for j in range(tidsavrund.hour,tidsavrund.hour+timmar+1):
             params[p] = tidspris[p]
-            p = p + datetime.timedelta(hours=1)
+            p = p + datetime.timedelta(hours=1)     #Fyll params med de värden som är relevanta för optmodell
     else:
         timmar = 24
         for j in range(tidsavrund.hour, tidsavrund.hour+timmar+1):
-            params[p] = tidspris[p]
+            params[p] = tidspris[p]                 #Fyll params med de värden som är relevanta för optmodell
             p = p + datetime.timedelta(hours=1)
-    #print(params)
-
     return params
 
 #Testrader
 end_time = datetime.datetime(2021,3,27,8,0,0)
 param(datetime.datetime.now(),end_time)
 print(param(datetime.datetime.now(),end_time))
-
-
-#forecastpv - producerar 1kwh 2kwh 5kwh - använda alla dem
-#sen kolla på load typ, bara living lab, eller hela sverige? - Historisk data -- Genomsnitt
