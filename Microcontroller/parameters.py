@@ -92,6 +92,6 @@ def param(time_now,end_time):
     return params
 
 #Testrader
-end_time = datetime.datetime(2021,3,27,8,0,0)
-param(datetime.datetime.now(),end_time)
-print(param(datetime.datetime.now(),end_time))
+#end_time = datetime.datetime(2021,3,27,8,0,0)
+#param(datetime.datetime.now(),end_time)
+#print(param(datetime.datetime.now(),end_time))

@@ -3,12 +3,12 @@ import datetime
 import matplotlib.pyplot as plt
 import parameters
 
-def current(end_time,current_limit,capacity,battery_goal,battery_current):
+def current(end_time,current_limit,capacity,battery_goal,battery_current, tid_nu):
     V=400                                               #Fast värde från laddstolpen
     kwh = (battery_goal-battery_current)*capacity/100   #Omvandling till kWh från batteriparametrar
     if kwh < 0:
         kwh = 0                                     #Buggkoll
-    time_now = datetime.datetime.now()              #Tiden just nu
+    time_now = tid_nu             #Tiden just nu
     priser = parameters.param(time_now,end_time)    #Anropa parametrar för att få pristabell
     kvot = V*5/60000                                #Fast värde, kwh/5 minuter= Kvot*I(Ampere)
     chargetime = end_time - time_now                #Laddningstid exakt
@@ -40,8 +40,8 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6                                #Tillfällig silvertejpslösnings
     return opt.x
 
-tid = datetime.datetime(2021,3,29,0,0,0)
-plan = current(tid,32,63,100,20)                    #Värden för attt testa
-xlables = []
-for j in range(288):
-    print(datetime.datetime.now()+datetime.timedelta(minutes=5*j),plan[j])  #Tabell tid/Chargecurrent
+#tid = datetime.datetime(2021,3,29,0,0,0)
+#plan = current(tid,32,63,100,20)                    #Värden för attt testa
+#xlables = []
+#for j in range(288):
+#    print(datetime.datetime.now()+datetime.timedelta(minutes=5*j),plan[j])  #Tabell tid/Chargecurrent
