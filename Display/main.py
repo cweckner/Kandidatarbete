@@ -21,6 +21,10 @@ from time import sleep
 import datetime
 import sys
 import os
+sys.path.insert(1, '/home/nora/School/Kandidatarbete/Microcontroller')
+import backend
+import threading
+
 
 #from Microcontroller import optireal
 Window.size = (480, 800) #WxH
@@ -155,7 +159,6 @@ class DemoApp(MDApp):
 #        charger_taken = [one, two]
 
 
-
     def build(self):
         print("main")
         self.theme_cls.primary_palette = "Green"
@@ -230,7 +233,7 @@ class DemoApp(MDApp):
             'currentcharge': "Current charge level of your car's battery. Huur vet man?",
             'wantedcharge': "Desired charge level of your car's battery at the time of your next departure",
             'batterycapacity': "Your car model is not in our systems, please enter your car's battery capacity and maximum current manually. If you don't know these specifications, check the car brand's website or contact your car provider directly.",
-            'timedate': "Info about time & Date of departure",
+            'timedate': "Date and time of the next departure of your car. The date and time are approximate values, but try to be specific to get the best results. If the car is used before the time chosen here there is a risk of it not being charged fully to the desired charge level.\n\nThere is a limit of 1 week ahead of today's date because the algorithm won't gain anything past that. ",
             'carbrand': "Please select the car's brand and model. If your car is not in the list we unfortunately do not have it in our systems, select the option  'Other' and manually enter the car's battery capacity and battery's maximum current.",
             'outlet': "The outlet in which your car is plugged in on the charging station. "
 
@@ -305,11 +308,8 @@ class DemoApp(MDApp):
             'timepicker': self.timepicker,
             'datepicker': self.datepicker
         }
-        #date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
-        #avfard = datetime.datetime.strptime(date_timestr, '%Y-%m-%d %H:%M:%S')
-        #print(avfard)
-        #C = (optireal.current(avfard,int(maxcurrenttf),int(batterytf),int(wantedtf),int(currenttf)))
-        #print(C)
+        global date_timestr
+        date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
     
     def ready_to_send(self):
         self.readytosend = True
@@ -348,6 +348,9 @@ class DemoApp(MDApp):
     def charge_or_dialog(self, root):
         if currenttf != "" and wantedtf != "" and batterytf != "" and maxcurrenttf != "" and self.timepicker != "Choose time" and self.datepicker != "Choose date":
             self.ready_to_send()
+            #download_thread = threading.Thread(target=self.return_values_to_backend(), name="Backend")
+            #download_thread.start()
+            self.return_values_to_backend()
             root.manager.current = 'goodbye'
            
         else:
@@ -389,14 +392,10 @@ class DemoApp(MDApp):
         self.readytosend = False
 
 
-
-    #@staticmethod
-   # def restart():
-     #   print(f'exec: {sys.executable} {["python"] + sys.argv}')
-     #   os.execvp(sys.executable, ['python'] + sys.argv)
-
-    #def on_stop(self):
-     #   print('Exiting App, press return to continue...')
+    #OBS hårdkodat in import backend för egen dator!!
+    def return_values_to_backend(self):
+        backendTest = backend.backend()
+        backendTest.chargingLoop( True, int(self.tfvalues['currenttf']), int(self.tfvalues['wantedtf']), int(self.tfvalues['batterytf']), int(self.tfvalues['maxcurrenttf']), date_timestr, int(self.tfvalues['outletcbx']), backendTest.transactionID0)
 
 if __name__ == '__main__':
     DemoApp().run()
