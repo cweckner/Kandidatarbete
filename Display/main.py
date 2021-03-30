@@ -23,6 +23,7 @@ import sys
 import os
 sys.path.insert(1, '/home/nora/School/Kandidatarbete/Microcontroller')
 import backend
+import commands
 import threading
 
 
@@ -149,6 +150,7 @@ class DemoApp(MDApp):
     tfvalues = {'timepicker': '20.00'}
     global brand
     global model
+    transactionID = "00000000-0000-0000-0000-000000000000"
     anim_or_not = 0
 
     global charger_taken; # set [True, True],[True, False], [False, True], [False, False] i konstruktorn
@@ -395,7 +397,8 @@ class DemoApp(MDApp):
     #OBS hårdkodat in import backend för egen dator!!
     def return_values_to_backend(self):
         backendTest = backend.backend()
-        backendTest.chargingLoop( True, int(self.tfvalues['currenttf']), int(self.tfvalues['wantedtf']), int(self.tfvalues['batterytf']), int(self.tfvalues['maxcurrenttf']), date_timestr, int(self.tfvalues['outletcbx']), backendTest.transactionID0)
+        transactionID = commands.incrementTransactionID(transactionID)
+        backendTest.chargingLoop( True, int(self.tfvalues['currenttf']), int(self.tfvalues['wantedtf']), int(self.tfvalues['batterytf']), int(self.tfvalues['maxcurrenttf']), date_timestr, int(self.tfvalues['outletcbx']), currentTransactionID)
 
 if __name__ == '__main__':
     DemoApp().run()
