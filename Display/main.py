@@ -398,7 +398,7 @@ class DemoApp(MDApp):
     def return_values_to_backend(self):
         backendTest = backend.backend()
         transactionID = commands.incrementTransactionID(transactionID)
-        backendTest.chargingLoop( True, int(self.tfvalues['currenttf']), int(self.tfvalues['wantedtf']), int(self.tfvalues['batterytf']), int(self.tfvalues['maxcurrenttf']), date_timestr, int(self.tfvalues['outletcbx']), currentTransactionID)
+        backendTest.chargingLoop( True, int(self.tfvalues['currenttf']), int(self.tfvalues['wantedtf']), int(self.tfvalues['batterytf']), int(self.tfvalues['maxcurrenttf']), date_timestr, int(self.tfvalues['outletcbx']), transactionID)
 
 if __name__ == '__main__':
     DemoApp().run()
