@@ -22,15 +22,14 @@ def get_solar_forecast(start_time):
 
 
   st = round_to_quarter(start_time)
+  #index = hour * 4 + minute / 5
+  index = int(int(st[0:2])*4 + int(st[3:5])/5) 
   response = requests.get(url, headers=headers, params=params)
 
   result = response.json()
   est_solar = {}
-  for x in range(len(result['valid_time'])):    #go through the results
-    if(result['valid_time'][x][11:16]== st):    #until we find the "now"-time
-      for i in range(96):                       #get all values for the next 24 hours
-        est_solar[result['valid_time'][x+i][11:16]] = round(result['forecast'][x+i],2)
-      break 
+  for i in range(96):                       #get all values for the next 24 hours
+    est_solar[result['valid_time'][index+i][11:16]] = round(result['forecast'][index+i],2)
 
   return est_solar
 
