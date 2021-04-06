@@ -64,14 +64,14 @@ def get_prices():
         16.36
     ]
     date = datetime.datetime(year, mon, day, hou)
-    for j in range(365 * 24 + 1):       #Hur långt fram vi kollar, just nu 2021-2022
+    for j in range(365 * 24 + 1):                      #Hur långt fram vi kollar, just nu 2021-2022
         #print (j)
-        if date.weekday() in [5,6]:                 #Skapar en dict för alla datum/timslag
-            tidspris[date] =  wkndprice[date.hour]      #Priser för helger
+        if date.weekday() in [5,6]:                    #Skapar en dict för alla datum/timslag
+            tidspris[date] = wkndprice[date.hour]      #Priser för helger
         else:
-            tidspris[date] =  hourprice[date.hour]      #Priser för vardagar
+            tidspris[date] = hourprice[date.hour]      #Priser för vardagar
         date = date + datetime.timedelta(hours=1)
-    return tidspris                                          #Värden kan dock uppdateras varje gång om man tänker forecast
+    return tidspris                                    #Värden kan dock uppdateras varje gång om man tänker forecast
 
 
 def param(time_now,end_time):
@@ -92,6 +92,6 @@ def param(time_now,end_time):
     return params
 
 #Testrader
-end_time = datetime.datetime(2021,3,27,8,0,0)
-param(datetime.datetime.now(),end_time)
-print(param(datetime.datetime.now(),end_time))
+#end_time = datetime.datetime(2021,3,30,18,0,0)
+#param(datetime.datetime.now(),end_time)
+#print(param(datetime.datetime.now(),end_time))
