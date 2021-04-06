@@ -16,13 +16,13 @@ def solarpower(intervall):
  #       j = j + 3
  #       i = i + 1
 
-    return solamp
+  #  return solamp
 def current(end_time,current_limit,capacity,battery_goal,battery_current):
     V=400                                               #Fast värde från laddstolpen
     kwh = (battery_goal-battery_current)*capacity/100   #Omvandling till kWh från batteriparametrar
     if kwh < 0:
         kwh = 0                                     #Buggkoll
-    time_now = datetime.datetime.now()              #Tiden just nu
+    time_now = datetime.datetime.now()             #Tiden just nu
     priser = parameters.param(time_now,end_time)    #Anropa parametrar för att få pristabell
     kvot = V*5/60000                                #Fast värde, kwh/5 minuter= Kvot*I(Ampere)
     chargetime = end_time - time_now                #Laddningstid exakt

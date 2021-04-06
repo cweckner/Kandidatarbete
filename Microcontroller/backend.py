@@ -21,7 +21,6 @@ class backend:
             #initial variables
             tagID = self.tagID
             token = commands.createToken()
-            currentTransactionID = commands.incrementTransactionID(transactionID)
             numberOfUpdates = commands.calculateNumberOfUpdates(departureTime)
             otherOutlet = 3
 
@@ -52,7 +51,7 @@ class backend:
             optTime = datetime.datetime(*timeTupleFull[0:4])
 
             #starting the charger
-            commands.startCharger(token, currentTransactionID, tagID)
+            commands.startCharger(token, transactionID, tagID)
             tagID = commands.getTagID(transactionID)
 
             #the charging loop
@@ -106,8 +105,8 @@ class backend:
             otherOutletStatus = commands.connectorStatus(token, otherOutlet)
             commands.consumedEnergy(token, tagID, startDate, endDate)
             if(otherOutlet == "AVAILABLE"):
-                commands.stopCharger(token, currentTransactionID)
+                commands.stopCharger(token, transactionID)
 
 
-backendTest = backend()
-backendTest.chargingLoop( True, 20, 26, 100, 16, "2021-03-25 20:00:00", 1, backendTest.transactionID0)
+#backendTest = backend()
+#backendTest.chargingLoop( True, 20, 26, 100, 16, "2021-03-29 20:00:00", 1, backendTest.transactionID0)
