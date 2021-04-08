@@ -221,3 +221,4 @@ def calculateNumberOfUpdates(endTime):
     numberOfUpdates = (chargetimeInSeconds - (chargetimeInSeconds % 5))/5
     print(numberOfUpdates)
     return numberOfUpdates
+
