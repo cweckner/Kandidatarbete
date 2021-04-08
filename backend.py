@@ -65,21 +65,23 @@ class backend:
                 outletStatus = commands.connectorStatus(token, outlet)
                 
                 #update currentTime to the time right now, FINAL PRODUCT
-                #currentTime = datetime.datetime.now()
+                currentTime = datetime.datetime.now()
 
                 #add 5 minutes to wait before updating the charging current, FINAL PRODUCT
                 #nextTime = currentTime + datetime.timedelta(minutes = 5)
 
                 #update what time it is, TESTING
-                currentTime += datetime.timedelta(minutes = 5)
+                #currentTime += datetime.timedelta(minutes = 5)
 
                 #TESTING
-                nextTime = currentTime
+                #nextTime = currentTime
 
                 comparingTimeNow = datetime.datetime.timestamp(currentTime)
 
                 #Switch the if cases depending on if you are testing or not
                 #if(outletStatus != "AVAILABLE" and currentTime >= nextTime):
+                print(currentTime)
+                print(nextTime)
                 if(currentTime >= nextTime):
                     #receiving the optimised charging current from the optimisation model
                     chargingCurrent = optireal.current(optTime, int(carMaxCurrentInput), int(carBatteryCapacity), int(carWantedCharge), int(carChargeLevelNow+0.5))
@@ -95,7 +97,7 @@ class backend:
                     currentStatus = (voltage*5/60000)*chargingCurrent[0]
                     carChargeLevelNow += currentStatus/kwhAsPercent
                     print(str(int(carChargeLevelNow+0.5)) + "%")
-
+                    nextTime = currentTime + datetime.timedelta(minutes = 5)
                     numberOfUpdates -= 1
                     
             #All iterations done, or the car is not connected and the other outlet is not in use -> stop the charger
