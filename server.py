@@ -35,10 +35,10 @@ def home():
 #For the microcontroller to send a GET request to the specified URL and receive the RFID tag information
 @app.route('/log/chargestorm/notify', methods=['GET']) 
 def get_notify():
-    msg = flask.request.get_json()
-    transactionIDmsg = msg["transactionID"]
-    rfid = coll.find_one({"_id":transactionIDmsg})
-    return(flask.jsonify(rfid))
+    #msg = flask.request.get_json()
+    #transactionIDmsg = msg["transactionID"]
+    #rfid = coll.find_one({"_id":transactionIDmsg})
+    #return(flask.jsonify(rfid))
 
 #Endpoint for chargestorm to send the notifyStart and notifyStop requests
 @app.route('/log/chargestorm/notify', methods=['POST'])
@@ -47,6 +47,7 @@ def post_notify():
     msg = flask.request.get_json()
     #msgType gets set to either transactionStart or transactionStop depending on which one chargestorm sent
     msgType = msg["messageType"]
+    '''
     #the RFID tag ID is set depending on what chargestorm sent
     rfid = msg["tagID"]
     #the transactionID is used as an identifier for indexing in the database
@@ -60,11 +61,12 @@ def post_notify():
             "rfid": rfid
         }
     }
+    '''
     if(msgType == "transactionStart"):
         print("Respond to start")
         #if an entry with the same transactionID is already stored in the database, then update that entry
         #else create a new entry in the database with that transactionID
-        coll.update_one(key, data, upsert = True)
+        #coll.update_one(key, data, upsert = True)
         return flask.jsonify({"accepted":True,"errorCode":"NO_Error"}),200
     elif(msgType == "transactionStop"):
         print("Respond to stop")
