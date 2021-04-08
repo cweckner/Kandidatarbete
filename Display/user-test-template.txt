@@ -1,23 +1,58 @@
 
+//Try to say the same thing for every user. Videotape/write down observations during the observation and answers from the interview. Put answers in excel-document.
+
+
+
 1. Welcome user
 2. Reassure/sign written compliance form
 3. Explain a little about the project
     - The object is to test our user interface for our smart charging station.
     - The charging station is running an algorithm that computes when to charge to lower the cost and minimise load on the electric network at peak load times. 
     - The values you put in will be put into our algorithm.
-4. Hand over required RFID-tag
+    - We will take time when you complete a few tasks and afterwards we will have a small interview.
+
 
 OBSERVATION------------------------
 
     Task 1.
-        You want to charge your car (Tesla Model S) with the charging station. Plug in the charger and use the touch interface to start charging the car. 
+        You want to charge your car (Tesla Model S) with the charging station. Plug in the charger and use the touch interface to start charging the car.
+            Parameters to put in:
+                -Current charge: 88%
+                -Wanted charge: 100%
+                -Departure Date & Time: Today at 20.00
+                -Car: Tesla Model S
+                -Outlet: 1      
 
 -- reset
 
     Task 2. 
-        You want to charge your car, but your car model is not in the list. Can 
+        You want to charge your car, but your car model is not in the list of cars. Use the touch interface to start charging the car.
+            Parameters to put in:
+                -Current charge: 88%
+                -Wanted charge: 100%
+                -Departure Date & Time: Today at 20.00
+                -Battery capacity: 100
+                -Maximum current: 16
+                -Outlet: 1
+
+-- reset
+
+    Task 3. 
+        You want to charge your car and no paramets are given. Use the touch interface and external tools to start charging the car. You can choose how much charge percentage you want at departure and time of the departure yourself.
+
+-- reset
+
+    Task 4. 
+        You want to charge your car, your car model is not in the list of cars and no paramets are given. Use the touch interface and external tools to start charging the car. You can choose how much charge procentage you want at departure and time of the departure yourself.
 
 INTERVIEW---------------------------
+
+    1. What were your first impression of the application?
+    2. Can you name something you liked about the application?
+    3. Can you name something you disliked about the application?
+    4. Were anything confusing in the application? If yes, what?
+    5. Do you have any suggestions for improvement in the development of the application?
+    6. Comments?
 
 
 
