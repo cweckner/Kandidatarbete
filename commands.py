@@ -148,6 +148,7 @@ def requestRFIDtagID(token,tagID):
     #print(response.text)
 
 #GET request to the server to retreive the current RFID tagID in use this charging session
+'''
 def getTagID(transactionID):
     url = databaseTag
     payload = json.dumps({
@@ -161,7 +162,7 @@ def getTagID(transactionID):
     tagID = responseJSON["rfid"]
     #print(tagID)
     return tagID
-
+'''
 
 #Increment transaction ID
 #Transaction ID has format (8-4-4-4-12)
