@@ -1,0 +1,2 @@
+>hela keyboard-mappen ska placeras i kivy_venv/lib/python3.8/site-packages/kivy/data/
+>byt ut /kivy_venv/lib/python3.8/site-packages/kivy/uix/vkeyboard.py mot vkeyboard som finns i keyboard-mappen. En oändrad finns i oldvkeyboard.py

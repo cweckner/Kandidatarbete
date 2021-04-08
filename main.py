@@ -1,6 +1,6 @@
 import csv
 from kivymd.app import MDApp
-from Kandidatarbete.Resources.screen_nav import sc_helper
+from Resources.screen_nav import sc_helper
 from datetime import date
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
@@ -21,15 +21,14 @@ from time import sleep
 import datetime
 import sys
 import os
-sys.path.insert(1, '/home/nora/School/Kandidatarbete/Microcontroller')
-#import backend
-#import commands
-#import threading
+import backend
+import commands
+import threading
 
 
 #from Microcontroller import optireal
 Window.size = (480, 800) #WxH
-Config.set('kivy', 'keyboard_layout', 'numeric.json')
+Config.set('kivy', 'keyboard_layout', 'Resources/numeric.json')
 print(Config.get('kivy', 'keyboard_layout'))
 Config.set("kivy", "keyboard_mode", 'dock')
 
@@ -170,7 +169,7 @@ class DemoApp(MDApp):
         
 
     def CARSPEC(self,b,m):
-        with open(r'Bilkap.csv','r') as infile:
+        with open(r'Resources/Bilkap.csv','r') as infile:
             reader = csv.reader(infile, delimiter=",")
             for row in reader:
                 if b == row[0]:
@@ -397,8 +396,9 @@ class DemoApp(MDApp):
     #OBS hårdkodat in import backend för egen dator!!
     def return_values_to_backend(self):
         backendTest = backend.backend()
-        transactionID = commands.incrementTransactionID(transactionID)
-        backendTest.chargingLoop( True, int(self.tfvalues['currenttf']), int(self.tfvalues['wantedtf']), int(self.tfvalues['batterytf']), int(self.tfvalues['maxcurrenttf']), date_timestr, int(self.tfvalues['outletcbx']), transactionID)
+        print(self.transactionID)
+        self.transactionID = commands.incrementTransactionID(self.transactionID)
+        backendTest.chargingLoop( True, int(self.tfvalues['currenttf']), int(self.tfvalues['wantedtf']), float(self.tfvalues['batterytf']), float(self.tfvalues['maxcurrenttf']), date_timestr, int(self.tfvalues['outletcbx']), self.transactionID)
 
 if __name__ == '__main__':
     DemoApp().run()

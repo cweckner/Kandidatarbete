@@ -1,2 +1,0 @@
-# Kandidatarbete
-Kandidatarbete
