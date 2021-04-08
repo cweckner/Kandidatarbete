@@ -35,6 +35,7 @@ def home():
 #For the microcontroller to send a GET request to the specified URL and receive the RFID tag information
 @app.route('/log/chargestorm/notify', methods=['GET']) 
 def get_notify():
+    return("Hello")
     #msg = flask.request.get_json()
     #transactionIDmsg = msg["transactionID"]
     #rfid = coll.find_one({"_id":transactionIDmsg})
