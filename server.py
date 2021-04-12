@@ -46,6 +46,7 @@ def get_notify():
 def post_notify():
     #The json message sent by chargestorm
     msg = flask.request.get_json()
+    print(msg)
     #msgType gets set to either transactionStart or transactionStop depending on which one chargestorm sent
     msgType = msg["messageType"]
     '''
@@ -65,7 +66,6 @@ def post_notify():
     '''
     if(msgType == "transactionStart"):
         print("Respond to start")
-        print(msg)
         #if an entry with the same transactionID is already stored in the database, then update that entry
         #else create a new entry in the database with that transactionID
         #coll.update_one(key, data, upsert = True)
