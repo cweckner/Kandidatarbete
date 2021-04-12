@@ -65,6 +65,7 @@ def post_notify():
     '''
     if(msgType == "transactionStart"):
         print("Respond to start")
+        print(msg.text)
         #if an entry with the same transactionID is already stored in the database, then update that entry
         #else create a new entry in the database with that transactionID
         #coll.update_one(key, data, upsert = True)
