@@ -3,7 +3,7 @@ import datetime
 import matplotlib.pyplot as plt
 import parameters
 
-def solarpower(intervall):
+#def solarpower(intervall):
     #TODO: Returnera en array med storlek inter och Ampere värden som solpanelerna kan ge ut
     #Läs av från tiden nu och scanna framåt med 5 minuter varje gång, solen ges i kvartar så avrunda t närmsta kvart
     #Rebase ger en array med tider och en med KW,  KW = 400 * I, fråga Ali / David om detta
