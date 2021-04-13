@@ -846,8 +846,8 @@ ScreenManager:
         pos_hint: {"center_x": 0.9, "center_y": 0.1}
         on_release: 
             app.save_outletcbx()
-            app.print_tfvalues()
-            app.return_tfvalues()
+            app.save_tfvalues_in_dictionary()
+            app.show_on_summaryscreen()
             root.manager.transition.direction = 'left'
             root.manager.current = 'summary'
     MDFlatButton:
