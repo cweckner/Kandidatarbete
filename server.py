@@ -46,6 +46,7 @@ def get_notify():
 def post_notify():
     #The json message sent by chargestorm
     msg = flask.request.get_json()
+    print(msg)
     #msgType gets set to either transactionStart or transactionStop depending on which one chargestorm sent
     msgType = msg["messageType"]
     '''
