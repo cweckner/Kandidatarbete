@@ -7,7 +7,7 @@ from sklearn import linear_model
 from sklearn.utils import shuffle
 
 data = pd.read_csv("new_load_data.csv", sep=",")
-data = data[["Data","Time","Load"]]
+data = data[["Date","Time","Load"]]
 
 predict = "Load"
 
