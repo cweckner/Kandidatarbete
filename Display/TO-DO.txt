@@ -2,10 +2,9 @@
 
 TO-DO GUI:
 
-- Sätt endast godtagbar inputs på batterycap och maxcurrent
-- Reagera när RFID-tag scannas
-- Konstruera ett användartest, observation och/eller intervju
-- Other alternativ på Car Model sidorna
+-Threada backend/frontend
+-Ändra förstsidan till lösen ist för RFID-tag
+-Ha ett alternativ på startsidan Ha ett val där man skippar optimeringsalgoritmen och laddar bilen direkt.
 
 -om man känner sig manad, fixa koden så att spara inputs (save_currenttf, save_wantedtf...) är i en funktion ist för varsin. Samt annan kod som är hårdkodad.
 

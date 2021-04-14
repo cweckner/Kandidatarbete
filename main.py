@@ -1,6 +1,6 @@
 import csv
 from kivymd.app import MDApp
-from Resources.screen_nav import sc_helper
+from screen_nav import sc_helper
 from datetime import date
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.label import Label
@@ -32,6 +32,7 @@ Config.set('kivy', 'keyboard_layout', 'Resources/numeric.json')
 print(Config.get('kivy', 'keyboard_layout'))
 Config.set("kivy", "keyboard_mode", 'dock')
 
+#Class definitions for each Screen
 class WelcomeScreen(Screen):
     pass
        
@@ -51,14 +52,11 @@ class CarBrandScreen(Screen):
     def callbackcarbrand(self):
         self.parent.transition.direction = 'right'
         self.parent.current = 'timedate'
-        
-
+    
 class AudiModelsScreen(Screen):
     def callbackcarmodel(self):
         self.parent.transition.direction = 'right'
         self.parent.current = 'carbrand'
-
-    
 
 class BmwModelsScreen(Screen):
     def callbackcarmodel(self):
@@ -113,7 +111,7 @@ class GoodbyeScreen(Screen):
     pass
 
 
-
+#Screen manager and the addition of all screens to that manager
 screen_manager = ScreenManager()
 screen_manager.add_widget(WelcomeScreen(name = 'welcome'))
 screen_manager.add_widget(InputScreen(name = 'inputs'))
@@ -137,37 +135,30 @@ screen_manager.add_widget(GoodbyeScreen(name = 'goodbye'))
 
 
 
-
-class DemoApp(MDApp):
+class Main(MDApp):
+    #Definitions of variables
     showondatepicker="Choose date"
     showontimepicker= "Choose time"
     datepicker = ""
     timepicker = ""
     readytosend= False
     previousscreen= ""
-    global dialog
     tfvalues = {'timepicker': '20.00'}
-    global brand
-    global model
     transactionID = "00000000-0000-0000-0000-000000000000"
     anim_or_not = 0
-
+    global dialog
+    global brand
+    global model
     global charger_taken; # set [True, True],[True, False], [False, True], [False, False] i konstruktorn
     #konstruktor
     
-
-#    def __init__(self, one, two):
-#        charger_taken = [one, two]
-
-
+    #Builds frontend with sc_helper from KV-file screen_nav.py
     def build(self):
-        print("main")
         self.theme_cls.primary_palette = "Green"
         self.screen = Builder.load_string(sc_helper) 
         return self.screen
-        
-        
-
+         
+    #Gets batterycapacity and maxcurrent for a carbrand from CSV-file
     def CARSPEC(self,b,m):
         with open(r'Resources/Bilkap.csv','r') as infile:
             reader = csv.reader(infile, delimiter=",")
@@ -178,11 +169,12 @@ class DemoApp(MDApp):
                         batterytf = row[2]
                         global maxcurrenttf 
                         maxcurrenttf = row[3]
-                        print(batterytf)
-                        print(maxcurrenttf)
                         self.brand = b
                         self.model = m
 
+    def reset_brand_model(self):
+        self.brand = ''
+        self.model = ''
     
     def animate_the_label(self, widget, time):
         print(self.anim_or_not)
@@ -199,15 +191,16 @@ class DemoApp(MDApp):
         anim.cancel(widget)
     
     def callback_animation(self, *args):
-        print("I'm done!")
+        pass
   
-    
+    #For orientation in program
     def set_previous_screen(self, widget):
         self.previousscreen = widget
 
     def get_previous_screen(self):
         return self.previousscreen
 
+    #Shows info about the current screen in a dialog box when the info button is clicked
     def show_info(self, widget):
         self.dialog = MDDialog(
         title=self.info_title(widget),
@@ -243,21 +236,12 @@ class DemoApp(MDApp):
     def close_dialog(self, widget):
         self.dialog.dismiss(force=True)
 
+    #Shows time/datepickers and updates what the users see when a new time/date is chosen
     def show_time_picker(self):
         time_dialog = MDTimePicker()
-        time_dialog.bind(time=self.get_time)
+        time_dialog.bind(time=self.update_time)
         time_dialog.open()
 
-    def get_time(self, instance, time):
-        self.timepicker = str(time)
-        self.showontimepicker = self.timepicker[:5]
-        self.root.ids.timebutton.text = self.showontimepicker
-
-    def on_save(self, instance, value, date_range):
-        self.datepicker = str(value)
-        self.showondatepicker = str(value)
-        self.root.ids.datebutton.text = self.showondatepicker
-        
     def show_date_picker(self):
         today = date.today()
         end_date = today + datetime.timedelta(days=7)        
@@ -267,29 +251,35 @@ class DemoApp(MDApp):
             primary_color=get_color_from_hex("#70C170"), 
             text_toolbar_color=get_color_from_hex("#244511"), 
             selector_color=get_color_from_hex("#70C170"))
-        
-        date_dialog.bind(on_save=self.on_save)
+        date_dialog.bind(on_save=self.update_date)
         date_dialog.open()
 
+    def update_time(self, instance, time):
+        self.timepicker = str(time)
+        self.showontimepicker = self.timepicker[:5]
+        self.root.ids.timebutton.text = self.showontimepicker
+
+    def update_date(self, instance, value, date_range):
+        self.datepicker = str(value)
+        self.showondatepicker = str(value)
+        self.root.ids.datebutton.text = self.showondatepicker
+
+    #Saves inputs from user
     def save_currenttf(self):
         global currenttf
         currenttf = self.root.ids.currentchargetf.text
-        print(currenttf)
 
     def save_wantedtf(self):
         global wantedtf 
         wantedtf = self.root.ids.wantedchargetf.text
-        print(wantedtf)
 
     def save_batterytf(self):
         global batterytf
         batterytf = self.root.ids.batterycapacitytf.text
-        print(batterytf)
 
     def save_maxcurrenttf(self):
         global maxcurrenttf 
         maxcurrenttf = self.root.ids.maxcurrenttf.text
-        print(maxcurrenttf)
 
     def save_outletcbx(self):
         global outletcbx 
@@ -297,9 +287,8 @@ class DemoApp(MDApp):
             outletcbx = '1'
         else:
             outletcbx = '2'
-        print(outletcbx)
 
-    def print_tfvalues(self):
+    def save_tfvalues_in_dictionary(self):
         self.tfvalues = {
             'currenttf': currenttf,
             'wantedtf': wantedtf,
@@ -312,11 +301,11 @@ class DemoApp(MDApp):
         global date_timestr
         date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
     
+    #Behövs denna nu?
     def ready_to_send(self):
         self.readytosend = True
-        print(self.tfvalues)
 
-    def return_tfvalues(self):
+    def show_on_summaryscreen(self):
         if self.datepicker == "" or self.timepicker == "":
             at = ""
         else:
@@ -337,23 +326,19 @@ class DemoApp(MDApp):
 
             self.root.ids.brandorbatteryvaluesummary.text = self.tfvalues['batterytf']
             self.root.ids.modelormaxcurrentvaluesummary.text = self.tfvalues['maxcurrenttf']
-
-    def reset_brand_model(self):
-        self.brand = ''
-        self.model = ''
     
     def disable_charger(self, charger):
         charger_taken = [False, False]
         return charger_taken[charger-1]
     
+    #If all inputs are set -> charge car, else -> warning dialog box
     def charge_or_dialog(self, root):
         if currenttf != "" and wantedtf != "" and batterytf != "" and maxcurrenttf != "" and self.timepicker != "Choose time" and self.datepicker != "Choose date":
             self.ready_to_send()
             #download_thread = threading.Thread(target=self.return_values_to_backend(), name="Backend")
             #download_thread.start()
-            self.return_values_to_backend()
+            self.make_backend_object()
             root.manager.current = 'goodbye'
-           
         else:
             self.dialog = MDDialog(
             title= "Oops..!",
@@ -364,6 +349,11 @@ class DemoApp(MDApp):
             )])
             self.dialog.open()
 
+    def make_backend_object(self):
+        backendTest = backend.backend()
+        print(self.transactionID)
+        self.transactionID = commands.incrementTransactionID(self.transactionID)
+        backendTest.chargingLoop( True, int(self.tfvalues['currenttf']), int(self.tfvalues['wantedtf']), float(self.tfvalues['batterytf']), float(self.tfvalues['maxcurrenttf']), date_timestr, int(self.tfvalues['outletcbx']), self.transactionID)
 
     def set_focus(self, textfield):
         if (textfield == 'currentcharge'):
@@ -392,16 +382,8 @@ class DemoApp(MDApp):
         self.root.ids.datebutton.text = "Choose date"
         self.readytosend = False
 
-
-    #OBS hårdkodat in import backend för egen dator!!
-    def return_values_to_backend(self):
-        backendTest = backend.backend()
-        print(self.transactionID)
-        self.transactionID = commands.incrementTransactionID(self.transactionID)
-        backendTest.chargingLoop( True, int(self.tfvalues['currenttf']), int(self.tfvalues['wantedtf']), float(self.tfvalues['batterytf']), float(self.tfvalues['maxcurrenttf']), date_timestr, int(self.tfvalues['outletcbx']), self.transactionID)
-
 if __name__ == '__main__':
-    DemoApp().run()
+    Main().run()
 
 
 
