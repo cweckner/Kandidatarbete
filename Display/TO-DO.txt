@@ -3,8 +3,7 @@
 TO-DO GUI:
 
 -Threada backend/frontend
--Ändra förstsidan till lösen ist för RFID-tag
--Ha ett alternativ på startsidan Ha ett val där man skippar optimeringsalgoritmen och laddar bilen direkt.
+-Koppla "charge directly" knappen på framsidan till att ladda direkt
 
 -om man känner sig manad, fixa koden så att spara inputs (save_currenttf, save_wantedtf...) är i en funktion ist för varsin. Samt annan kod som är hårdkodad.
 
