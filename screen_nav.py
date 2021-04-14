@@ -8,6 +8,19 @@ sc_helper = """
 
 ScreenManager:
     WelcomeScreen:
+        NumInput:
+            id: passwordtf
+            min_value : 0
+            max_value : 100            
+            hint_text: "Password"
+            helper_text_mode: "on_focus"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_x: None
+            width: 300
+            on_text_validate: 
+                app.save_currenttf() 
+                root.transition.direction = 'left'
+                root.current = 'wantedcharge'  
     InputScreen:
     CurrentChargeScreen:
         id: currentchargescreen
@@ -231,26 +244,31 @@ ScreenManager:
 
 <WelcomeScreen>:
     name: 'welcome'
-    on_parent:
-        app.animate_the_label(wifiicon, 1)
 
-    MDLabel:
-        id: welcomelabel
-        text: 'Welcome, please scan your RFID-tag'
-        halign: 'center'
-
-    MDIcon:
-        id: wifiicon
-        icon: "wifi"
-        pos_hint: {'center_x': 0.98, 'center_y': 0.4}
-        color: app.theme_cls.primary_color
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: "10dp"
+        padding: 0, '50dp', 0, '300dp'
+        MDLabel:
+            text: 'Welcome, please enter the password'
+            halign: 'center'
 
     MDRectangleFlatButton:
-        text: 'Go directly to inputs (For test purposes only)'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+        text: 'Charge with optimisation model'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.35}
         on_release:
+            app.check_password()
             root.manager.transition.direction = 'left'
-            root.manager.current = 'currentcharge'              
+            root.manager.current = 'currentcharge'
+
+    MDFlatButton:
+        text: 'Charge without optimaisation model'
+        theme_text_color: "Hint"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+        on_release:
+            app.check_password()
+            root.manager.transition.direction = 'left'
+            root.manager.current = 'goodbye'              
 
 
 <CurrentChargeScreen>:

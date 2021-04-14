@@ -192,6 +192,14 @@ class Main(MDApp):
     
     def callback_animation(self, *args):
         pass
+
+    def check_password(self):
+        global passwordtf
+        passwordtf = self.root.ids.passwordtf.text
+        if passwordtf == chargemyfuckingcar
+            Kör
+        else
+            inte
   
     #For orientation in program
     def set_previous_screen(self, widget):
