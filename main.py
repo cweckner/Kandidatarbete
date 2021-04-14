@@ -192,6 +192,14 @@ class Main(MDApp):
     
     def callback_animation(self, *args):
         pass
+
+    def check_password(self):
+        global passwordtf
+        passwordtf = self.root.ids.passwordtf.text
+        if passwordtf == chargemyfuckingcar
+            Kör
+        else
+            inte
   
     #For orientation in program
     def set_previous_screen(self, widget):
@@ -224,7 +232,7 @@ class Main(MDApp):
     
     def info_text(self, widget):
         return {
-            'currentcharge': "Current charge level of your car's battery. Huur vet man?",
+            'currentcharge': "Current charge level of your car's battery. This value is shown either inside the car on the panel or in the car's app.",
             'wantedcharge': "Desired charge level of your car's battery at the time of your next departure",
             'batterycapacity': "Your car model is not in our systems, please enter your car's battery capacity and maximum current manually. If you don't know these specifications, check the car brand's website or contact your car provider directly.",
             'timedate': "Date and time of the next departure of your car. The date and time are approximate values, but try to be specific to get the best results. If the car is used before the time chosen here there is a risk of it not being charged fully to the desired charge level.\n\nThere is a limit of 1 week ahead of today's date because the algorithm won't gain anything past that. ",
