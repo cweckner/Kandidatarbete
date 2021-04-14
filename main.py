@@ -193,13 +193,25 @@ class Main(MDApp):
     def callback_animation(self, *args):
         pass
 
-    def check_password(self):
+    def check_password(self, widget, root):
         global passwordtf
         passwordtf = self.root.ids.passwordtf.text
-        if passwordtf == chargemyfuckingcar
-            Kör
-        else
-            inte
+        if passwordtf == "1":
+            root.manager.transition.direction = 'left' 
+            if widget == "charge_with_optimisation":
+                root.manager.current = "currentcharge"
+            elif widget == "charge_without_optimisation":
+                root.manager.current = "goodbye"
+        else:
+            self.dialog = MDDialog(
+            title= "Oops..!",
+            text="Sorry, that's not the right password.",
+            buttons=[
+                MDFlatButton(
+                text="OK", text_color=self.theme_cls.primary_color, on_release=self.close_dialog
+            )])
+            self.dialog.open()
+            
   
     #For orientation in program
     def set_previous_screen(self, widget):
@@ -388,6 +400,8 @@ class Main(MDApp):
         self.root.ids.timebutton.text = "Choose time"
         self.datepicker = ""
         self.root.ids.datebutton.text = "Choose date"
+        passwordtf = ""
+        self.root.ids.passwordtf.text = ""
         self.readytosend = False
 
 if __name__ == '__main__':

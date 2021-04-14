@@ -257,18 +257,14 @@ ScreenManager:
         text: 'Charge with optimisation model'
         pos_hint: {'center_x': 0.5, 'center_y': 0.35}
         on_release:
-            app.check_password()
-            root.manager.transition.direction = 'left'
-            root.manager.current = 'currentcharge'
+            app.check_password("charge_with_optimisation", root)
 
     MDFlatButton:
         text: 'Charge without optimaisation model'
         theme_text_color: "Hint"
         pos_hint: {'center_x': 0.5, 'center_y': 0.25}
         on_release:
-            app.check_password()
-            root.manager.transition.direction = 'left'
-            root.manager.current = 'goodbye'              
+            app.check_password("charge_without_optimisation", root)             
 
 
 <CurrentChargeScreen>:
