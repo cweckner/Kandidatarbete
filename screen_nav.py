@@ -8,10 +8,8 @@ sc_helper = """
 
 ScreenManager:
     WelcomeScreen:
-        NumInput:
-            id: passwordtf
-            min_value : 0
-            max_value : 100            
+        MDTextField:
+            id: passwordtf          
             hint_text: "Password"
             helper_text_mode: "on_focus"
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
@@ -255,14 +253,14 @@ ScreenManager:
 
     MDRectangleFlatButton:
         text: 'Charge with optimisation model'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+        pos_hint: {'center_x': 0.5, 'center_y': 0.32}
         on_release:
             app.check_password("charge_with_optimisation", root)
 
     MDFlatButton:
-        text: 'Charge without optimaisation model'
+        text: 'Charge directly'
         theme_text_color: "Hint"
-        pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+        pos_hint: {'center_x': 0.5, 'center_y': 0.24}
         on_release:
             app.check_password("charge_without_optimisation", root)             
 
