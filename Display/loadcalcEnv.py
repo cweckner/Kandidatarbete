@@ -14,17 +14,21 @@ predict = "Load"
 X = np.array(data.drop([predict], 1))
 y = np.array(data[predict])
 
-Best = 0
-for _ in range(150):
-    x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.7)
+best = 0
+for _ in range(30):
+    x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.5)
 
     linear = linear_model.LinearRegression()
-    linear.fit(x_train, y_train)
-    accuracy = linear.score(x_test, y_test)
-    print(accuracy)
 
-    if Best > accuracy:
-        Best = accuracy
+    linear.fit(x_train, y_train)
+    acc = linear.score(x_test, y_test)
+    print("Accuracy: \n", acc)
+    if acc > best:
+        best = acc
+   # print('Coefficient: \n', linear.coef_)
+  #  prediction = linear.predict(x_test)
+   # for x in range(len(prediction)):
+    #    print(prediction[x],x_test[x],y_test[x])
 
 #Solar test från williams data
 '''
