@@ -74,7 +74,7 @@ def post_notify():
         print("Respond to stop")
         return flask.jsonify({"accepted":True,"errorCode":"NO_ERROR"}),200
     else:
-        return flask.jsonify({"accepted":False, "error_code":"Wrong_MessageType"}),400
+        return flask.jsonify({"accepted":False, "errorCode":"Wrong_MessageType"}),400
     return 
 
 if __name__ == '__main__':
