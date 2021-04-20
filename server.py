@@ -1,13 +1,13 @@
 import flask
-import pymongo
+#import pymongo
 
 # This flask REST-api serves the purpose of answering the notify start and notify stop
 # requests sent by Chargestorm to confirm starting and stopping the charging
 # the transactionID and the tagID are stored on a database
 # to enable the microcontroller to receive the tagID to use
-client = pymongo.MongoClient("mongodb+srv://samjons:q7Jn863R2TWvj9K2@kandidat.gcnnv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-db = client.information
-coll = db.chargestorm
+#client = pymongo.MongoClient("mongodb+srv://samjons:q7Jn863R2TWvj9K2@kandidat.gcnnv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+#db = client.information
+#coll = db.chargestorm
 app = flask.Flask(__name__)
 
 notifications = [
@@ -69,10 +69,10 @@ def post_notify():
         #if an entry with the same transactionID is already stored in the database, then update that entry
         #else create a new entry in the database with that transactionID
         #coll.update_one(key, data, upsert = True)
-        return flask.jsonify({"accepted":True,"errorCode":"NO_Error"}),200
+        return flask.jsonify({"accepted":True,"errorCode":"NO_ERROR"}),200
     elif(msgType == "transactionStop"):
         print("Respond to stop")
-        return flask.jsonify({"accepted":True,"errorCode":"NO_Error"}),200
+        return flask.jsonify({"accepted":True,"errorCode":"NO_ERROR"}),200
     else:
         return flask.jsonify({"accepted":False, "error_code":"Wrong_MessageType"}),400
     return 
