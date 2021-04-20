@@ -46,4 +46,4 @@ def round_to_quarter(start_time):
   if(minute < 60):
     return start_time[0:3] + '45'       
 
-#print(get_solar_forecast("17:00"))
+# print(get_solar_forecast("17:00"))
