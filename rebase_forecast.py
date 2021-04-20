@@ -31,8 +31,7 @@ def get_solar_forecast(start_time):
   solar_forecast = []
   for i in range(96):                       #get all values for the next 24 hours
     est_solar[result['valid_time'][index+i][11:16]] = round(result['forecast'][index+i],2)
-    solar_forecast.append(round(result['forecast'][index+i],2))
-
+    solar_forecast.append(round((result['forecast'][index+i]/0.4),2))
   return solar_forecast
 
 
@@ -46,3 +45,5 @@ def round_to_quarter(start_time):
     return start_time[0:3] + '30' 
   if(minute < 60):
     return start_time[0:3] + '45'       
+
+#print(get_solar_forecast("17:00"))
