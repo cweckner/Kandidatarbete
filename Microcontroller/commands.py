@@ -2,6 +2,7 @@ import json
 import datetime
 import pytz
 import requests
+import time
 
 APIServer = 'https://test4.oamportal.com' 
 databaseTag = "https://kandidat.ojensa.se/log/chargestorm/notify"
@@ -38,8 +39,8 @@ def startCharger(token,transactionId,tagID):
     url = APIServer + "/ServicesApi/rest/charger/uuid/start"
     data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
     response = requests.post(url, headers=headers, data=data)
-    #print(data)
-    #print(response)
+    print(data)
+    print(response)
     
 
 #Notify Start (request sent by charger)
@@ -116,9 +117,9 @@ def connectorStatus(token, outletID):
     response = requests.get(url, headers=headers)
     responseJSON = json.loads(response.text)
     status = responseJSON["status"]
-    #print(response)
-    #print(response.text)
-    #print(status)
+    print(response)
+    print(response.text)
+    print(status)
     return(status)
 
 
@@ -222,3 +223,24 @@ def calculateNumberOfUpdates(endTime):
     print(numberOfUpdates)
     return numberOfUpdates
 
+
+def notifyStart():
+    url = APIServer + "/ServiceApi/rest/charger/uuid/start"
+    print("notifyStart")
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
+    data = '{"accepted" : true,"errorCode" : "NO_ERROR"}'
+    response = requests.post('https://test4.oamportal.com/ServicesApi/rest/charger/uuid/start', headers=headers, data=data)
+    #print(data)
+    print(response)
+    
+    
+token = createToken()
+connectorStatus(token, 1)
+startCharger(token, str("00000000-0000-0000-0000-000000000000"), str("999"))
+time.sleep(10)
+notifyStart()
+time.sleep(10)
+changeActiveCurrent(token, "1", "0")
