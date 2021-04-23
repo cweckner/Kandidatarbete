@@ -35,9 +35,6 @@ Config.set("kivy", "keyboard_mode", 'dock')
 #Class definitions for each Screen
 class WelcomeScreen(Screen):
     pass
-       
-class InputScreen(Screen):
-    pass
 
 class CurrentChargeScreen(Screen):
     pass
@@ -114,7 +111,6 @@ class GoodbyeScreen(Screen):
 #Screen manager and the addition of all screens to that manager
 screen_manager = ScreenManager()
 screen_manager.add_widget(WelcomeScreen(name = 'welcome'))
-screen_manager.add_widget(InputScreen(name = 'inputs'))
 screen_manager.add_widget(CurrentChargeScreen(name = 'currentcharge'))
 screen_manager.add_widget(WantedChargeScreen(name = 'wantedcharge'))
 screen_manager.add_widget(TimeDateScreen(name = 'timedate'))
@@ -355,9 +351,13 @@ class Main(MDApp):
     def charge_or_dialog(self, root):
         if currenttf != "" and wantedtf != "" and batterytf != "" and maxcurrenttf != "" and self.timepicker != "Choose time" and self.datepicker != "Choose date":
             self.ready_to_send()
-            #download_thread = threading.Thread(target=self.return_values_to_backend(), name="Backend")
-            #download_thread.start()
-            self.make_backend_object()
+            print("I'm here")
+            thread = threading.Thread(target=self.make_backend_object(), name="Backend")
+            thread.start()
+            print("abt to start")
+            #self.make_backend_object()
+            thread.join()
+            print("done")
             root.manager.current = 'goodbye'
         else:
             self.dialog = MDDialog(
