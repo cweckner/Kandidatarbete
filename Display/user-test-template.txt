@@ -9,13 +9,13 @@
     - The object is to test our user interface for our smart charging station.
     - The charging station is running an algorithm that computes when to charge to lower the cost and minimise load on the electric network at peak load times. 
     - The values you put in will be put into our algorithm.
-    - We will take time when you complete a few tasks and afterwards we will have a small interview.
-
+    - We will observe when you complete a few tasks and afterwards we will have a small interview.
+4. The password is: 80085
 
 OBSERVATION------------------------
 
     Task 1.
-        You want to charge your car (Tesla Model S) with the charging station. Plug in the charger and use the touch interface to start charging the car.
+        You want to charge your car (Tesla Model S) with the charging station. Use the touch interface to start charging the car.
             Parameters to put in:
                 -Current charge: 88%
                 -Wanted charge: 100%
@@ -42,14 +42,13 @@ OBSERVATION------------------------
 
 -- reset
 
-    Task 4. 
-        You want to charge your car, your car model is not in the list of cars and no paramets are given. Use the touch interface and external tools to start charging the car. You can choose how much charge procentage you want at departure and time of the departure yourself.
+    Task 4. You want to charge your car, but you don't want to use the optimisation algorithm this time. Use the touch interface to start charging your car.
 
 INTERVIEW---------------------------
 
     1. What were your first impression of the application?
     2. Can you name something you liked about the application?
-    3. Can you name something you disliked about the application?
+    3. Can you name something you disgiliked about the application?
     4. Were anything confusing in the application? If yes, what?
     5. Do you have any suggestions for improvement in the development of the application?
     6. Comments?

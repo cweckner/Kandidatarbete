@@ -192,7 +192,7 @@ class Main(MDApp):
     def check_password(self, widget, root):
         global passwordtf
         passwordtf = self.root.ids.passwordtf.text
-        if passwordtf == "chargemyfuckingcar":
+        if passwordtf == "80085":
             root.manager.transition.direction = 'left' 
             if widget == "charge_with_optimisation":
                 root.manager.current = "currentcharge"
