@@ -45,6 +45,23 @@ def startCharger(token,transactionId,tagID, outletID):
     #print(data)
     #print(response)
     
+#Enable charger
+def enableCharger(token,transactionId,tagID, outletID):
+    #print("startCharger")
+    if(outletID == 1):
+        outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
+    else:
+        outlet = "fe294fba-d6ad-4616-8ab8-9999fe9bad58"
+    tagIDSTR = "\""+tagID+"\""
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
+    url = APIServer + "/ServicesApi/rest/charger/uuid/start"
+    data = '{"evseId":'+outlet+',"tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
+    response = requests.post(url, headers=headers, data=data)
+    print(data)
+    print(response)
 
 #Notify Start (request sent by charger)
 #Server response
