@@ -2,7 +2,7 @@ from scipy.optimize import linprog
 import datetime
 import matplotlib.pyplot as plt
 import parameters
-
+import rebase_forecast
 #def solarpower(intervall):
     #TODO: Returnera en array med storlek inter och Ampere värden som solpanelerna kan ge ut
     #Läs av från tiden nu och scanna framåt med 5 minuter varje gång, solen ges i kvartar så avrunda t närmsta kvart
@@ -52,8 +52,22 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
 
     rhs_eq = [kwh]                                  #Krav på hur många KWh vi behöver
 
+
     bnd = [(0, current_limit)]*inter                #Current, mellan 0 och currentlimit // Antingen 0, eller mellan 6 och MAX
-   # bnd [0] = (10,current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
+    time = datetime.datetime.now().strftime("%H:%M")
+    solcellsdata = rebase_forecast.get_solar_forecast(time)  #Error hur anropar jag denna
+    z = 0
+    for j in range(0,inter-2):
+        if j%3 == 0 and j != 0:
+            z = z + 1
+        bnd [j] = (int(solcellsdata[z]),current_limit)                        #Lägg in strömmen som kan fås ut från solpaneler här
+
+
+    #bnd [j+1] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
+    #bnd [j+2] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
+                  #Kolla om det är likström eller växelström
+    print(bnd)
+
     opt = linprog(c=obj,                            #Solver, minimimerar
     A_eq=lhs_eq, b_eq=rhs_eq, bounds=bnd,
     method="revised simplex")
@@ -61,8 +75,8 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6                                #Tillfällig silvertejpslösnings
     return opt.x
 
-#tid = datetime.datetime(2021,4,8,15,19,0)
-#plan = current(tid,32,63,100,20)                    #Värden för attt testa
-#print(plan)
+tid = datetime.datetime(2021,4,23,23,0,0)
+plan = current(tid,32,63,100,20)                    #Värden för attt testa
+print(plan)
 #for j in range(288):
  #   print(datetime.datetime.now()+datetime.timedelta(minutes=5*j),plan[j])  #Tabell tid/Chargecurrent

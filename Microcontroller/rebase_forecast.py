@@ -6,7 +6,7 @@ api_key = 'ka8HR1KQMGi5WySvGyATV3PprcZeZafABl3Ms6AH2vw'
 
 
 #'87893bbd-1b9a-49fb-88b6-32968f060552' är den test-site som är gjord för HSB-LL
-url = 'https://api.rebase.energy/platform/v1/site/latest_forecast/87893bbd-1b9a-49fb-88b6-32968f060552'
+url = 'https://api.rebase.energy/platform/v1/site/latest_forecast/dbcb7636-696d-4279-a5c1-131509e28956'
 
 headers = {
   'GL-API-KEY': api_key
@@ -23,15 +23,18 @@ def get_solar_forecast(start_time):
 
   st = round_to_quarter(start_time)
   #index = hour * 4 + minute / 5
-  index = int(int(st[0:2])*4 + int(st[3:5])/5) 
+  index = int(int(st[0:2])*4 + int(st[3:5])/5)
   response = requests.get(url, headers=headers, params=params)
 
   result = response.json()
   est_solar = {}
+  solar_forecast = []
   for i in range(96):                       #get all values for the next 24 hours
     est_solar[result['valid_time'][index+i][11:16]] = round(result['forecast'][index+i],2)
+    solar_forecast.append(round(result['forecast'][index+i]/0.4,2))
 
-  return est_solar
+  return solar_forecast
+
 
 
 def round_to_quarter(start_time):
