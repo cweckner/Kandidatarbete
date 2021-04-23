@@ -28,15 +28,19 @@ def createToken():
 #Send the request to activate the connector on the charge station
 #TODO:
 #Add stoptime
-def startCharger(token,transactionId,tagID):
+def startCharger(token,transactionId,tagID, outletID):
     #print("startCharger")
+    if(outletID == 1):
+        outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
+    else:
+        outlet = "fe294fba-d6ad-4616-8ab8-9999fe9bad58"
     tagIDSTR = "\""+tagID+"\""
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
     url = APIServer + "/ServicesApi/rest/charger/uuid/start"
-    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
+    data = '{"evseId":' +outlet+ ',"tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
     response = requests.post(url, headers=headers, data=data)
     #print(data)
     #print(response)
@@ -46,14 +50,18 @@ def startCharger(token,transactionId,tagID):
 #Server response
 
 #Stop Charger
-def stopCharger(token,transactionID):
+def stopCharger(token,transactionID, outletID):
     #print("stopCharger")
+    if(outletID == 1):
+        outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
+    else:
+        outlet = "fe294fba-d6ad-4616-8ab8-9999fe9bad58"
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
     }
     url = APIServer + "/ServicesApi/rest/charger/uuid/stop"
-    data = '{"evseId" : "d4ceb292-12ef-46b2-9724-0aeca7b62827", "transactionId" :' +transactionID+'}'
+    data = '{"evseId" : '+outlet+', "transactionId" :' +transactionID+'}'
     response = requests.post(url, headers=headers, data=data)
     #print(data)
     #print(response)
