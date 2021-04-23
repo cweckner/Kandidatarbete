@@ -41,6 +41,19 @@ def startCharger(token,transactionId,tagID):
     response = requests.post(url, headers=headers, data=data)
     print(data)
     print(response)
+
+def enableCharger(token,transactionId,tagID):
+    #print("startCharger")
+    tagIDSTR = "\""+tagID+"\""
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
+    url = APIServer + "/ServicesApi/rest/charger/uuid/start"
+    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
+    response = requests.post(url, headers=headers, data=data)
+    print(data)
+    print(response)
     
 
 #Notify Start (request sent by charger)
@@ -240,7 +253,7 @@ def notifyStart():
 token = createToken()
 connectorStatus(token, 1)
 startCharger(token, str("00000000-0000-0000-0000-000000000000"), str("999"))
-time.sleep(10)
-notifyStart()
+#time.sleep(10)
+#notifyStart()
 time.sleep(10)
 changeActiveCurrent(token, "1", "0")

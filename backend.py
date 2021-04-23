@@ -51,8 +51,9 @@ class backend:
             optTime = datetime.datetime(*timeTupleFull[0:4])
 
             #starting the charger
-            commands.startCharger(token, transactionID, tagID)
+            commands.startCharger(token, transactionID, tagID, outlet)
             #tagID = commands.getTagID(transactionID)
+            commands.changeActiveCurrent(token, str(outlet), str(0))
 
             #the charging loop
             while(numberOfUpdates > 0):
@@ -101,14 +102,14 @@ class backend:
                     numberOfUpdates -= 1
                     
             #All iterations done, or the car is not connected and the other outlet is not in use -> stop the charger
-            if(outlet == 1):
-                otherOutlet = 2
-            else:
-                otherOutlet = 1
-            otherOutletStatus = commands.connectorStatus(token, otherOutlet)
+            #if(outlet == 1):
+            #    otherOutlet = 2
+            #else:
+            #    otherOutlet = 1
+            #otherOutletStatus = commands.connectorStatus(token, otherOutlet)
             commands.consumedEnergy(token, tagID, startDate, endDate)
-            if(otherOutlet == "AVAILABLE"):
-                commands.stopCharger(token, transactionID)
+            #if(otherOutlet == "AVAILABLE"):
+            commands.stopCharger(token, transactionID, outlet)
 
 
 #backendTest = backend()

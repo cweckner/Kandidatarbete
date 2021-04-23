@@ -15,11 +15,7 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             size_hint_x: None
             width: 300
-            on_text_validate: 
-                app.save_currenttf() 
-                root.transition.direction = 'left'
-                root.current = 'wantedcharge'  
-    InputScreen:
+
     CurrentChargeScreen:
         id: currentchargescreen
         NumInput:
