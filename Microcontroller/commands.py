@@ -41,6 +41,19 @@ def startCharger(token,transactionId,tagID):
     response = requests.post(url, headers=headers, data=data)
     print(data)
     print(response)
+
+def enableCharger(token,transactionId,tagID):
+    #print("startCharger")
+    tagIDSTR = "\""+tagID+"\""
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+    }
+    url = APIServer + "/ServicesApi/rest/charger/uuid/start"
+    data = '{"evseId":"d4ceb292-12ef-46b2-9724-0aeca7b62827","tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
+    response = requests.post(url, headers=headers, data=data)
+    print(data)
+    print(response)
     
 
 #Notify Start (request sent by charger)
