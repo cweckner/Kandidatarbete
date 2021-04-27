@@ -60,7 +60,10 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     for j in range(0,inter-2):
         if j%3 == 0 and j != 0:
             z = z + 1
-        bnd [j] = (int(solcellsdata[z]),current_limit)                        #Lägg in strömmen som kan fås ut från solpaneler här
+        if int(solcellsdata[z]) > current_limit:
+            bnd [j] = (current_limit,current_limit)
+        else:
+            bnd [j] = (int(solcellsdata[z]),current_limit)                        #Lägg in strömmen som kan fås ut från solpaneler här
 
 
     #bnd [j+1] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
@@ -75,8 +78,8 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6                                #Tillfällig silvertejpslösnings
     return opt.x
 
-tid = datetime.datetime(2021,4,23,23,0,0)
-plan = current(tid,32,63,100,20)                    #Värden för attt testa
+tid = datetime.datetime(2021,4,28,23,0,0)
+plan = current(tid,10,63,100,20)                    #Värden för attt testa
 print(plan)
 #for j in range(288):
  #   print(datetime.datetime.now()+datetime.timedelta(minutes=5*j),plan[j])  #Tabell tid/Chargecurrent
