@@ -352,10 +352,14 @@ class Main(MDApp):
         if currenttf != "" and wantedtf != "" and batterytf != "" and maxcurrenttf != "" and self.timepicker != "Choose time" and self.datepicker != "Choose date":
             self.ready_to_send()
             print("I'm here")
-            #thread = threading.Thread(target=self.make_backend_object(), name="Backend")
-            #thread.start()
+            thread1 = threading.Thread(target=self.make_backend_object)
+            print("DO I COME HERE?")
+            thread1.start()
+            
+            print("PLEASE PRINT")
+            #thread1.join()
             print("abt to start")
-            self.make_backend_object()
+            #self.make_backend_object()
             #thread.join()
             print("done")
             root.manager.current = 'goodbye'
@@ -370,6 +374,7 @@ class Main(MDApp):
             self.dialog.open()
 
     def make_backend_object(self):
+        print("INSIDE THE THREAD")
         backendTest = backend.backend()
         print(self.transactionID)
         self.transactionID = commands.incrementTransactionID(self.transactionID)

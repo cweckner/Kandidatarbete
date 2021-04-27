@@ -19,6 +19,7 @@ class backend:
     def chargingLoop(self, readyVariable, carChargeLevelNow, carWantedCharge, carBatteryCapacity, carMaxCurrentInput, departureTime, outlet, transactionID):
         if(readyVariable):
             #initial variables
+            print(str(transactionID))
             tagID = self.tagID
             token = commands.createToken()
             numberOfUpdates = commands.calculateNumberOfUpdates(departureTime)
@@ -60,22 +61,22 @@ class backend:
                 if(int(carChargeLevelNow+0.5) >= carWantedCharge or comparingTimeNow >= comparingTimeDeparture):
                     commands.changeActiveCurrent(token, str(outlet), "0")
                     break
-                print("entered loop")
-                print("number of updates" + " " + str(numberOfUpdates))
+                #print("entered loop")
+                #print("number of updates" + " " + str(numberOfUpdates))
                 #check if a car is connected to the outlet we want to use
                 outletStatus = commands.connectorStatus(token, outlet)
                 
                 #update currentTime to the time right now, FINAL PRODUCT
-                currentTime = datetime.datetime.now()
+                #currentTime = datetime.datetime.now()
 
                 #add 5 minutes to wait before updating the charging current, FINAL PRODUCT
                 #nextTime = currentTime + datetime.timedelta(minutes = 5)
 
                 #update what time it is, TESTING
-                #currentTime += datetime.timedelta(minutes = 5)
+                currentTime += datetime.timedelta(minutes = 5)
 
                 #TESTING
-                #nextTime = currentTime
+                nextTime = currentTime
 
                 comparingTimeNow = datetime.datetime.timestamp(currentTime)
                         
@@ -98,9 +99,11 @@ class backend:
                     currentStatus = (voltage*5/60000)*chargingCurrent[0]
                     carChargeLevelNow += currentStatus/kwhAsPercent
                     print(str(int(carChargeLevelNow+0.5)) + "%")
-                    nextTime = currentTime + datetime.timedelta(minutes = 5)
+                    #nextTime = currentTime + datetime.timedelta(minutes = 5)
                     numberOfUpdates -= 1
-
+                    print(str(chargingCurrent[0]))
+                    print(str(outlet))
+                    print(str(numberOfUpdates))
                     #Log data
                     chargeLog = commands.consumedEnergy(token, tagID, startDate, endDate)
                     f = open("charginglog.txt", "a")
