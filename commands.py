@@ -43,7 +43,7 @@ def startCharger(token,transactionId,tagID, outletID):
     data = '{"evseId":' +outlet+ ',"tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
     response = requests.post(url, headers=headers, data=data)
     #print(data)
-    #print(response)
+    print(response.text)
     
 #Enable charger
 def enableCharger(token,transactionId,tagID, outletID):
@@ -60,8 +60,8 @@ def enableCharger(token,transactionId,tagID, outletID):
     url = APIServer + "/ServicesApi/rest/charger/uuid/start"
     data = '{"evseId":'+outlet+',"tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
     response = requests.post(url, headers=headers, data=data)
-    print(data)
-    print(response)
+    #print(data)
+    print(response.text)
 
 #Stop Charger
 def stopCharger(token,transactionID, outletID):
@@ -78,7 +78,7 @@ def stopCharger(token,transactionID, outletID):
     data = '{"evseId" : '+outlet+', "transactionId" :' +transactionID+'}'
     response = requests.post(url, headers=headers, data=data)
     #print(data)
-    #print(response)
+    print(response)
 
 #Notify Stop (request sent by charger)
 #Server Response

@@ -82,8 +82,10 @@ class backend:
                 chargeLog = commands.consumedEnergy(token, tagID, startDate, endDate)
 
                 #Log data
+                timing = datetime.datetime.now()
                 f = open("charginglog.txt", "a")
-                f.write(chargeLog)
+                f.write(str(timing))
+                f.write(chargeLog + "\n")
                 f.close()
 
                 #Switch the if cases depending on if you are testing or not
