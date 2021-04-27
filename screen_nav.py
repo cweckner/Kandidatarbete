@@ -241,20 +241,50 @@ ScreenManager:
 
     BoxLayout:
         orientation: 'vertical'
-        spacing: "10dp"
-        padding: 0, '50dp', 0, '300dp'
+        
+        padding: "65dp", 0, 0, '550dp'
         MDLabel:
-            text: 'Welcome, please enter the password'
-            halign: 'center'
+            font_style: "H3"
+            text: 'Welcome,'
+        
+    
+    BoxLayout:
+        orientation: 'vertical'
+       
+        padding: "65dp", 0, 0, "430dp"
+        MDLabel:
+            font_style: "H5"
+            text: "lower your EV's charging cost and"
+            
+    
+    BoxLayout:
+        orientation: 'vertical'
+      
+        padding: "65dp", 0, 0, '340dp'
+        MDLabel:
+            font_style: "H5"
+            text: 'lower the load on the electric grid'
+            
+    
+    BoxLayout:
+        orientation: 'vertical'
+      
+        padding: "65dp", 0, 0, '250dp'
+        MDLabel:
+            theme_text_color: "Custom"
+            text_color: 0.4, 0.8, 0.4, 1
+            font_style: "H5"
+            text: 'by smart charging'
+            
 
     MDRectangleFlatButton:
-        text: 'Charge with optimisation model'
+        text: 'Charge my car with smart charging'
         pos_hint: {'center_x': 0.5, 'center_y': 0.32}
         on_release:
             app.check_password("charge_with_optimisation", root)
 
     MDFlatButton:
-        text: 'Charge directly'
+        text: 'Charge normally'
         theme_text_color: "Hint"
         pos_hint: {'center_x': 0.5, 'center_y': 0.24}
         on_release:
