@@ -29,7 +29,7 @@ def createToken():
 #TODO:
 #Add stoptime
 def startCharger(token,transactionId,tagID, outletID):
-    #print("startCharger")
+    print("startCharger")
     if(outletID == 1):
         outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
     else:
@@ -47,7 +47,7 @@ def startCharger(token,transactionId,tagID, outletID):
     
 #Enable charger
 def enableCharger(token,transactionId,tagID, outletID):
-    #print("startCharger")
+    print("enableCharger")
     if(outletID == 1):
         outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
     else:
@@ -65,7 +65,7 @@ def enableCharger(token,transactionId,tagID, outletID):
 
 #Stop Charger
 def stopCharger(token,transactionID, outletID):
-    #print("stopCharger")
+    print("stopCharger")
     if(outletID == 1):
         outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
     else:
@@ -87,7 +87,7 @@ def stopCharger(token,transactionID, outletID):
 #TODO:
 #Add input from optimisation model
 def changeActiveCurrent(token, connector, current):
-    #print("changeActiveCurrent")
+    print("changeActiveCurrent")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
