@@ -51,7 +51,7 @@ class backend:
             optTime = datetime.datetime(*timeTupleFull[0:4])
 
             #starting the charger
-            commands.startCharger(token, transactionID, tagID)
+            commands.startCharger(token, transactionID, tagID, outlet)
             tagID = commands.getTagID(transactionID)
 
             #the charging loop

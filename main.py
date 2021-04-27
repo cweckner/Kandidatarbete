@@ -174,7 +174,7 @@ class Main(MDApp):
     
     def animate_the_label(self, widget, time):
         print(self.anim_or_not)
-        if self.anim_or_not != 3:
+        if self.anim_or_not < 1:
             anim = Animation(opacity=0.1, duration=time) + Animation(opacity=1, duration=time)
             anim.bind(on_complete=self.callback_animation)
             anim.repeat = True
@@ -192,7 +192,7 @@ class Main(MDApp):
     def check_password(self, widget, root):
         global passwordtf
         passwordtf = self.root.ids.passwordtf.text
-        if passwordtf == "chargemyfuckingcar":
+        if passwordtf == "80085":
             root.manager.transition.direction = 'left' 
             if widget == "charge_with_optimisation":
                 root.manager.current = "currentcharge"
@@ -352,11 +352,11 @@ class Main(MDApp):
         if currenttf != "" and wantedtf != "" and batterytf != "" and maxcurrenttf != "" and self.timepicker != "Choose time" and self.datepicker != "Choose date":
             self.ready_to_send()
             print("I'm here")
-            thread = threading.Thread(target=self.make_backend_object(), name="Backend")
-            thread.start()
+            #thread = threading.Thread(target=self.make_backend_object(), name="Backend")
+            #thread.start()
             print("abt to start")
-            #self.make_backend_object()
-            thread.join()
+            self.make_backend_object()
+            #thread.join()
             print("done")
             root.manager.current = 'goodbye'
         else:

@@ -78,7 +78,7 @@ class backend:
                 #nextTime = currentTime
 
                 comparingTimeNow = datetime.datetime.timestamp(currentTime)
-
+                        
                 #Switch the if cases depending on if you are testing or not
                 #if(outletStatus != "AVAILABLE" and currentTime >= nextTime):
                 print(currentTime)
@@ -100,6 +100,15 @@ class backend:
                     print(str(int(carChargeLevelNow+0.5)) + "%")
                     nextTime = currentTime + datetime.timedelta(minutes = 5)
                     numberOfUpdates -= 1
+
+                    #Log data
+                    chargeLog = commands.consumedEnergy(token, tagID, startDate, endDate)
+                    f = open("charginglog.txt", "a")
+                    f.write(str(currentTime) + "\n")
+                    f.write(str(chargingCurrent[0]) + "\n")
+                    f.write(chargeLog + "\n")
+                    f.close()
+
                     
             #All iterations done, or the car is not connected and the other outlet is not in use -> stop the charger
             #if(outlet == 1):

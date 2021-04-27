@@ -29,7 +29,7 @@ def createToken():
 #TODO:
 #Add stoptime
 def startCharger(token,transactionId,tagID, outletID):
-    #print("startCharger")
+    print("startCharger")
     if(outletID == 1):
         outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
     else:
@@ -43,11 +43,11 @@ def startCharger(token,transactionId,tagID, outletID):
     data = '{"evseId":' +outlet+ ',"tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
     response = requests.post(url, headers=headers, data=data)
     #print(data)
-    #print(response)
+    print(response.text)
     
 #Enable charger
 def enableCharger(token,transactionId,tagID, outletID):
-    #print("startCharger")
+    print("enableCharger")
     if(outletID == 1):
         outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
     else:
@@ -60,15 +60,12 @@ def enableCharger(token,transactionId,tagID, outletID):
     url = APIServer + "/ServicesApi/rest/charger/uuid/start"
     data = '{"evseId":'+outlet+',"tagId":'+tagIDSTR+', "transactionId":' +transactionId+'}'
     response = requests.post(url, headers=headers, data=data)
-    print(data)
-    print(response)
-
-#Notify Start (request sent by charger)
-#Server response
+    #print(data)
+    print(response.text)
 
 #Stop Charger
 def stopCharger(token,transactionID, outletID):
-    #print("stopCharger")
+    print("stopCharger")
     if(outletID == 1):
         outlet = "d4ceb292-12ef-46b2-9724-0aeca7b62827"
     else:
@@ -81,7 +78,7 @@ def stopCharger(token,transactionID, outletID):
     data = '{"evseId" : '+outlet+', "transactionId" :' +transactionID+'}'
     response = requests.post(url, headers=headers, data=data)
     #print(data)
-    #print(response)
+    print(response)
 
 #Notify Stop (request sent by charger)
 #Server Response
@@ -90,7 +87,7 @@ def stopCharger(token,transactionID, outletID):
 #TODO:
 #Add input from optimisation model
 def changeActiveCurrent(token, connector, current):
-    #print("changeActiveCurrent")
+    print("changeActiveCurrent")
     headers = {
         'Authorization': 'Bearer ' + token,
         'Content-Type': 'application/json',
@@ -111,6 +108,7 @@ def consumedEnergy(token,tagID,intervalStart,intervalEnd):
     url = APIServer + "/ServicesApi/rest/tag/getSessionsByTag"
     data = '{"tagId" : '+tagID+', "intervalStart" : '+intervalStart+'," intervalEnd" : '+intervalEnd+'}'
     response = requests.post(url, headers=headers, data=data)
+    return(response.text)
     #print(response)
     #print(response.text)
 
@@ -145,7 +143,6 @@ def connectorStatus(token, outletID):
     #print(response.text)
     #print(status)
     return(status)
-
 
 #Set RFID tagID
 def setRFIDtagID(token, time):
