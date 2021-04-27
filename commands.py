@@ -63,9 +63,6 @@ def enableCharger(token,transactionId,tagID, outletID):
     print(data)
     print(response)
 
-#Notify Start (request sent by charger)
-#Server response
-
 #Stop Charger
 def stopCharger(token,transactionID, outletID):
     #print("stopCharger")
@@ -111,6 +108,7 @@ def consumedEnergy(token,tagID,intervalStart,intervalEnd):
     url = APIServer + "/ServicesApi/rest/tag/getSessionsByTag"
     data = '{"tagId" : '+tagID+', "intervalStart" : '+intervalStart+'," intervalEnd" : '+intervalEnd+'}'
     response = requests.post(url, headers=headers, data=data)
+    return(response.text)
     #print(response)
     #print(response.text)
 
@@ -145,7 +143,6 @@ def connectorStatus(token, outletID):
     #print(response.text)
     #print(status)
     return(status)
-
 
 #Set RFID tagID
 def setRFIDtagID(token, time):

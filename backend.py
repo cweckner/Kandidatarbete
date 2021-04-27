@@ -78,6 +78,13 @@ class backend:
                 #nextTime = currentTime
 
                 comparingTimeNow = datetime.datetime.timestamp(currentTime)
+                        
+                chargeLog = commands.consumedEnergy(token, tagID, startDate, endDate)
+
+                #Log data
+                f = open("charginglog.txt", "a")
+                f.write(chargeLog)
+                f.close()
 
                 #Switch the if cases depending on if you are testing or not
                 #if(outletStatus != "AVAILABLE" and currentTime >= nextTime):
