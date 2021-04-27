@@ -100,13 +100,11 @@ class backend:
                     print(str(int(carChargeLevelNow+0.5)) + "%")
                     nextTime = currentTime + datetime.timedelta(minutes = 5)
                     numberOfUpdates -= 1
-                    
+
                     #Log data
                     chargeLog = commands.consumedEnergy(token, tagID, startDate, endDate)
-
-                    timing = datetime.datetime.now()
                     f = open("charginglog.txt", "a")
-                    f.write(str(timing) + "\n")
+                    f.write(str(currentTime) + "\n")
                     f.write(str(chargingCurrent[0]) + "\n")
                     f.write(chargeLog + "\n")
                     f.close()
