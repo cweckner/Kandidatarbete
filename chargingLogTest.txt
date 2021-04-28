@@ -23,3 +23,21 @@
 2021-04-27 14:40:45.090114{"sessions":"JSONException","count":"JSONException"}
 2021-04-27 14:44:54.569270{"sessions":"JSONException","count":"JSONException"}
 2021-04-27 14:45:20.159088{"sessions":"JSONException","count":"JSONException"}
+2021-04-27 15:03:31.341777{"sessions":"JSONException","count":"JSONException"}
+2021-04-27 15:08:31.744872{"sessions":"JSONException","count":"JSONException"}
+2021-04-27 15:12:41.256765<html>
+<head><title>403 Forbidden</title></head>
+<body bgcolor="white">
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+
+2021-04-27 15:17:41.794752<html>
+<head><title>403 Forbidden</title></head>
+<body bgcolor="white">
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+

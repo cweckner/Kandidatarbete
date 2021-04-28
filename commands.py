@@ -108,7 +108,8 @@ def consumedEnergy(token,tagID,intervalStart,intervalEnd):
     url = APIServer + "/ServicesApi/rest/tag/getSessionsByTag"
     data = '{"tagId" : '+tagID+', "intervalStart" : '+intervalStart+'," intervalEnd" : '+intervalEnd+'}'
     response = requests.post(url, headers=headers, data=data)
-    return(response.text)
+    responseJSON = json.loads(response.text)
+    return(responseJSON)
     #print(response)
     #print(response.text)
 
