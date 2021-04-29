@@ -24,7 +24,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         kwh = 0                                     #Buggkoll
     time_now = datetime.datetime.now()             #Tiden just nu
     priser = parameters.param(time_now,end_time)    #Anropa parametrar för att få pristabell
-    kvot = V*5/60000                                #Fast värde, kwh/5 minuter= Kvot*I(Ampere)
+    kvot = V*5/60000                                #Fast värde, kwh/5 minuter= Kvot*I(Ampere) (kVh)
     chargetime = end_time - time_now                #Laddningstid exakt
     time_minutes = chargetime.total_seconds()/60    #Laddningstid i minuter
     inter = int(time_minutes/5)                     #Omvandling till 5 minuters intervall
@@ -74,8 +74,10 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     opt = linprog(c=obj,                            #Solver, minimimerar
     A_eq=lhs_eq, b_eq=rhs_eq, bounds=bnd,
     method="revised simplex")
-    if opt.x[0] < 6 and opt.x[0]!=0:
-        opt.x[0] = 6                                #Tillfällig silvertejpslösnings
+    if opt.x[0] <= 3:
+        opt.x[0] = 0                                #Tillfällig silvertejpslösnings
+    if opt.x[0] <6 and opt.x[0]>3:
+        opt.x[0] = 6
     return opt.x
 
 tid = datetime.datetime(2021,4,28,23,0,0)
