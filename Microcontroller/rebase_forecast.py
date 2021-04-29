@@ -6,14 +6,14 @@ api_key = 'ka8HR1KQMGi5WySvGyATV3PprcZeZafABl3Ms6AH2vw'
 
 
 #'87893bbd-1b9a-49fb-88b6-32968f060552' är den test-site som är gjord för HSB-LL
-url = 'https://api.rebase.energy/platform/v1/site/latest_forecast/dbcb7636-696d-4279-a5c1-131509e28956'
-
+solar_url = 'https://api.rebase.energy/platform/v1/site/forecast/latest/dbcb7636-696d-4279-a5c1-131509e28956'
+load_url = 'https://api.rebase.energy/platform/v1/site/forecast/latest/612d5834-0056-482d-b0d3-7a53aa770193'
 headers = {
   'GL-API-KEY': api_key
 }
 
 params = {
-  'type': 'prioritized',      #'ai', 'prioritized', 'physical'
+  'type': 'ai',      #'ai', 'prioritized', 'physical'
 }
 
 
@@ -24,16 +24,31 @@ def get_solar_forecast(start_time):
   st = round_to_quarter(start_time)
   #index = hour * 4 + minute / 5
   index = int(int(st[0:2])*4 + int(st[3:5])/5)
-  response = requests.get(url, headers=headers, params=params)
+  response = requests.get(solar_url, headers=headers, params=params)
 
   result = response.json()
   est_solar = {}
   solar_forecast = []
   for i in range(96):                       #get all values for the next 24 hours
     est_solar[result['valid_time'][index+i][11:16]] = round(result['forecast'][index+i],2)
-    solar_forecast.append(round(result['forecast'][index+i]/0.4,2))
-
+    solar_forecast.append(round((result['forecast'][index+i]),2))
   return solar_forecast
+
+
+
+def get_load_forecast(start_time):
+
+  st = round_to_quarter(start_time)
+  #index = hour * 4 + minute / 5
+  response = requests.get(load_url, headers=headers, params=params)
+
+  result = response.json()
+  est = {}
+  load_forecast = []
+  for i in range(24):                       #get all values for the next 24 hours
+    est[result['valid_time'][i][11:16]] = round(result['forecast'][i],2)
+    load_forecast.append(round((result['forecast'][i]),2))
+  return load_forecast
 
 
 
@@ -44,6 +59,9 @@ def round_to_quarter(start_time):
   if(minute < 30):
     return start_time[0:3] + '15'
   if(minute < 45):
-    return start_time[0:3] + '30' 
+    return start_time[0:3] + '30'
   if(minute < 60):
-    return start_time[0:3] + '45'       
+    return start_time[0:3] + '45'
+
+print(get_load_forecast("18:45"))
+print(get_solar_forecast("18:45"))

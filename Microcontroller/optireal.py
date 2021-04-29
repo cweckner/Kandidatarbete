@@ -55,18 +55,26 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
 
     bnd = [(0, current_limit)]*inter                #Current, mellan 0 och currentlimit // Antingen 0, eller mellan 6 och MAX
     time = datetime.datetime.now().strftime("%H:%M")
-    solcellsdata = rebase_forecast.get_solar_forecast(time)  #Error hur anropar jag denna
-    z = 0
+    solcells_data = rebase_forecast.get_solar_forecast(time)  #Error hur anropar jag denna
+    load_data = rebase_forecast.get_load_forecast(time)
+    z = 0           #Loop-parametrar
+    y = 0
     for j in range(0,inter-2):
         if j%3 == 0 and j != 0:
             z = z + 1
-        if int(solcellsdata[z]) > current_limit:
+        if z%4 == 0 and z != 0 and j%3 == 0 and j != 0:
+            y = y + 1
+            print(y)
+        if int((solcells_data[z]-load_data[y])/0.4) > current_limit:
             bnd [j] = (current_limit,current_limit)
+        elif int((solcells_data[z]-load_data[y])/0.4) < 3:
+            bnd[j] = (0, current_limit)
+        elif int((solcells_data[z]-load_data[y]/0.4)) < 6 and int((solcells_data[z]-load_data[y])/0.4) > 3:
+            bnd [j] = (6,current_limit)                        #Lägg in strömmen som kan fås ut från solpaneler här
         else:
-            bnd [j] = (int(solcellsdata[z]),current_limit)                        #Lägg in strömmen som kan fås ut från solpaneler här
+            bnd[j] = (int((solcells_data[z]-load_data[y])/0.4), current_limit)
 
-
-    #bnd [j+1] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
+            #bnd [j+1] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
     #bnd [j+2] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
                   #Kolla om det är likström eller växelström
     print(bnd)
@@ -80,8 +88,8 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6
     return opt.x
 
-tid = datetime.datetime(2021,4,28,23,0,0)
-plan = current(tid,10,63,100,20)                    #Värden för attt testa
+tid = datetime.datetime(2021,4,30,16,0,0)
+plan = current(tid,32,63,100,20)                    #Värden för attt testa
 print(plan)
 #for j in range(288):
  #   print(datetime.datetime.now()+datetime.timedelta(minutes=5*j),plan[j])  #Tabell tid/Chargecurrent
