@@ -52,6 +52,3 @@ INTERVIEW---------------------------
     4. Were anything confusing in the application? If yes, what?
     5. Do you have any suggestions for improvement in the development of the application?
     6. Comments?
-
-
-
