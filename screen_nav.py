@@ -12,9 +12,10 @@ ScreenManager:
             id: passwordtf          
             hint_text: "Password"
             helper_text_mode: "on_focus"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
             size_hint_x: None
             width: 300
+        
 
     CurrentChargeScreen:
         id: currentchargescreen
@@ -239,56 +240,29 @@ ScreenManager:
 <WelcomeScreen>:
     name: 'welcome'
 
-    BoxLayout:
-        orientation: 'vertical'
-        
-        padding: "65dp", 0, 0, '550dp'
-        MDLabel:
-            font_style: "H3"
-            text: 'Welcome,'
-        
-    
-    BoxLayout:
-        orientation: 'vertical'
-       
-        padding: "65dp", 0, 0, "430dp"
-        MDLabel:
-            font_style: "H5"
-            text: "lower your EV's charging cost and"
-            
-    
-    BoxLayout:
-        orientation: 'vertical'
-      
-        padding: "65dp", 0, 0, '340dp'
-        MDLabel:
-            font_style: "H5"
-            text: 'lower the load on the electric grid'
-            
-    
-    BoxLayout:
-        orientation: 'vertical'
-      
-        padding: "65dp", 0, 0, '250dp'
-        MDLabel:
-            theme_text_color: "Custom"
-            text_color: 0.4, 0.8, 0.4, 1
-            font_style: "H5"
-            text: 'by smart charging'
-            
-
     MDRectangleFlatButton:
         text: 'Charge my car with smart charging'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.32}
+        pos_hint: {'center_x': 0.5, 'center_y': 0.3}
         on_release:
             app.check_password("charge_with_optimisation", root)
-
+    
     MDFlatButton:
-        text: 'Charge normally'
-        theme_text_color: "Hint"
-        pos_hint: {'center_x': 0.5, 'center_y': 0.24}
-        on_release:
-            app.check_password("charge_without_optimisation", root)             
+        text: "Welcome, lower your EV's charging cost and"
+        pos_hint: {'center_x': 0.464, 'center_y': 0.90}
+        
+            
+    MDFlatButton:
+        text: "lower the load on the electric grid with"
+        pos_hint: {'center_x': 0.425, 'center_y': 0.87}
+      
+   
+    MDFlatButton:
+        text: "smart charging"
+        pos_hint: {'center_x': 0.281, 'center_y': 0.84}
+        theme_text_color: "Custom"
+        text_color: 0.43, 0.67, 0.39, 1
+        
+                 
 
 
 <CurrentChargeScreen>:
