@@ -18,7 +18,7 @@ import rebase_forecast
 
   #  return solamp
 def current(end_time,current_limit,capacity,battery_goal,battery_current):
-    V=400                                               #Fast värde från laddstolpen
+    V=230                                               #Fast värde från laddstolpen
     kwh = (battery_goal-battery_current)*capacity/100   #Omvandling till kWh från batteriparametrar
     if kwh < 0:
         kwh = 0                                     #Buggkoll
@@ -59,20 +59,21 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     load_data = rebase_forecast.get_load_forecast(time)
     z = 0           #Loop-parametrar
     y = 0
+    kw_to_amp = 1000/230
     for j in range(0,inter-2):
         if j%3 == 0 and j != 0:
             z = z + 1
         if z%4 == 0 and z != 0 and j%3 == 0 and j != 0:
             y = y + 1
             print(y)
-        if int((solcells_data[z]-load_data[y])/0.4) > current_limit:
+        if int((solcells_data[z]-load_data[y])/kw_to_amp) > current_limit:
             bnd [j] = (current_limit,current_limit)
-        elif int((solcells_data[z]-load_data[y])/0.4) < 3:
+        elif int((solcells_data[z]-load_data[y])/kw_to_amp) < 3:
             bnd[j] = (0, current_limit)
-        elif int((solcells_data[z]-load_data[y]/0.4)) < 6 and int((solcells_data[z]-load_data[y])/0.4) > 3:
+        elif int((solcells_data[z]-load_data[y]/kw_to_amp)) < 6 and int((solcells_data[z]-load_data[y])/kw_to_amp) > 3:
             bnd [j] = (6,current_limit)                        #Lägg in strömmen som kan fås ut från solpaneler här
         else:
-            bnd[j] = (int((solcells_data[z]-load_data[y])/0.4), current_limit)
+            bnd[j] = (int((solcells_data[z]-load_data[y])/kw_to_amp), current_limit)
 
             #bnd [j+1] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
     #bnd [j+2] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
@@ -88,7 +89,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6
     return opt.x
 
-tid = datetime.datetime(2021,5,2,19,18,0)
+tid = datetime.datetime(2021,5,1,9,18,0)
 plan = current(tid,32,63,100,20)                    #Värden för attt testa
 print(plan)
 #for j in range(288):
