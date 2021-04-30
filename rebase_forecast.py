@@ -39,15 +39,15 @@ def get_solar_forecast(start_time):
 def get_load_forecast(start_time):
 
   st = round_to_quarter(start_time)
-  #index = hour * 4 + minute / 5
+  index = int(st[0:2])
   response = requests.get(load_url, headers=headers, params=params)
 
   result = response.json()
   est = {}
   load_forecast = []
   for i in range(24):                       #get all values for the next 24 hours
-    est[result['valid_time'][i][11:16]] = round(result['forecast'][i],2)
-    load_forecast.append(round((result['forecast'][i]),2))
+    est[result['valid_time'][index+i][11:16]] = round(result['forecast'][index+i],2)
+    load_forecast.append(round((result['forecast'][index+i]),2))
   return load_forecast
 
 
