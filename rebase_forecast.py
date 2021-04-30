@@ -23,7 +23,7 @@ def get_solar_forecast(start_time):
 
   st = round_to_quarter(start_time)
   #index = hour * 4 + minute / 5
-  index = int(int(st[0:2])*4 + int(st[3:5])/5) 
+  index = int(int(st[0:2])*4 + int(st[3:5])/15)
   response = requests.get(solar_url, headers=headers, params=params)
 
   result = response.json()
