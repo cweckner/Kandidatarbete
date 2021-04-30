@@ -70,4 +70,6 @@ def round_to_hour(start_time):
     return str(hour) + ':00'
   if(minute < 60):
     return str(hour + 1) + ':00'
-      
+
+print(get_load_forecast("15:45"))
+print(get_solar_forecast("15:45"))

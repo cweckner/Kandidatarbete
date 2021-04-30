@@ -48,18 +48,19 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     y = 0
     kw_to_amp = 1000/230
     for j in range(0,inter):
+        print((solcells_data[z] - load_data[y])*kw_to_amp)
         if j%3 == 0 and j != 0:         #14:55 z:14:45, y:14:00
             z = z + 1
         if z%4 == 0 and z != 0 and j%3 == 0 and j != 0:
             y = y + 1
-        if int((solcells_data[z]-load_data[y])/kw_to_amp) > current_limit:
+        if int((solcells_data[z]-load_data[y])*kw_to_amp) > current_limit:
             bnd [j] = (current_limit,current_limit)
-        elif int((solcells_data[z]-load_data[y])/kw_to_amp) < 3:
+        elif int((solcells_data[z]-load_data[y])*kw_to_amp) < 3:
             bnd[j] = (0, current_limit)
-        elif int((solcells_data[z]-load_data[y]/kw_to_amp)) < 6 and int((solcells_data[z]-load_data[y])/kw_to_amp) > 3:
+        elif int((solcells_data[z]-load_data[y]*kw_to_amp)) < 6 and int((solcells_data[z]-load_data[y])*kw_to_amp) > 3:
             bnd [j] = (6,current_limit)                        #Lägg in strömmen som kan fås ut från solpaneler här
         else:
-            bnd[j] = (int((solcells_data[z]-load_data[y])/kw_to_amp), current_limit)
+            bnd[j] = (int((solcells_data[z]-load_data[y])*kw_to_amp), current_limit)
 
             #bnd [j+1] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
     #bnd [j+2] = (solcellsdata[j],current_limit)                    #Lägg in strömmen som kan fås ut från solpaneler här
@@ -75,7 +76,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6
     return opt.x
 
-tid = datetime.datetime(2021,4,30,17,18,0)
+tid = datetime.datetime(2021,5,1,17,18,0)
 plan = current(tid,16,63,100,20)                    #Värden för attt testa
 print(plan)
 #for j in range(288):

@@ -36,7 +36,7 @@ class backend:
             comparingTimeDeparture = datetime.datetime.timestamp(datetime.datetime.strptime(departureTime,'%Y-%m-%d %H:%M:%S'))
             
             #Charger specific voltage
-            voltage = 400 
+            voltage = 230
 
             #time format conversion for the consumedEnergy command to see how much energy it took to charge the car
             timeForStartDate = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
