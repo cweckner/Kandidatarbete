@@ -38,7 +38,7 @@ def get_solar_forecast(start_time):
 
 def get_load_forecast(start_time):
 
-  st = round_to_quarter(start_time)
+  st = round_to_hour(start_time)
   index = int(st[0:2])
   response = requests.get(load_url, headers=headers, params=params)
 
@@ -63,5 +63,11 @@ def round_to_quarter(start_time):
   if(minute < 60):
     return start_time[0:3] + '45'       
 
-print(get_load_forecast("17:00"))
-print(get_solar_forecast("17:00"))
+def round_to_hour(start_time):
+  hour = int(start_time[0:2])
+  minute = int(start_time[3:5])
+  if(minute < 30):
+    return str(hour) + ':00'
+  if(minute < 60):
+    return str(hour + 1) + ':00'
+      
