@@ -76,8 +76,13 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6
     return opt.x
 
-#tid = datetime.datetime(2021,5,1,17,18,0)
-#plan = current(tid,16,63,100,20)                    #Värden för attt testa
+#tid = datetime.datetime(2021,5,4,1,18,0)
+#plan = current(tid,16,63,50,20)                    #Värden för attt testa
 #print(plan)
+
+#plt.plot(plan,'r')
+#plt.ylabel('Ampere')
+#plt.xlabel('time(5 minute intervals')
+#plt.show()
 #for j in range(288):
  #   print(datetime.datetime.now()+datetime.timedelta(minutes=5*j),plan[j])  #Tabell tid/Chargecurrent
