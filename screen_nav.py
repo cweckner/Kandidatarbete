@@ -468,7 +468,7 @@ ScreenManager:
                     ImageLeftWidget:
                         source: "Resources/Images/tesla_logo.png"
                 OneLineAvatarListItem:
-                    text: 'Other'
+                    text: 'Other car'
                     on_release: 
                         app.set_previous_screen('batterycapacity')
                         app.reset_brand_model()

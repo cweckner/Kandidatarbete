@@ -137,7 +137,6 @@ class Main(MDApp):
     showontimepicker= "Choose time"
     datepicker = ""
     timepicker = ""
-    readytosend= False
     previousscreen= ""
     tfvalues = {'timepicker': '20.00'}
     transactionID = "00000000-0000-0000-0000-000000000000"
@@ -316,10 +315,6 @@ class Main(MDApp):
         }
         global date_timestr
         date_timestr = str(self.datepicker)+ " " +str(self.timepicker)
-    
-    #Behövs denna nu?
-    def ready_to_send(self):
-        self.readytosend = True
 
     def show_on_summaryscreen(self):
         if self.datepicker == "" or self.timepicker == "":
@@ -396,7 +391,6 @@ class Main(MDApp):
         self.root.ids.datebutton.text = "Choose date"
         passwordtf = ""
         self.root.ids.passwordtf.text = ""
-        self.readytosend = False
 
 if __name__ == '__main__':
     Main().run()
