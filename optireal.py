@@ -48,7 +48,7 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
     y = 0
     kw_to_amp = 1000/230
     for j in range(0,inter):
-        print((solcells_data[z] - load_data[y])*kw_to_amp)
+        #print((solcells_data[z] - load_data[y])*kw_to_amp)
         if j%3 == 0 and j != 0:         #14:55 z:14:45, y:14:00
             z = z + 1
         if z%4 == 0 and z != 0 and j%3 == 0 and j != 0:
@@ -76,8 +76,8 @@ def current(end_time,current_limit,capacity,battery_goal,battery_current):
         opt.x[0] = 6
     return opt.x
 
-tid = datetime.datetime(2021,5,1,17,18,0)
-plan = current(tid,16,63,100,20)                    #Värden för attt testa
-print(plan)
+#tid = datetime.datetime(2021,5,1,17,18,0)
+#plan = current(tid,16,63,100,20)                    #Värden för attt testa
+#print(plan)
 #for j in range(288):
  #   print(datetime.datetime.now()+datetime.timedelta(minutes=5*j),plan[j])  #Tabell tid/Chargecurrent
