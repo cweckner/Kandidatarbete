@@ -331,14 +331,14 @@ class Main(MDApp):
         self.root.ids.datetimesummary.text = self.tfvalues['datepicker'] + at + (self.tfvalues['timepicker'])[:5]
         self.root.ids.outletsummary.text = self.tfvalues['outletcbx']
         if self.brand != '':
-            self.root.ids.brandorbatterysummary.text = 'Brand'
-            self.root.ids.modelormaxcurrentsummary.text = 'Model'
+            self.root.ids.brandorbatterysummary.text = 'Brand:'
+            self.root.ids.modelormaxcurrentsummary.text = 'Model:'
 
             self.root.ids.brandorbatteryvaluesummary.text = self.brand
             self.root.ids.modelormaxcurrentvaluesummary.text = self.model
         else:
-            self.root.ids.brandorbatterysummary.text = 'Battery capacity'
-            self.root.ids.modelormaxcurrentsummary.text = 'Maximum current'
+            self.root.ids.brandorbatterysummary.text = 'Battery capacity:'
+            self.root.ids.modelormaxcurrentsummary.text = 'Maximum current:'
 
             self.root.ids.brandorbatteryvaluesummary.text = self.tfvalues['batterytf']
             self.root.ids.modelormaxcurrentvaluesummary.text = self.tfvalues['maxcurrenttf']
@@ -350,18 +350,8 @@ class Main(MDApp):
     #If all inputs are set -> charge car, else -> warning dialog box
     def charge_or_dialog(self, root):
         if currenttf != "" and wantedtf != "" and batterytf != "" and maxcurrenttf != "" and self.timepicker != "Choose time" and self.datepicker != "Choose date":
-            self.ready_to_send()
-            print("I'm here")
             thread1 = threading.Thread(target=self.make_backend_object)
-            print("DO I COME HERE?")
             thread1.start()
-            
-            print("PLEASE PRINT")
-            #thread1.join()
-            print("abt to start")
-            #self.make_backend_object()
-            #thread.join()
-            print("done")
             root.manager.current = 'goodbye'
         else:
             self.dialog = MDDialog(
@@ -374,7 +364,6 @@ class Main(MDApp):
             self.dialog.open()
 
     def make_backend_object(self):
-        print("INSIDE THE THREAD")
         backendTest = backend.backend()
         print(self.transactionID)
         self.transactionID = commands.incrementTransactionID(self.transactionID)

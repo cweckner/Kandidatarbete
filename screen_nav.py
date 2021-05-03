@@ -145,8 +145,8 @@ ScreenManager:
                 halign: 'center'
             BoxLayout:
                 orientation: 'horizontal'
-                spacing: "10dp"
-                padding: '50dp', 0, 0, '50dp'
+                spacing: "30dp"
+                padding: 0, 0, 0, '50dp'
                 BoxLayout:
                     orientation: 'vertical'
                     padding: 0, 0, 0, 0
@@ -154,40 +154,40 @@ ScreenManager:
                         orientation: 'vertical'
                         padding: 0, 0, 0, 0
                         MDLabel:
-                            text: 'Current charge'
-                            halign: 'center'
+                            text: 'Current charge:'
+                            halign: 'right'
                     BoxLayout:
                         orientation: 'vertical'
                         padding: 0, 0, 0, 0
                         MDLabel:
-                            text: 'Wanted charge'
-                            halign: 'center'
+                            text: 'Wanted charge:'
+                            halign: 'right'
                     BoxLayout:
                         orientation: 'vertical'
                         padding: 0, 0, 0, 0
                         MDLabel:
-                            text: 'Departure'
-                            halign: 'center'
+                            text: 'Departure:'
+                            halign: 'right'
                     BoxLayout:
                         orientation: 'vertical'
                         padding: 0, 0, 0, 0
                         MDLabel:
                             id: brandorbatterysummary
                             text: ''
-                            halign: 'center'
+                            halign: 'right'
                     BoxLayout:
                         orientation: 'vertical'
                         padding: 0, 0, 0, 0
                         MDLabel:
                             id: modelormaxcurrentsummary
                             text: ''
-                            halign: 'center'
+                            halign: 'right'
                     BoxLayout:
                         orientation: 'vertical'
                         padding: 0, 0, 0, 0
                         MDLabel:
-                            text: 'Outlet'
-                            halign: 'center'
+                            text: 'Outlet:'
+                            halign: 'right'
                 BoxLayout:
                     orientation: 'vertical'
                     BoxLayout:
