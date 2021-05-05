@@ -15,7 +15,8 @@ ScreenManager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.75}
             size_hint_x: None
             width: 300
-        
+            on_text_validate:
+                app.check_password("charge_with_optimisation", root)
 
     CurrentChargeScreen:
         id: currentchargescreen
@@ -238,14 +239,7 @@ ScreenManager:
 
 
 <WelcomeScreen>:
-    name: 'welcome'
-
-    MDRectangleFlatButton:
-        text: 'Charge my car with smart charging'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.3}
-        on_release:
-            app.check_password("charge_with_optimisation", root)
-    
+    name: 'welcome'    
     MDFlatButton:
         text: "Welcome, lower your EV's charging cost and"
         pos_hint: {'center_x': 0.464, 'center_y': 0.90}
